@@ -1,0 +1,9 @@
+- `apropos` - (1) search the manual page names and descriptions
+- `pkg-config` - (1) Return metainformation about installed libraries
+- `man`
+  - (1) an interface to the system reference manuals
+  - (7) macros to format man pages
+- `info`
+  - (5) readable online documentation
+  - (1) read Info documents
+- `whatis` - (1) display one-line manual page descriptions
