@@ -98,7 +98,7 @@ The reassignment of a channel's file descriptor *in the shell environment* is ca
 	* `cat /some/file 1>/some/other/file`
 * redirection of `stderr` to a `file`: `2>`
 	* `cat /some/non/existent/file 2>/other/file`
-* redirection of both `stredd` and `stdout`: `&>` or `>&`
+* redirection of both `stderr` and `stdout`: `&>` or `>&`
 * redirection target: `[fd]>&[other-fd]`
 	* `1>&2` redirects `stdout` to `stderr`
 * It is **not** possible to redirect `stderr` to `stdin`, **directly**. Instead, if necessary, you can redirect `stderr` to `stdout` and then to `stdin`.
