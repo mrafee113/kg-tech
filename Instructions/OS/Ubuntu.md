@@ -650,3 +650,17 @@
 * username: `jesus_chwist`
 * password: old typical password
 * restore the csgo data
+---
+##### Beancount
+* [google docs](https://docs.google.com/document/d/1FqyrTPwiHVLyncWTf3v5TcooCu9z5JRX8Nm41lVZi0U/edit)
+* `cd ~/.local`
+* `git clone https://github.com/beancount/beancount`
+* `python install python3-dev`
+* `cd beancount`
+* install dependent libraries:
+	* `sudo apt-get install python3-dateutil python3-bottle python3-ply python3-lxml python3-bs4`
+	* `sudo -H python3 -m pip install python-magic`
+* `tsocks sudo python3 setup.py install`
+* Apprently version 3 which is what resides on the master branch of the repo as of writing this at 21-June-2023, is unstable.
+
+* `sudo apt install beancount`
