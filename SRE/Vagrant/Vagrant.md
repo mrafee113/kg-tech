@@ -6,6 +6,7 @@
 * [[SRE/Vagrant/Provisioning|Provisioning]]
 * [[SRE/Vagrant/Networking|Networking]]
 * [[SRE/Vagrant/Multi-Machine|Multi-Machine]]
+* [[SRE/Vagrant/Synced Folders|Synced Folders]]
 
 > [!Question]
 > **ChatGPT prompt**: What's a multi-machine machine in vagrant?
