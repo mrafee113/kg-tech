@@ -140,6 +140,7 @@
 * `sudo apt install tldr`
 	* alternatively: [`tldr`](https://github.com/raylee/tldr-sh-client)
 * `sudo apt install gnome-shell-pomodoro gnome-shell-pomodoro-data`
+* `sudo apt install meld` (diff gui)
 * `sudo apt install dconf-editor`
 * peek: gif video recorder
 	* `sudo add-apt-repository ppa:peek-developers/stable`
@@ -651,5 +652,17 @@
 * password: old typical password
 * restore the csgo data
 ---
-##### Beancount
-* [[Apps/Beancount#Installation]]
+##### Libvirt/QEMU
+```bash
+sudo apt install qemu-system
+sudo apt install libvirt-daemon libvirt-daemon-system libvirt-daemon-system-systemd libvirt-daemon-config-network libvirt-daemon-driver-qemu libvirt-daemon-driver-lxc libvirt-daemon-driver-vbox
+sudo apt install libvirt-clients libvirt-dev libvirt-doc
+sudo apt install virt-manager
+
+sudo usermod -aG libvirt $USER
+newgrp libvirt  # I think this is temporary, u need to logout/login
+```
+---
+##### Etcetera
+* Beancount: [[Apps/Beancount#Installation]]
+* Vagrant: [[SRE/Vagrant/Installation]]
