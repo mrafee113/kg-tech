@@ -5,7 +5,7 @@
 	* `vagrant autocomplete install --bash --zsh`
 * `VAGRANT_HOME` env
 	* by default it is `~/.vagrant.d`
-	* set it to `$STUDIO_DIR/Vagrant`
+	* depr: set it to `$STUDIO_DIR/Vagrant`
 
 ### `vagrant box`
 > [source](https://developer.hashicorp.com/vagrant/docs/cli/box)
@@ -159,6 +159,45 @@
 * options
 	* `--provision`
 	* `--provision-with`
+
+### `vagrant snapshot`
+> [source](https://developer.hashicorp.com/vagrant/docs/cli/snapshot)
+
+* This is the command used to manage snapshots with the guest machine. Snapshots record a point-in-time state of a guest machine. You can then quickly restore to this environment. This lets you experiment and try things and quickly restore back to a previous state.
+* Snapshotting is not supported by every provider. If it is not supported, Vagrant will give you an error message.
+
+#### `vagrant snapshot push`
+* This takes a snapshot and pushes it onto the snapshot stack.
+* This is a shorthand for `vagrant snapshot save` where you do not need to specify a name. When you call the inverse `vagrant snapshot pop`, it will restore the pushed state.
+
+> [!Warning]
+> If you are using `push` and `pop`, avoid using `save` and `restore` which are unsafe to mix.
+
+#### `vagrant snapshot pop`
+* This command is the inverse of `vagrant snapshot push`: it will restore the pushed state.
+* options
+	* `--[no-]provision` : force the provisioners to run (or prevent them from doing so).
+	* `--no-delete` : prevents deletion of the snapshot after restoring (so that you can restore to the same point again later).
+	* `--no-strict` : prevents the guest from being started after restore
+
+#### `vagrant snapshot save`
+* usage: `vagrant snapshot save [vm-name] NAME`
+* This command saves a new named snapshot. If this command is used, the push and pop subcommands cannot be safely used.
+
+#### `vagrant snapshot restore`
+* usage: `vagrant snapshot restore [vm-name] NAME`
+* This command restores the named snapshot.
+	* `--[no-]provision` : force the provisioners to run (or prevent them from doing so).
+	* `--no-start` : prevents the guest from being started after restore.
+
+#### `vagrant snapshot list`
+* This command will list all the snapshots taken.
+
+#### `vagrant snapshot delete`
+* usage: `vagrant snapshot delete [vm-name] NAME`
+* This command will delete the named snapshot.
+* Some providers require all "child" snapshots to be deleted first. Vagrant itself does not track what these children are. If this is the case (such as with VirtualBox), then you must be sure to delete the snapshots in the reverse order they were taken.
+* This command is typically much faster if the machine is halted prior to snapshotting. If this is not an option, or is not ideal, then the deletion can also be done online with most providers.
 
 ### `vagrant ssh`
 > [source](https://developer.hashicorp.com/vagrant/docs/cli/ssh)
