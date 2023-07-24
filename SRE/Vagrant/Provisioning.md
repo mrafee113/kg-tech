@@ -273,7 +273,227 @@ variable2=example
 	* an `ansible.cfg` file located in the same directory as your `Vagrantfile` will be used by default.
 	* it is also possible to reference any other location with the [`config_file`](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_common#config_file) provisioner option. In this case, Vagrant will set the `ANSIBLE_CONFIG` environment variable accordingly.
 
-### Ansible
+### Ansible Provisioner
+> [source](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible)
 
+* The Vagrant Ansible provisioner allows you to provision the guest using Ansible playbooks by executing `ansible-playbook` from the Vagrant host.
+
+#### Setup Requirements
+- **[Install Ansible](https://docs.ansible.com/intro_installation.html#installing-the-control-machine) on your Vagrant host**.
+- Your Vagrant host should ideally provide a recent version of OpenSSH that [supports ControlPersist](https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html#controlpersist-and-paramiko).
+- If installing Ansible directly on the Vagrant host is not an option in your development environment, you might be looking for the [Ansible Local provisioner](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local) ([[SRE/Vagrant/Provisioning#Ansible Local Provisioner|below]]) alternative.
+
+#### Usage
+* Simplest configuration: To run Ansible against your Vagrant guest, the basic `Vagrantfile` configuration looks like:
+```ruby
+Vagrant.configure("2") do |config|
+
+  #
+  # Run Ansible from the Vagrant Host
+  #
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+  end
+
+end
+```
+
+#### Options
+* In addition to the options listed below, this provisioner supports the [common options for both Ansible provisioners](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_common) ([[SRE/Vagrant/Provisioning#Common Ansible Options|below]]).
+* `ask_become_pass` (boolean) : require Ansible to [prompt for a password](https://docs.ansible.com/intro_getting_started.html#remote-connection-information) when switching to another user with the [become/sudo mechanism](http://docs.ansible.com/ansible/become.html). Default=`false`
+* `force_remote_user` (boolean)
+	* require Vagrant to set the `ansible_ssh_user` setting in the generated inventory, or as an extra variable when a static inventory is used. All the Ansible `remote_user` parameters will then be overridden by the value of `config.ssh.username` of the [Vagrant SSH Settings](https://developer.hashicorp.com/vagrant/docs/vagrantfile/ssh_settings).
+	* If this option is set to `false` Vagrant will set the Vagrant SSH username as a default Ansible remote user, but `remote_user` parameters of your Ansible plays or tasks will still be taken into account and thus override the Vagrant configuration.
+	* Default=`true`
+* `host_key_checking` (boolean) : require Ansible to [enable SSH host key checking](https://docs.ansible.com/intro_getting_started.html#host-key-checking). Default=`false`
+* `raw_ssh_args` (array of strings) : require Ansible to apply a list of OpenSSH client options.
+	* Example: `['-o ControlMaster=no']`.
+	* It is an unsafe wildcard that can be used to pass additional SSH settings to Ansible via `ANSIBLE_SSH_ARGS` environment variable, overriding any other SSH arguments (e.g. defined in an [`ansible.cfg` configuration file](https://docs.ansible.com/intro_configuration.html#ssh-args)).
+
+#### Tips and Tricks
+##### Ansible Parallel Execution
+* Vagrant is designed to provision [multi-machine environments](https://developer.hashicorp.com/vagrant/docs/multi-machine) in sequence, but the following configuration pattern can be used to take advantage of Ansible parallelism:
+```ruby
+# Vagrant 1.7+ automatically inserts a different
+# insecure keypair for each new VM created. The easiest way
+# to use the same keypair for all the machines is to disable
+# this feature and rely on the legacy insecure key.
+# config.ssh.insert_key = false
+#
+# Note:
+# As of Vagrant 1.7.3, it is no longer necessary to disable
+# the keypair creation when using the auto-generated inventory.
+
+N = 3
+(1..N).each do |machine_id|
+  config.vm.define "machine#{machine_id}" do |machine|
+    machine.vm.hostname = "machine#{machine_id}"
+    machine.vm.network "private_network", ip: "192.168.77.#{20+machine_id}"
+
+    # Only execute once the Ansible provisioner,
+    # when all the machines are up and ready.
+    if machine_id == N
+      machine.vm.provision :ansible do |ansible|
+        # Disable default limit to connect to all the machines
+        ansible.limit = "all"
+        ansible.playbook = "playbook.yml"
+      end
+    end
+  end
+end
+```
+
+> [!Tip]
+> If you apply this parallel provisioning pattern with a static Ansible inventory, you will have to organize the things so that [all the relevant private keys are provided to the `ansible-playbook` command](https://github.com/hashicorp/vagrant/pull/5765#issuecomment-120247738). The same kind of considerations applies if you are using multiple private keys for a same machine (see [`config.ssh.private_key_path` SSH setting](https://developer.hashicorp.com/vagrant/docs/vagrantfile/ssh_settings)).
+
+### Ansible Local Provisioner
+> [source](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local)
+
+* The Vagrant Ansible Local provisioner allows you to provision the guest using [Ansible](http://ansible.com/) playbooks by executing `ansible-playbook` directly on the guest machine.
+
+#### Setup Requirements
+* The main advantage of the Ansible Local provisioner in comparison to the Ansible (remote) provisioner is that it does not require any additional software on your Vagrant host.
+* On the other hand, [Ansible must obviously be installed](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on your guest machine(s).
+
+> [!Note]
+> By default, Vagrant will try to automatically install Ansible if it is not yet present on the guest machine (see the `install` option below for more details).
+
+#### Usage
+* The Ansible Local provisioner requires that all the Ansible Playbook files are available on the guest machine, at the location referred by the `provisioning_path` option. Usually these files are initially present on the host machine (as part of your Vagrant project), and it is quite easy to share them with a Vagrant [[SRE/Vagrant/Synced Folders|Synced Folders]].
+* Simplest configuration: To run Ansible from your Vagrant guest, the basic `Vagrantfile` configuration looks like:
+	```ruby
+	Vagrant.configure("2") do |config|
+	  # Run Ansible from the Vagrant VM
+	  config.vm.provision "ansible_local" do |ansible|
+	    ansible.playbook = "playbook.yml"
+	  end
+	end
+	```
+	* requirements:
+		* The `playbook.yml` file is stored in your Vagrant's project home directory.
+		* The [default shared directory](https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage) is enabled (`.` → `/vagrant`).
+
+#### Options
+* This section lists the specific options for the Ansible Local provisioner. In addition to the options listed below, this provisioner supports the [[SRE/Vagrant/Provisioning#Common Ansible Options|common options for both Ansible provisioners]].
+* `install` (boolean)
+	* Try to automatically install Ansible on the guest system.
+	* Default=`true`
+	* Vagrant will try to install (or upgrade) Ansible when one of these conditions are met:
+		* Ansible is not installed (or cannot be found).
+		* The `version` option is set to "latest".
+> [!Attention]
+> There is no guarantee that this automated installation will replace a custom Ansible setup, that might be already present on the Vagrant box.
+* `install_mode` (`:default`, `:pip`, or `:pip_args_only`)
+	* Select the way to automatically install Ansible on the guest system.
+	* The default value of `install_mode` is `:default`, and any invalid value for this option will silently fall back to the default value.
+	* `:default` : Ansible is installed from the operating system package manager. This mode doesn't support `version` selection. For many platforms (e.g Debian, FreeBSD, OpenSUSE) the official package repository is used, except for the following Linux distributions:
+		* On Ubuntu-like systems, the latest Ansible release is installed from the `ppa:ansible/ansible` repository. The compatibility is maintained only for active long-term support (LTS) versions.
+		* On RedHat-like systems, the latest Ansible release is installed from the [EPEL](http://fedoraproject.org/wiki/EPEL) repository.
+	* `:pip` : Ansible is installed from [PyPI](https://pypi.python.org/pypi) with [pip](https://pip.pypa.io/) package installer. With this mode, Vagrant will systematically try to [install the latest pip version](https://pip.pypa.io/en/stable/installing/#installing-with-get-pip-py). With the `:pip` mode you can optionally install a specific Ansible release by setting the [`version`](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_common#version) option.
+		* example:
+			```ruby
+			config.vm.provision "ansible_local" do |ansible|
+			  ansible.playbook = "playbook.yml"
+			  ansible.install_mode = "pip"
+			  ansible.version = "2.2.1.0"
+			end
+			```
+		* With this configuration, Vagrant will install `pip` and then execute the command
+		* `sudo pip install --upgrade ansible==2.2.1.0`
+		* As-is `pip` is installed if needed via a default command which looks like
+		* `curl https://bootstrap.pypa.io/get-pip.py | sudo python`
+		* This can be problematic in certain scenarios, for example, when behind a proxy. It is possible to override this default command by providing an explicit command to run as part of the config using `pip_install_cmd`. For example:
+			```ruby
+			config.vm.provision "ansible_local" do |ansible|
+			  ansible.playbook = "playbook.yml"
+			  ansible.install_mode = "pip"
+			  ansible.pip_install_cmd = "https_proxy=http://your.proxy.server:port curl -s https://bootstrap.pypa.io/get-pip.py | sudo https_proxy=http/your.proxy.server:port python"
+			  ansible.version = "2.2.1.0"
+			end
+			```
+		* If `pip_install_cmd` is not provided in the config, then `pip` is installed via the default command.
+	* `:pip_args_only` : This mode is very similar to the `:pip` mode, with the difference that in this case no pip arguments will be automatically set by Vagrant.
+		* Example:
+			```ruby
+			config.vm.provision "ansible_local" do |ansible|
+			  ansible.playbook = "playbook.yml"
+			  ansible.install_mode = "pip_args_only"
+			  ansible.pip_args = "-r /vagrant/requirements.txt"
+			end
+			```
+		* With this configuration, Vagrant will install `pip` and then execute the command
+		* `sudo pip install -r /vagrant/requirements.txt`
+* `pip_args` (string) : When Ansible is installed via pip, this option allows the definition of additional pip arguments to be passed along on the command line. By default, this option is not set.
+* `provisioning_path` (string) : An absolute path on the guest machine where the Ansible files are stored. The `ansible-galaxy` and `ansible-playbook` commands are executed from this directory. This is the location to place an [`ansible.cfg`](http://docs.ansible.com/ansible/intro_configuration.html) file, in case you need it. Default=`/vagrant`
+* `tmp_path` (string) : An absolute path on the guest machine where temporary files are stored by the Ansible Local provisioner. Default=`/tmp/vagrant-ansible`
 
 ### Common Ansible Options
+> [source](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_common)
+
+* These options get passed to the `ansible-playbook` command that ships with Ansible, either via command line arguments or environment variables, depending on Ansible own capabilities.
+* `become` (boolean) : Perform all the Ansible playbook tasks [as another user](https://docs.ansible.com/ansible/latest/become.html), different from the user used to log into the guest system. Default=`false`
+* `become_user` (string) :  Set the default username to be used by the Ansible `become` [privilege escalation](https://docs.ansible.com/ansible/latest/become.html) mechanism. By default this option is not set, and therefore the Ansible default `root` will be used.
+* `config_file` (string) : The path to an [Ansible Configuration file](https://docs.ansible.com/ansible/latest/intro_configuration.html). By default, this option is not set, and Ansible will [search for a possible configuration file in some default locations](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_intro#the-ansible-configuration-file).
+* `extra_vars` (string or hash) : Pass additional variables (with highest priority) to the playbook. This parameter can be a path to a JSON or YAML file, or a hash.
+	* example:
+		```ruby
+		ansible.extra_vars = {
+		  ntp_server: "pool.ntp.org",
+		  nginx: {
+		    port: 8008,
+		    workers: 4
+		  }
+		}
+		```
+	* These variables take the highest precedence over any other variables.
+* `groups` (hash) : Set of inventory groups to be included in the [auto-generated inventory file](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_intro).
+	* example:
+		```ruby
+		ansible.groups = {
+		  "web" => ["vm1", "vm2"],
+		  "db"  => ["vm3"]
+		}
+		```
+	* example with [group variables](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#assigning-a-variable-to-many-machines-group-variables):
+		```ruby
+		ansible.groups = {
+		  "atlanta" => ["host1", "host2"],
+		  "atlanta:vars" => {"ntp_server" => "ntp.atlanta.example.com",
+		                     "proxy" => "proxy.atlanta.example.com"}
+		}
+		```
+	* Notes
+		* Alphanumeric patterns are not supported (e.g. `db-[a:f]`, `vm[01:10]`).
+		* This option has no effect when the `inventory_path` option is defined.
+* `host_vars` (hash) :  Set of inventory host variables to be included in the [auto-generated inventory file](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#assigning-a-variable-to-one-machine-host-variables).
+	* example:
+		```ruby
+		ansible.host_vars = {
+		  "host1" => {"http_port" => 80,
+		              "maxRequestsPerChild" => 808,
+		              "comments" => "text with spaces"},
+		  "host2" => {"http_port" => 303,
+		              "maxRequestsPerChild" => 909}
+		}
+		```
+	* Note: This option has no effect when the `inventory_path` option is defined.
+* `inventory_path` (string) : The path to an Ansible inventory resource (e.g. a [static inventory file](https://docs.ansible.com/ansible/latest/intro_inventory.html), a [dynamic inventory script](https://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html) or even [multiple inventories stored in the same directory](https://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#using-multiple-inventory-sources)). By default, this option is disabled and Vagrant generates an inventory based on the `Vagrantfile` information.
+* `limit` (string or array of strings) : Set of machines or groups from the inventory file to further control which hosts [are affected](https://docs.ansible.com/ansible/latest/glossary.html#limit-groups).
+	* The default value is set to the machine name (taken from `Vagrantfile`) to ensure that `vagrant provision` command only affect the expected machine.
+	* Setting `limit = "all"` can be used to make Ansible connect to all machines from the inventory file.
+* `playbook_command` (string) : The command used to run playbooks. Default=`ansible-playbook`
+* `raw_arguments` (array of strings) : a list of additional `ansible-playbook` arguments.
+	* It is an unsafe wildcard that can be used to apply Ansible options that are not (yet) supported by this Vagrant provisioner. As of Vagrant 1.7, `raw_arguments` has the highest priority and its values can potentially override or break other Vagrant settings.
+	* e.g. `['--check', '-M', '/my/modules']`
+	* e.g. `["--connection=paramiko", "--forks=10"]`
+> [!Attention]
+> The `ansible` provisioner does not support whitespace characters in `raw_arguments` elements. Therefore don't write something like `["-c paramiko"]`, which will result with an invalid `" paramiko"` parameter value.
+* `skip_tags` (string or array of strings) : Only plays, roles and tasks that [*do not match* these values will be executed](https://docs.ansible.com/ansible/latest/playbooks_tags.html).
+* `start_at_task` (string) : The task name where the [playbook execution will start](https://docs.ansible.com/ansible/latest/playbooks_startnstep.html#start-at-task).
+* `tags` (string or array of strings) : Only plays, roles and tasks [tagged with these values will be executed](https://docs.ansible.com/ansible/latest/playbooks_tags.html).
+* `verbose` (boolean or string) : Set Ansible's verbosity to obtain detailed logging
+	* Default=`false` (minimal verbosity)
+	* `true` -> `v`
+	* `-vvv` -> `vvv`
+	* `vvvv`
+	* Note that when the `verbose` option is enabled, the `ansible-playbook` command used by Vagrant will be displayed.
