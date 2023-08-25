@@ -1,0 +1,61 @@
+1. What is SRE?
+	- SRE's full form is **Site Reliability Engineer**. A Site Reliability Engineer is a software engineer who specializes in building and maintaining a reliable system that can handle unexpected changes in the environment. They typically work on large web applications, but they also work with other types of software systems.
+	- They are responsible for making sure that their system is able to handle all of the possible variations that might occur in the world. _**For example**_, if one server goes down, they need to make sure that their system can continue running without any problems. They also need to make sure that the site is secure against hackers and other attackers.
+	- Many sites are built using a combination of technologies, such as web apps, databases, and other systems. A Site Reliability Engineer needs to be familiar with all of these different components so that they can make sure that everything is working properly together.
+	- There are also DevOps engineers that sound similar to the work of site reliability engineers. But still, there are differences between them. So let’s understand the first DevOps and then we will understand the difference between these two in the follow-up questions.
+	* ***Responsibilities of Site Reliability Engineer**
+		- Site reliability engineers collaborate with other engineers, product owners, and customers to develop goals and metrics. This assists them in ensuring system availability. Once everyone has agreed on a system's uptime and availability, it is simple to determine the best moment to act.
+		- Site Reliability Engineer implements error budgets to assess risk, balance availability, and drive feature development. When there are no unreasonable reliability expectations, a team has the freedom to make system upgrades and changes.
+		- SRE is committed to decreasing labour. As a consequence, jobs that require a human operator to operate manually are automated.
+		- A site reliability engineer should be well-versed in the systems and their interconnections.
+		- The objective of site reliability engineers is to detect problems early in order to decrease the cost of failure.
+2. What is DevOps?
+	DevOps is a software development process that involves collaboration between software engineers and IT operations staff or the words (Dev - Development, Ops - Operations). This collaboration helps to improve overall productivity, while also providing better quality assurance and faster time to market. DevOps is a movement that seeks to bring together developers and IT operations staff, in order to make the two groups work more closely together.
+	DevOps is a relatively new concept, but it's quickly becoming one of the most important aspects of modern software development. In recent years, we've seen a number of enterprises adopt DevOps practices as part of their software development lifecycle (SDLC). This has helped organizations become more efficient and effective, by increasing the overall speed and quality of their products. As such, it's clear that there's plenty of value in the DevOps model today.
+3. What is cloud computing?
+	Cloud computing is the delivery of IT services, such as servers, storage, and software as a service (SaaS), through network-connected cloud infrastructure. The term can refer to both private clouds, which are managed by a single organization and shared among internal users, and public clouds, which are owned by third parties (e.g., Amazon Web Services) that rent out computing power and storage capacity to companies or individuals on a subscription basis. Cloud computing has the potential to transform IT infrastructure and delivery models across industries but faces challenges in terms of security and regulation.
+	The “cloud” in “cloud computing” refers to the Internet itself and the networked computers and software that make up the Internet infrastructure. Cloud computing allows organizations to offload workloads from their data centers and focus more resources on applications and business processes. In addition, it enables them to create hybrid environments that combine elements of on-premises data centers with those hosted in cloud environments. This can be especially helpful for companies that need to scale quickly and want to reduce costs.
+	Cloud computing also has the potential to revolutionize IT operations by allowing organizations to deliver IT services through a flexible, scalable model that reduces costs while improving service quality. For example, it can allow organizations to integrate legacy systems with newer ones (such as mobile applications), reduce complexity and risk by automating routine tasks and streamline the management of remote assets. Cloud computing can also help organizations save money by reducing the costs of leasing or purchasing IT equipment compared to buying it outright.
+4. Explain APR. Also, what are the stages of this?
+	In the context of Site Reliability Engineering, Accelerated Problem Resolution (APR) is crucial for quickly addressing and resolving issues that affect system performance and reliability. Here are five main points about APR in Site Reliability Engineering:
+	- **Monitoring and Alerting**: Continuous monitoring is fundamental in APR. It involves actively observing system metrics to detect anomalies or performance degradation. When an anomaly is detected, alerts are generated to notify the Site Reliability Engineers.
+	- **Rapid Diagnosis**: Speed is crucial in problem resolution to minimize downtime. SREs perform a quick initial assessment to understand the nature and severity of the issue. They gather data, logs, and other diagnostic information to pinpoint the root cause.
+	- **Issue Resolution and Mitigation**: Once the root cause is identified, the SREs focus on resolving the issue. Depending on the nature of the problem, this can involve applying hotfixes, rerouting network traffic, or scaling resources. In addition to resolution, mitigation strategies might be used to reduce the impact of the issue on the system and users.
+	- **Post-mortem Analysis and Documentation**: After resolving the issue, a thorough post-mortem analysis is conducted to understand the cause, how it was addressed, and the impact it had. This information is documented for future reference, learning, and improving response strategies.
+	- **Continuous Improvement**: Insights from post-mortem analysis are used to improve the system and the incident response process. This includes implementing preventive measures, enhancing monitoring tools, improving alerting mechanisms, and refining protocols for quicker and more efficient resolution of future incidents.
+5. What are the states that the process could be in?
+	Processes are the computer program that is going to be executed by the CPU. And during the execution cycle of the process, it does from various stages. That is the process state. So the process states are -
+	![](https://d3n0h9tb65y8q.cloudfront.net/public_assets/assets/000/003/708/original/Process_states.png?1668609408)
+	- **New -** A new process is a program that will be loaded into the main memory by the operating system.
+	- **Ready -** When a process is formed, it immediately enters the ready state and waits for the CPU to be assigned. The operating system selects new processes from secondary memory and places them all in the main memory. Ready-state processes are processes that are ready for execution and sit in the main memory. Many processes may be present in the ready stage. They all can be aligned into the queue for getting a chance to execute.
+	- **Running -** The OS will select one of the processes from the ready state based on the scheduling mechanism. As a result, if we only have one CPU in our system, the number of operating processes at any given time will always be one. If we have n processors in the system, we can run n tasks at the same time.
+	- **Block/Wait -** Depending on the scheduling method or the inherent behavior of the process, a process can migrate from the Running state to the block or wait for the state.
+	- When a process waits for a specific resource to be provided or for user input, the operating system moves it to the block or waits for the state and assigns the CPU to other processes.
+	- **Terminated -** The termination state is reached when a process completes its execution. The process's context (Process Control Block) will likewise be removed, and the process will be terminated by the operating system.
+	- **Suspend Block/Wait -** Rather than removing the process from the ready queue, it is preferable to delete the stalled process that is waiting for resources in the main memory. Because it is already waiting for a resource to become available, it is preferable if it waits in secondary memory to create a way for the higher priority process. These processes conclude their execution when the main memory becomes accessible and their wait is over.
+	- **Suspend Ready -** A process in the ready state that is transferred to secondary memory from main memory owing to a shortage of resources (mostly primary memory) is referred to as being in the suspend ready state.  
+	    If the main memory is full and a higher-priority process arrives for execution, the OS must free up space in the main memory by moving the lower-priority process to secondary memory. Suspend-ready processes are kept in secondary memory until the main memory becomes accessible.
+6. Explain CDN.
+	A CDN (Content Delivery Network) is a network of servers that stores and distributes content to clients. These servers are typically located in data centres, and they can be used to improve performance by reducing latency, ensuring that the content is available at the right time, and ensuring that the content is delivered in a timely manner.
+	CDNs are most commonly used to store static content, such as images and videos, but they can also be used to store dynamic content, such as HTML or JavaScript. CDNs can also be used to deliver content from one location to another, such as from a website to a mobile device.
+	CDNs are an important part of the Internet infrastructure because they allow content to be stored and distributed in a more efficient way. They also allow content to be served from multiple locations, which can improve performance and reduce latency.
+	A CDN can be used in many different ways, including:
+	- Providing a central location for static content.
+	- Providing a central location for dynamic content.
+	- Providing a central location for content from multiple locations.
+	- Providing a central location for content from multiple data centers.
+	- Providing redundancy for critical infrastructure components such as servers and routers.
+	CDNs are also an important part of the Internet infrastructure because they help to ensure that the Internet works well for everyone. They help to ensure that everyone has access to the same content at the same time, and equally prioritize access
+7. Explain the term SLO.
+	A Service Level Objective (SLO) is a measure of how good or bad the service quality is, and it is usually expressed as a percentage. It shows how close the actual performance of the service level is to what was expected. An SLO is typically set by the customer, but can also be set by management as a way to monitor performance.
+	SLOs are important because they can help organizations understand when they are underperforming, and they can also help them set targets for improvement. By setting targets, managers have something to strive toward and can motivate employees to work harder.
+	When you’re setting up an SLO, remember that it’s not just about what your customers are getting right now—it’s also about what they could be getting right in the future. So think about both short-term and long-term goals when making your SLO.
+	The main objective of SLO is to ensure that customers receive quality service, as measured by the:
+	- Completeness of order fulfilment.
+	- Quality of product.
+	- Timeliness of delivery.
+	- Accuracy and completeness of the information provided to customers.
+	- Communication and support provided by employees
+
+> https://www.interviewbit.com/sre-interview-questions/
+> start from Q21
