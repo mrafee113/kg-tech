@@ -46,6 +46,23 @@
 		* `sudo usermod -s /sbin/nologin emma`
 		* `man 8 nologin`
 
+> [!Question] ChatGPT
+> Explain the difference between a user's primary group and supplementary groups in linux
+> 
+> In Linux, both primary groups and supplementary groups are mechanisms used to manage permissions and access control for users. They determine which resources a user can access and what actions they can perform on those resources. However, they serve slightly different purposes within the context of user management:
+> 
+> 1. **Primary Group:**
+>    
+>    - Every user in Linux is associated with a primary group. This primary group is set when the user account is created and is stored in the system's user database (such as `/etc/passwd`).
+>    - The primary group is typically used for managing file ownership. When a user creates a new file or directory, it is assigned the user's primary group as the group owner by default.
+>    - The primary group also determines the group ownership of files and directories shared within the user's home directory or other locations where the user has write access.
+>    - When a user logs in, the user's primary group becomes their effective group for permission checks, unless they explicitly switch their effective group using the `newgrp` command.
+> 2. **Supplementary Groups:**
+>    
+>    - In addition to the primary group, users can be assigned to multiple supplementary groups. These are groups that a user belongs to apart from their primary group.
+>    - Supplementary groups are used to extend a user's permissions beyond their primary group. By being a member of one or more supplementary groups, a user gains the ability to access files and directories owned by those groups, provided that the relevant permissions are granted.
+>    - Supplementary groups are useful for scenarios where users need access to shared resources that are not directly related to their primary group.
+>    - When a user logs in, their supplementary groups are set based on the user's group memberships as specified in the system's group database (such as `/etc/group`).
 ### Keeping Users Informed
 * A linux system offers the following additional utilities and files to help with communication:
 	* `/etc/issue`

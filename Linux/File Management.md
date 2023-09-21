@@ -340,6 +340,25 @@
 	* `groups [username]` will list the groups that `username` belongs to
 	* `sudo groupmems -g [group] -l` will list the users that belong to `group`
 
+> [!Question] ChatGPT
+> **Explain sticky bit in linux file/dir permissions**
+>
+> The sticky bit is a special permission in Linux file and directory permissions that has a unique and specific purpose. It's represented by the letter "t" or "T" in the permission string of a directory, depending on whether the execute permission is set for others. For files, the sticky bit doesn't have any effect.
+>
+> When the sticky bit is set on a directory, it influences the behavior of file deletion within that directory, particularly in a shared environment where multiple users have write access to the directory.
+>
+> The primary use case for the sticky bit is in directories that are used for temporary file storage or public sharing. For example, the `/tmp` directory often has the sticky bit set, ensuring that users can only delete or modify their own temporary files while preventing them from affecting files owned by other users.
+
+> [!Question] ChatGPT
+> **explain the suid bit in linux file permissions**
+> 
+> The Set User ID (SUID) bit is a special permission in Linux file permissions that is represented by the letter "s" in the permission string of an executable file. When the SUID bit is set on an executable file, it allows the user who executes the file to temporarily assume the ownership privileges of the file's owner. In other words, it allows the executable to be executed with the permissions of the file owner, even if the user executing the file does not have those permissions.
+> 
+> When the SUID bit is set on a directory, any new files or directories created within that directory will inherit the owner of the parent directory, rather than the user who created them. This can be useful for enforcing a specific ownership structure in shared directories.
+> 
+> It's important to note that the SUID bit only works for executable files and programs, not for scripts or interpreted files (like shell scripts). Additionally, SUID does not affect group or other permissions, so the file's permissions still apply in those contexts.
+> 
+> Due to security considerations, the use of the SUID bit needs to be carefully controlled. Allowing users to execute files with elevated privileges can potentially lead to security vulnerabilities if not properly managed. Therefore, system administrators need to carefully assess the risks and benefits of using the SUID bit and only apply it to files and programs where it's truly necessary.
 #### Checking For Files with the SUID and SGID set
 * `find`
 	* find files having the special permission exclusively
@@ -364,7 +383,7 @@
 	* `ln [target] [link name]` creates a hl
 	* if you change the file through one *name*, the file will be changed for all names.
 	* if you delete one name, the rest will still work
-	* you can't tell a hard link from an original file. practially at least.
+	* you can't tell a hard link from an original file. practically at least.
 	* every hard link to a file increases the `link count` of the file
 		* link count is 1 by default
 			* directories have a count of 2
@@ -404,7 +423,7 @@
 		* **HDDs**
 		* **SSDs**
 	* Backup Types
-		* *Backup Types* refere to the different methods for backing up data that has been modified.
+		* *Backup Types* refer to the different methods for backing up data that has been modified.
 			* Full
 				* A copy of all data, ignoring its modification date, to another set of media.
 				* This backup type’s primary advantage is that it takes a lot less time than other types to **restore** a system’s data.

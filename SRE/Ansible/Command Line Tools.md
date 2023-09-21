@@ -71,7 +71,7 @@
 * Facts represent discovered variables about a system. You can use facts to implement conditional execution of tasks but also just to get ad hoc information about your systems. To see all facts:
 	* `ansible all -m ansible.builtin.setup`
 * You can also filter this output to display only certain facts, see the [ansible.builtin.setup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html#setup-module) module documentation for details.
-* See the [[Building Inventories#Patterns: targeting hosts and groups|patterns]] documentation for details on all of the available options, including how to limit using patterns in ad-hoc commands.
+* See the [[SRE/Ansible/Building Inventories#Patterns: targeting hosts and groups|patterns]] documentation for details on all of the available options, including how to limit using patterns in ad-hoc commands.
 
 ### Working with command-line tools
 * [ansible](https://docs.ansible.com/ansible/latest/cli/ansible.html) ^cli-ansible

@@ -75,7 +75,7 @@ ansible_ssh_port=2200
 
 ## Ansible Documentation
 ### Using Ansible
-* [[Ansible#Getting started with ansible]]
+* [[SRE/Ansible/Ansible#Getting started with ansible]]
 * [[SRE/Ansible/Building Inventories|Building Inventories]]
 * [[SRE/Ansible/Command Line Tools|Command Line Tools]]
 * [[SRE/Ansible/Playbooks|Playbooks]]

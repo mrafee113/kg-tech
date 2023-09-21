@@ -117,6 +117,8 @@
 	* `[-n/--line-number]` also display file line numbers
 	* `[-v/--invert-match]`
 	* `[-H/--with-filename]` print also the file name containing the line
+	* `[-r/--recursive]` scans all files in a given directory
+	* `[-R/--dereference-recursive]` recursive, but unlike `-r` it follows symlinks
 * `egrep` = `grep -E`
 	* has extra features like extended REs
 * `fgrep` = `grep -F`

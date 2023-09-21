@@ -1,3 +1,7 @@
+* Docker
+    * clean tagged images
+    * export docker images
+
 * **/home/mehdi**
 	* `.zshrc`
 	* `.mehdirc`
@@ -11,6 +15,8 @@
 	* `.wdm`
 	* `.vim`
 	* `.venvs`
+    * `.todo-txt` dir
+    * `.tldr-userpath`
 
 * steam data for csgo
 * **virtualenv names and freeze**
@@ -191,6 +197,7 @@
 	* `.wget-hsts`
 * `/usr` dir
 	* `local/etc/v2ray` dir
+    * `local/share/ca-certificates` dir
 	* `share` dir
 		* this is an unexplored territory
 * `/var/cache/apt/archives` dir

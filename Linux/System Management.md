@@ -161,7 +161,7 @@
 		* the PID of the program that generated the message
 		* description of the action that took place
 * how messages are turned into logs
-	1. applications, services and the kernel write messagess in special files (sockets and memory), e.g. `/dev/log`, or `/dev/kmsg`.
+	1. applications, services and the kernel write messages in special files (sockets and memory), e.g. `/dev/log`, or `/dev/kmsg`.
 	2. rsyslogd gets info from them
 	3. depending on the rules found in rsyslogd configs, it'll move them to the corresponding file.
 * `systemctl list-sockets --all`
@@ -288,7 +288,7 @@
 	* `pgup, pgdown`
 	* arrow keys
 	* `>` to go to the end of the output
-	* `<` to go to the begninning of the output
+	* `<` to go to the beginning of the output
 	* `/` searches forward, `?` searches backwards
 	* `n, shift+n` goes to next/previous search match
 * filter data

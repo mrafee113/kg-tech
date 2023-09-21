@@ -178,7 +178,7 @@
 > `time done: 23"`
 > `performance: 156%`
 
-[[Linux/Network Management#Linux Networking Basics]]
+[[Linux/Network Management/Network Management#Linux Networking Basics]]
 
 ###### Basic Network Troubleshooting
 > `pg: 10, weight: 2.75, score: 27.5`
@@ -186,7 +186,7 @@
 > `time done: 18"`
 > `performance: 200%`
 
-[[Linux/Network Management#Basic Network Troubleshooting]]
+[[Linux/Network Management/Network Management#Basic Network Troubleshooting]]
 
 ###### Advanced Network Troubleshooting
 > `pg: 12, weight: 3.3, score: 39.6`
@@ -194,7 +194,7 @@
 > `time done: 10"`
 > `performance: 520%`
 
-[[Linux/Network Management#Advanced Network Troubleshooting]]
+[[Linux/Network Management/Network Management#Advanced Network Troubleshooting]]
 
 ##### ~~Chapter 7: Organizing Email Services~~
 > [!Summary]
@@ -222,7 +222,7 @@
 > `time done: 2' 20"`
 > `performance: 100%`
 
-[[Linux/Network Management#DNS Server]]
+[[Linux/Network Management/Network Management#DNS Server]]
 
 ###### Creating and Maintaining DNS Zones
 > `pg: 25, weight: 2.63, score: 65.7`
@@ -243,7 +243,7 @@
 > `time done: 18"`
 > `performance: 127%`
 
-[[Linux/Network Management#Web Servers]]
+[[Linux/Network Management/Network Management#Web Servers]]
 
 ###### The Apache Web Server
 > `pg: 22, weight: 3.84, score: 84.5`
@@ -270,7 +270,7 @@
 > `time done: 25"`
 > `performance: 560%`
 
-[[Linux/Network Management#NFS]]
+[[Linux/Network Management/Network Management#NFS]]
 
 ###### Looking at FTP Servers
 > `pg: 23, weight: 2.44, score: 56.27`
@@ -278,7 +278,7 @@
 > `time done: 16"`
 > `performance: 830%`
 
-[[Linux/Network Management#FTP]]
+[[Linux/Network Management/Network Management#FTP]]
 
 ##### Chapter 11: Managing Network Clients
 > [!Summary]

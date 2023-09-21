@@ -1,44 +1,72 @@
 ### Commands
-- `nmcli` - (1) command-line tool for controlling NetworkManager
+- Management
+	- `nmcli` - (1) command-line tool for controlling NetworkManager
+	- `nmtui` - (1) Text User Interface for controlling NetworkManager
+	- `ip`
+		- (8) show / manipulate routing, network devices, interfaces and tunnels
+		- (7) Linux IPv4 protocol implementation
+	- `route` - (8) show / manipulate the IP routing table
+	- `ifconfig` - (8) configure a network interface
+	- `iwconfig` - (8) configure a wireless network interface
+	- `iwlist` - (8) Get more detailed wireless information from a wireless interface
+	- `iw` - (8) how / manipulate wireless devices and their configuration
+	- `ifup`
+	- `ifdown`
+- Diagnostics/Info
+	- `tcpdump` - (8) dump traffic on a network
+	- `netstat` - (8) Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+	- `nmap` - (1) Network exploration tool and security / port scanner
+	- `ethtool` - (8) query or control network driver and hardware settings
+	- `lsof` - (8) list open files
+	- `fuser` - (8) identify processes using files or sockets
+	- `dmesg` - (1) print or control the kernel ring buffer
+	- `arp`
+		- (7) Linux ARP kernel module
+		- (8) manipulate the system ARP cache
+	- `gping` - ping but with a graph
+	- `ping` - (8) send ICMP ECHO_REQUEST to network hosts
+	- `traceroute`
+		- (1) print the route packets trace to network host
+		- (8) print the route packets trace to network host
+	- `mtr` - (8) a network diagnostic tool
+		- (short for My Traceroute) is designed to provide real-time information about network performance. It combines the `traceroute` and `ping` commands into a single interface that continually updates in real-time.
+	- `tracepath` - (8) traces path to a network host discovering MTU along this path
+	- `nc` - (1) arbitrary TCP and UDP connections and listens
+	- `ss` - (8) (socket statistics) another utility to investigate sockets
+	- `getent` - (1) get entries from Name Service Switch libraries
+- DNS
+	- `host` - (1) DNS lookup utility
+	- `nslookup` - (1) query Internet name servers interactively
+	- `dig` - (1) DNS lookup utility
+	- `systemd-resolved` - (8) Network Name Resolution Manager
+	- `resolvectl` - (1) Resolve domain names, IPV4 and IPv6 addresses, DNS resource records, and services; introspect and reconfigure the DNS resolver
+	- `dnsdomainname` - (1) show the system's DNS domain name
+	- `whois` - (1) client for the whois directory service
+	- `bind` - Internet Domain Name Server
+- DHCP
+	- `dhclient` - (8) Dynamic Host Configuration Protocol Client
+	* `dhcpcd` - (8) DHCPv4 and DHCPv6 dual-stack client
+* Remote Client
+	- `ssh` - (1) OpenSSH remote login client
+	- `scp` - (1) OpenSSH secure file copy
+* File Transfer
+	- `wget` - (1) The non-interactive network downloader.
+	- `curl` - (1) transfer a URL
+	- `aria2c` - (1) The ultra fast download utility
+	- `youtube-dl` - download videos from youtube and other platforms
+	- `syncthing` - (1) Syncthing
+	- `ftp` - (1) Internet file transfer program
+	- `yafc` - (1) Yet another FTP client
+	- `sftp` - (1) OpenSSH secure file transfer
+	- `ncftp` - (1) Browser program for the File Transfer Protocol
+	- `vsftpd` - lightweight, efficient FTP server written for security
 - `hostname`
-  - (5) Local hostname configuration file
-  - (1) show or set the system's host name
-  - (7) hostname resolution description
-- `host` - (1) DNS lookup utility
-- `mtr` - (8) a network diagnostic tool
-- `wget` - (1) The non-interactive network downloader.
-- `curl` - (1) transfer a URL
-- `ping` - (8) send ICMP ECHO_REQUEST to network hosts
-- `gping` - ping but with a graph
+	- (5) Local hostname configuration file
+	- (1) show or set the system's host name
+	- (7) hostname resolution description
+- `hostnamectl` - (1) Control the system hostname
 - `tmate` - (1) terminal multiplexer with instant terminal sharing
-- `ssh` - (1) OpenSSH remote login client
-- `scp` - (1) OpenSSH secure file copy
-- `youtube-dl` - download videos from youtube and other platforms
-- `ip`
-  - (8) show / manipulate routing, network devices, interfaces and tunnels
-  - (7) Linux IPv4 protocol implementation
-- `sftp` - (1) OpenSSH secure file transfer
-- `systemd-resolve` - (1) Resolve domain names, IPV4 and IPv6 addresses, DNS resource records, and services; introspect and reconfigure the DNS resolver
-- `resolvectl` - (1) Resolve domain names, IPV4 and IPv6 addresses, DNS resource records, and services; introspect and reconfigure the DNS resolver
-- `tcpdump` - (8) dump traffic on a network
-- `windscribe` - vpn client
 - `openvpn` - (8) Secure IP tunnel daemon
-- `ethtool` - (8) query or control network driver and hardware settings
-- `yafc` - (1) Yet another FTP client
-- `netstat` - (8) Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
-- `nslookup` - (1) query Internet name servers interactively
-- `traceroute`
-  - (1) print the route packets trace to network host
-  - (8) print the route packets trace to network host
-- `route` - (8) show / manipulate the IP routing table
-- `aria2c` - (1) The ultra fast download utility
-- `nmap` - (1) Network exploration tool and security / port scanner
-- `syncthing` - (1) Syncthing
-- `ftp` - (1) Internet file transfer program
-- `nmtui` - (1) Text User Interface for controlling NetworkManager
-- `ncftp` - (1) Browser program for the File Transfer Protocol
-- `ifconfig` - (8) configure a network interface
-- `dig` - (1) DNS lookup utility
 
 ### Linux Networking Basics
 * You’ll need to configure five main pieces of information in your Linux system to interact on a network:
@@ -62,7 +90,7 @@
 		* The `domain` entry defines the domain name assigned to the network. By default, the system will append this domain name to any hostnames that you specify.
 		* The `search` entry defines any additional domains used to search for hostnames.
 		* The `nameserver` entry is where you specify the DNS server assigned to your network. Some networks can have more than one DNS server; just add multiple nameserver entries in the file.
-	* To help speed up connections to commonly used hosts, you can manually enter their hostnames and IP addresses into the /etc/hosts file on your Linux system. Linux will check this file before using DNS to look up the hostname.
+	* To help speed up connections to commonly used hosts, you can manually enter their hostnames and IP addresses into the `/etc/hosts` file on your Linux system. Linux will check this file before using DNS to look up the hostname.
 * command-line tools
 	* If you’re not working with a graphical desktop client environment, you’ll need to use the Linux command-line tools to set the network configuration information. You’ll need to know three main commands to do that:
 		* `ifconfig` sets the IP address and netmask values for a network interface.
@@ -74,7 +102,7 @@
 			* `iwlist wlan0 scan`
 	* While the `ifconfig` and `iwconfig` commands are by far the most popular methods for retrieving and setting IP and wireless information, a newer set of programs is starting to appear in the Linux world. Simply called `ip` and `iw`, these programs allow “one-stop shopping” for all of your IP and wireless configuration needs. With the `ip` command, you can list the IP address, network mask, and router information with just a couple of commands: `ip addr show` and `ip route show`. Similarly, with the `iw` command, you can display all of the wireless statistics (such as which frequencies your wireless card is listening on) and select which bands your wireless card uses. If you find that the `ifconfig` or `iwconfig` commands don’t work in your particular Linux distribution, try using the `ip` and `iw` commands instead.
 	* Three common DHCP programs are available for Linux systems:
-		* `dhcpd`
+		* `dhcpcd`
 		* `dhclient`
 		* `pump`
 		* The dhcpcd program is becoming the most popular of the three, but you’ll still see the other two used in some Linux distributions.
@@ -147,13 +175,33 @@
 				4. the scope of the route
 				5. the route's metric. this is used by dynamic routing protocols to determine the cost of the route.
 				6. if it is an ipv6 route, RFC4191 route preference.
-	* managin routes
+	* managing routes
 		* route
 			* `route add [ip] gw [gateway]`
 			* `route del [ip] gw [gateway]`
 		* ip route
 			* `ip route add [ip] via [gateway]`
 			* `ip route del [ip] via [gateway]`		
+
+> [!Question] ChatGPT
+> **Explain Linux Sockets**
+> 
+> In the context of networking and communication on a Linux system, a socket is a programming abstraction that allows processes to communicate with each other over a network or within the same system. Sockets provide a mechanism for processes to exchange data, whether they are running on the same machine or on different machines connected by a network. They are a fundamental building block for networking applications, enabling communication between clients and servers, as well as inter-process communication (IPC) within a single system.
+>
+> Sockets are defined by the Berkeley Sockets API, which provides a set of functions and system calls for creating, binding, connecting, sending, and receiving data through sockets. Here are the main types of sockets:
+> 
+> 1. **Stream Sockets (SOCK_STREAM - TCP):** Stream sockets provide reliable, connection-oriented communication. They use the Transmission Control Protocol (TCP) as the underlying protocol. TCP ensures that data is delivered in the correct order and that no data is lost during transmission. Stream sockets are commonly used for applications that require reliable and ordered data delivery, such as web browsing, file transfers, and email.
+>     
+> 2. **Datagram Sockets (SOCK_DGRAM - UDP):** Datagram sockets provide unreliable, connectionless communication. They use the User Datagram Protocol (UDP) as the underlying protocol. Unlike TCP, UDP does not guarantee ordered delivery or that all data will be received. This makes datagram sockets suitable for applications where speed and minimal overhead are more important than guaranteed delivery, such as online gaming, VoIP, and real-time streaming.
+>    
+> Sockets can be used for various purposes:
+> - **Client-Server Communication:** Sockets are commonly used to establish communication between a client and a server. The server listens on a specific IP address and port, while the client initiates a connection to the server. Once the connection is established, data can be exchanged in both directions.
+>    
+> - **Inter-Process Communication (IPC):** Sockets are not limited to networking; they can also be used for communication between processes within the same system. This is useful when different processes need to exchange data without using files or shared memory.
+>    
+> - **Broadcasting and Multicasting:** Datagram sockets can be used for broadcasting data to all devices on a network segment or for multicasting data to a specific group of devices.
+>    
+> - **Raw Sockets:** Raw sockets provide access to lower-level protocols, allowing applications to send and receive raw network packets. This is often used for tasks like network monitoring and packet crafting.
 
 #### Discovering Open Ports
 * `lsof` (list open files)
@@ -206,6 +254,28 @@
 * In any TCP/IP network, every node must configure its network adapter to match the network requirements, otherwise they will not be able to communicate with each other. Therefore, the system administrator must provide the basic configuration so the operating system will be able to setup the appropriate network interface, as well as to identify itself and the basic features of the network every time it boots.
 * Linux supports virtually every network technology used to connect servers, containers, virtual machines, desktops and mobile devices. The connections between all these network nodes can be dynamic and heterogeneous, thus requiring appropriate management by the operating system running in them.
 
+> [!Question] ChatGPT
+> **On Ubuntu, doesn't systemd-networkd interfere with other networking things like netplan and the `ip` command or whatever else?**
+>
+> Yes, on Ubuntu, the coexistence of various networking tools like `systemd-networkd`, `netplan`, and traditional commands like `ip` and `ifconfig` can sometimes lead to conflicts or unexpected behavior. Ubuntu has undergone some changes in its approach to network configuration, which has led to multiple tools being available for network management. Here's a brief overview of the situation:
+>
+> 1. **`netplan`:**
+   Ubuntu introduced `netplan` as a higher-level configuration tool to simplify network setup. It uses a YAML-based configuration file to describe network interfaces and settings. `netplan` is intended to provide a user-friendly way to configure network connections while abstracting the lower-level details. Under the hood, `netplan` configurations are translated into configurations for either `networkd` or NetworkManager, depending on the system.
+>
+> 2. **`systemd-networkd`:**
+   `systemd-networkd` is available on Ubuntu as part of the systemd suite. It provides an alternative approach to network configuration and can be used alongside or instead of `netplan`. However, mixing both tools can lead to conflicts and unpredictable behavior, as they both try to manage network interfaces.
+>
+> 3. **Traditional Commands (`ip`, `ifconfig`, etc.):**
+   While traditional networking commands like `ip` and `ifconfig` are still available, they are not the recommended way to manage network configuration in modern Ubuntu releases. These tools lack the predictability and consistency offered by `netplan` and `systemd-networkd`.
+>
+> When dealing with Ubuntu's networking tools, it's crucial to have a clear understanding of the tools you are using and avoid mixing different approaches. To avoid interference and conflicts:
+>
+> - Choose either `netplan` or `systemd-networkd` as your primary network management tool. Using both simultaneously can lead to conflicts.
+> - If using `netplan`, avoid manually configuring interfaces using `systemd-networkd`.
+> - If using `systemd-networkd`, avoid creating `netplan` configuration files.
+>
+> It's important to refer to the official documentation of the Ubuntu version you are using and follow the recommended practices for network configuration. Sticking to a single approach and tool will help maintain a more stable and predictable network setup.
+
 #### The Network Interface
 * this is the term by which the operating system refers to the communication channel configured to work with the network hardware attached to the system, such as an ethernet or a wifi device. The exception to this is the *loopback interface*, which the operating system uses to establish a connection with itself. But the main purpose of a network interface is to provide a route through which local data can be sent and remote data can be received. Unless the network interface is properly configured, the operating system will not be able to communicate with other machines in the network.
 * list which network interfaces are present on the system
@@ -229,7 +299,7 @@
 	* deprecated `ifconfig` -> replaced by `ip`
 	* `ip` is capable of managing many other aspects of TCP/IP interfaces, like *routes* and *tunnels*.
 	* But the many capabilities can be overkill for most ordinary tasks -> therefore there are auxiliary commands to facilitate the activation and configuration of the network interfaces.
-	* `ifup` and `ifdown` can be used confg network interfaces based on interface **definitions** found in `/etc/network/interfaces`
+	* `ifup` and `ifdown` can be used to configure network interfaces based on interface **definitions** found in `/etc/network/interfaces`
 		* All network interfaces managed by these two should be listed in said file.
 		* **WARNING:** `/etc/network/interfaces` is not available on Ubuntu 18.04+ and has been replaced by **netplan**.
 		* `/etc/network/interfaces` syntax
@@ -332,7 +402,7 @@
 	* configs
 		* The files are processed in lexicographic order, so it is recommended to start their names with numbers to make the ordering easier to read and set.
 		* Files in `/etc` have the highest priority, whilst files in `/run` take precedence over files with the same name in `/lib`. This means that if configuration files in different directories have the same name, then systemd-networkd will ignore the files with lesser priority. Separating files like that is a way to change the interface settings without having to modify the original files: modifications can be placed in `/etc/systemd/network` to override those in `/lib/systemd/network`.
-		* The purpose of each configuration file depends on its suffix. File names ending in .netdev are used by systemd-networkd to create virtual network devices, such as bridge or tun devices. Files ending in .link set low-level configurations for the corresponding network interface. systemd- networkd detects and configures network devices automatically as they appear — as well as ignore devices already configured by other means — so there is little need to add these files in most situations.
+		* The purpose of each configuration file depends on its suffix. File names ending in .netdev are used by systemd-networkd to create virtual network devices, such as bridge or tun devices. Files ending in .link set low-level configurations for the corresponding network interface. systemd-networkd detects and configures network devices automatically as they appear — as well as ignore devices already configured by other means — so there is little need to add these files in most situations.
 		* The most important suffix is .network. Files using this suffix can be used to setup network addresses and routes. As with the other configuration file types, the name of the file defines the order in which the file will be processed.
 		* config syntax
 			* The network interface to which the configuration file refers to is defined in the \[Match\]\` section inside the file.

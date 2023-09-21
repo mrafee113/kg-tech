@@ -4,7 +4,7 @@
 
 ### Shell Types
 * interactive / login
-	* `interactive/non-interactive` refers to to the interaction of the user with the shell. user gives command shell gives output.
+	* `interactive/non-interactive` refers to to the interaction of the user with the shell. user gives command, shell gives output.
 	* `login/non-login` refers to the provision of username password by the user
 	* *interactive login shell*: provide user/pass at startup
 	* *interactive non-login shell*: normal desktop use (shell opened after login)

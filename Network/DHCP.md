@@ -1,7 +1,7 @@
 ### Introduction
 * Configuration information is used to assign local names to systems, and identifiers (such as IP addresses) to interfaces. It is also used to either provide or make use of various network services, such as DNS and Mobile IP home agents.
-* Recall from chapter 2 that every interface to be used with TCP/IP networking requires an IP address, subnet maks, and broadcast address. The broadcast address can ordinarily be determined using the address and mask.
-* Reasons for using a dynamic autoconfiguration mechanism
+* Recall from chapter 2 that every interface to be used with TCP/IP networking requires an IP address, subnet masks, and broadcast address. The broadcast address can ordinarily be determined using the address and mask.
+* Reasons for using a dynamic auto-configuration mechanism
 	1. client hosts are moved around more often than servers and routers, meaning they should have mechanisms for flexibly reassigning their configuration information.
 	2. server hosts and routers are expected to be “always available” and relatively autonomous. As such, having their configuration information not depend on other network services can lead to greater confidence in their reliability.
 	3. there are often far more clients in an organization than servers or routers, so it is simpler and less error-prone to use a centralized service to dynamically assign configuration information to client hosts.

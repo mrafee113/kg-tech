@@ -1,4 +1,4 @@
-* [[Linux/Network Management|Network Management]]
+* [[Linux/Network Management/Network Management|Network Management]]
 * [[Linux/User Management]]
 * [[Linux/Text Manipulation]]
 * [[Linux/Process Management]]

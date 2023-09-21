@@ -5,6 +5,30 @@
 * The DNS provides the protocol that allows clients and servers to communicate with each other and also a protocol for allowing servers to exchange information.
 * From an application’s point of view, access to the DNS is through an application library called a **resolver**. In general, an application must convert a host name to an IP address before it can ask TCP to open a connection or send a unicast datagram using UDP. The TCP and IP protocol implementations know nothing about the DNS; they operate only with the addresses.
 
+> [!Info] Terminology
+> 1. **Name Spaces:** DNS Name Spaces are hierarchical structures used to organize domain names in the Domain Name System (DNS). They consist of different levels and categories of domain names that allow for the identification and location of resources on the internet. The name space starts with the root domain and branches into top-level domains (TLDs), subdomains, and individual hostnames. Each level in the hierarchy adds specificity to the domain name, enabling efficient and accurate translation between human-readable names and numerical IP addresses.
+> 2. **DNS (Domain Name System):** A distributed hierarchical naming system used to translate human-readable domain names into numerical IP addresses.
+> 3. **Domain:** A logical grouping of computers or devices on a network, represented by a unique name.  
+> 4. **Hostname:** The label assigned to a specific computer or device within a domain.
+> 5. **Fully Qualified Domain Name (FQDN):** A complete domain name that specifies the exact location of a resource within the DNS hierarchy, including all labels and the root domain.
+> 6. **Top-Level Domain (TLD):** The highest level of the DNS hierarchy, representing the last part of a domain name (e.g., .com, .org, .net).
+> 7. **Subdomain:** A domain that is part of a larger domain, indicated by a prefix to the left of the root domain.
+> 8. **Root Domain:** The highest level in the DNS hierarchy, represented by a single dot (.) and serving as the base for all other domains.
+> 9. **Zone:** A portion of the DNS namespace managed by a specific DNS server or set of servers.
+> 10. **Name Server (NS):** A DNS server responsible for storing and providing authoritative information about a specific domain or subdomain.
+> 11. **Authoritative Name Server:** An authoritative nameserver is a DNS server responsible for storing and providing official, accurate information about a specific domain or subdomain. It has the authoritative data for that domain, including IP addresses and other DNS records, and responds to DNS queries with authoritative answers.
+> 12. **Resolver:** A component that performs DNS queries on behalf of client devices to translate domain names into IP addresses.
+> 13. **Caching:** The process of storing DNS query responses locally to improve lookup speed and reduce network traffic.
+> 14. **DNS Cache:** A temporary storage location on a device or DNS server where recent DNS query results are stored.
+> 15. **Reverse DNS (rDNS):** A process that maps IP addresses to domain names, used for tasks such as identifying the source of network traffic.
+> 16. **MX Record (Mail Exchange Record):** A DNS record used to specify the mail server responsible for receiving email messages for a domain.
+> 17. **TTL (Time-to-Live):** A value associated with DNS records that indicates how long a cached record can be considered valid before it needs to be refreshed.
+> 18. **Recursive Query:** A type of DNS query in which the resolver requests another DNS server to fully resolve the query on its behalf.
+> 19. **Iterative Query:** A type of DNS query in which the resolver interacts with multiple DNS servers to resolve the query step by step.
+> 20. **Domain Registrar:** An organization or company responsible for registering and managing domain names on behalf of customers.
+> 21. **DNSSEC (DNS Security Extensions):** A suite of extensions to DNS that provides cryptographic authentication of DNS data, enhancing security and integrity.
+> 22. **Dynamic DNS (DDNS):** A system that automatically updates DNS records when IP addresses change, enabling devices with dynamic IP addresses to be accessible using a domain name.
+> 23. **Anycast:** A routing and addressing method in which multiple servers share the same IP address, with network traffic directed to the nearest server based on routing protocols.
 ### Namespace
 * The set of all names used with DNS constitutes the DNS name space. This space is partitioned hierarchically and is case insensitive. 
 * The current DNS name space is a tree of domains with an unnamed root at the top. The top echelons of the tree are the so-called *top-level domains* (TLDs), which include *generic TLDs* (gTLDs), *country-code TLDs* (ccTLDs), and *internationalized country-code TLDs* (IDN ccTLDs), plus a special infrastructure TLD called, for historical reasons, ARPA.
@@ -52,6 +76,7 @@
 	* A protocol for name servers to exchange database records (zone transfers)
 		* It also has a way to notify secondary servers that the zone database has evolved and a zone transfer is necessary (DNS Notify).
 		* And it also has a way to dynamically update the zone (dynamic updates).
+			* DNS zone dynamic update is a process that allows authorized devices to modify DNS records within a specific DNS zone without manual intervention. It enables the automatic addition, removal, or modification of DNS records, such as hostnames and IP addresses, in real-time. This feature is particularly useful for managing dynamic IP addresses or adding new resources to a network, ensuring that DNS records stay up-to-date without requiring manual changes.
 * If a dns server does not know the IP address for a name, and neither does it know the IP address for a related TLD, it forwards the request to another dns server. This is called **recursion**.
 	* If the second dns server (in the example in figure 11-2 it was an ISP provided dns server) also does not know the IP address, it will send a dns request to a root server.
 	* The root servers are not recursive, so they do not process the request further but instead return this information required to contact a name server for the related TLD. 
@@ -91,7 +116,7 @@
 	* The class value (Query Class) is 1, 254, or 255, indicating the Internet class, no class, or all classes, respectively, for all cases in which we are interested (other values are not typically used for TCP/IP networks).
 	* The Query Type field holds a value indicating the type of query being performed using the values from Table 11-2 (TCP-IP Ill).
 
-#### Answer, Authority, and additional Section Fromats
+#### Answer, Authority, and additional Section Formats
 * RR structure -> Figure 11-8 (TCP-IP Ill)
 	* The Name field (sometimes called the “owning name,” “owner,” or “record owner’s name”) is the domain name to which the following resource data corresponds.
 	* The Type field specifies one of the RR type codes (see Section 11.5.6). These are the same as the query type values we described earlier.

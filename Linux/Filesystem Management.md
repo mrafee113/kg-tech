@@ -118,6 +118,38 @@
 		* after that you need to restart the systemd with `systemctl daemon-reload` and then start the unit with `systemctl start mnt-external.mount`
 		* for automount refer to page: 476 #todo 
 
+> [!Question] ChatGPT
+> **Explain bind mount and how is it different from a normal mount?**
+>
+> A bind mount in Linux is a mechanism that allows you to attach or "bind" an existing directory or file from one location in the file system to another location. This effectively creates an additional reference to the same data, allowing the content to be accessible at multiple locations simultaneously. Unlike other types of mounts, bind mounts do not involve different filesystems; they simply make the same filesystem available at two different paths within the directory tree.
+>
+> Here's how bind mounts work and how they differ from normal (or "regular") mounts:
+> 
+> **Bind Mount:**
+> - A bind mount creates a link between an existing directory (or file) and a target directory. Changes made to files within the bind-mounted directory are reflected immediately at both the source and target locations.
+> - Bind mounts are commonly used to:
+>   - Share data between containers in containerization platforms like Docker.
+>   - Provide access to the same data at multiple paths for applications or users.
+>   - Remount a directory with different mount options while maintaining access to the original data.
+>
+> **Differences from Normal Mount:**
+> 1. **Filesystems vs. Directories:**
+>    - In a normal mount, a new filesystem is attached to a directory, and the content of that filesystem is accessible through the directory. The original content of the directory is hidden while the new filesystem is mounted.
+>    - In a bind mount, an existing directory (or file) is attached to another directory. Both the original content and the bind-mounted content remain accessible.
+>
+> 2. **New Mount Point vs. Additional Link:**
+>    - A normal mount creates a new mount point in the directory tree, effectively hiding the content of the directory where the filesystem is mounted.
+>    - A bind mount doesn't create a new mount point; it attaches the source directory or file to an existing directory, allowing both locations to access the same data.
+>
+> 3. **Filesystem Type:**
+>    - In a normal mount, you usually mount a different filesystem type, such as ext4, NTFS, or FAT, to a directory.
+>    - In a bind mount, you're mounting the same filesystem (usually the same type) at a different location.
+>
+> 4. **Impact on Original Content:**
+>    - In a normal mount, the original content of the mount point becomes hidden while the new filesystem is mounted.
+>    - In a bind mount, the original content of the source directory remains accessible and visible through the bind-mounted path.
+>
+> In summary, bind mounts provide a way to create an additional reference to existing data within the filesystem without involving new filesystems. This allows for sharing data between different parts of the filesystem or between containers without duplicating the data. Normal mounts, on the other hand, involve attaching a new filesystem to a directory, effectively replacing the original content of that directory with the mounted filesystem.
 #### Additional Filesystem Topics
 * memory-based filesystems
 	* A topic that deserves some special attention is virtual or memory-based Linux filesystems. These filesystems are unique in that their data resides within system memory, but you can view their data using their mount points.
@@ -330,3 +362,28 @@
 	* You can get help on the utility by entering `dmsetup help`.
 	* It’s unlikely that you will need to modify any Device Mapper settings. However, you do need to be aware of the mapper. When you create an LV using the `lvcreate` command, not only can you reference it via its `/dev` name, such as `/dev/vg00/lvol0`, but you can also reference it via `/dev/mapper/LV_name`.
 	* As you can see, there are `/dev/mapper` names in the `/etc/fstab` file. On some distributions, `/dev/mapper` names must be used instead of `/dev` names for LVs so that the system will invoke LVM at system boot. Therefore, best practice recommends using `/dev/mapper` names within the `/etc/fstab` file for mounting LVs at system boot.
+
+> [!Question] ChatGPT
+> **What are the common usages of LVM in linux servers? I can't imagine why a company would need to use this.**
+>
+> Logical Volume Management (LVM) offers several benefits for managing storage on Linux servers, particularly in enterprise environments where scalability, flexibility, and efficient resource utilization are critical. Here are some common usages of LVM in Linux servers that companies might find beneficial:
+>
+> 1. **Dynamic Volume Management:** LVM allows administrators to create logical volumes (LVs) that span multiple physical disks or partitions. This enables dynamic resizing and movement of filesystems without requiring downtime. Servers can grow or shrink storage volumes as needed without disrupting services.
+>    
+> 2. **Storage Pooling:** LVM enables the creation of storage pools by combining multiple physical disks into a single logical volume group (VG). This aggregated storage can be easily allocated to different logical volumes, providing efficient resource utilization and avoiding potential disk space silos.
+>    
+> 3. **Snapshot Management:** LVM provides the ability to create snapshots, which are point-in-time copies of logical volumes. These snapshots are particularly useful for creating backups or performing system updates without affecting the live data.
+>    
+> 4. **Volume Migration:** LVM supports non-disruptive data migration between physical disks or storage systems. This feature is helpful for maintaining storage systems without causing downtime.
+>    
+> 5. **Online Volume Expansion:** With LVM, administrators can expand filesystems online by adding new physical volumes or extending existing ones. This is particularly valuable for rapidly growing data stores without the need to take services offline.
+>    
+> 6. **Storage Tiering:** LVM allows organizations to implement storage tiering by combining SSDs and traditional hard drives in a single logical volume group. Frequently accessed data can be placed on SSDs for faster access, while less frequently used data can reside on slower, larger-capacity drives.
+>    
+> 7. **Reducing Downtime:** LVM's flexibility in resizing, relocating, and redistributing data means that administrators can perform maintenance or upgrades with minimal downtime, reducing the impact on users and services.
+>    
+> 8. **Complex Partitioning:** LVM simplifies partition management by abstracting physical storage from logical volumes. This reduces the need for complex partitioning schemes and allows for more flexible resource allocation.
+>    
+> 9. **Consolidation and Centralized Management:** For organizations with multiple servers, LVM can provide a centralized approach to storage management, allowing administrators to allocate and manage storage resources from a single management console.
+>    
+> 10. **Virtualization and Cloud Deployments:** LVM's features are particularly beneficial in virtualized environments, allowing easy resizing and management of virtual machine storage without requiring changes to the underlying storage infrastructure.

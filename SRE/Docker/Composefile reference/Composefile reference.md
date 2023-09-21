@@ -158,11 +158,14 @@ ipam:
     foo: bar
     baz: "0"
 ```
-* chatGPT prompt: `docker compose file network attribute allows ipam configurations. What is ipam?`
-	* In the context of Docker Compose, IPAM stands for IP Address Management. It is a feature that allows you to manage the allocation and assignment of IP addresses to the containers within a Docker network.
-	* Each network can have its own IPAM configuration, which specifies how IP addresses are assigned to the containers within that network.
-	* When you specify IPAM configurations for a network in the Docker Compose file, you can control aspects such as the IP address range, subnet, gateway, and other options related to IP address management.
-	* By using IPAM configurations, you can have more control over the IP address assignment within your Docker network, ensuring that containers are assigned IP addresses according to your specific requirements.
+
+> [!Question] ChatGPT
+> **docker compose file network attribute allows ipam configurations. What is ipam?**
+>
+> * In the context of Docker Compose, IPAM stands for IP Address Management. It is a feature that allows you to manage the allocation and assignment of IP addresses to the containers within a Docker network.
+> * Each network can have its own IPAM configuration, which specifies how IP addresses are assigned to the containers within that network.
+> * When you specify IPAM configurations for a network in the Docker Compose file, you can control aspects such as the IP address range, subnet, gateway, and other options related to IP address management.
+> * By using IPAM configurations, you can have more control over the IP address assignment within your Docker network, ensuring that containers are assigned IP addresses according to your specific requirements.
 
 #### `internal`
 * By default, Compose implementations MUST provides external connectivity to networks.

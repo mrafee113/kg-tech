@@ -127,6 +127,7 @@
 ---
 ##### apt pkgs
 * `sudo apt install git curl wget httpie exa vim`
+* `sudo apt install ripgrep` - usage: `rg`
 * `sudo apt install gparted htop ipython3 testdisk fzf`
 * `sudo apt install vlc vlc-l10n vlc-plugin-access-extra vlc-plugin-base vlc-plugin-qt vlc-plugin-video-output vlc-plugin-video-splitter vlc-plugin-visualization`
 * *depc*: `snap install spotify discord telegram-desktop`
@@ -137,8 +138,10 @@
 * `sudo apt install net-tools traceroute ethtool netstat nmap tcpdump iptraf mtr ncftp yafc lsscsi qbittorrent`
 * `sudo apt install rar unrar zip unzip p7zip-full p7zip-rar`
 * `sudo apt install redis-tools syncthing neofetch`
-* `sudo apt install tldr`
+* [my tldr-sh-client](https://github.com/mrafee113/tldr-sh-client)
 	* alternatively: [`tldr`](https://github.com/raylee/tldr-sh-client)
+    * alt2: `sudo apt install tldr`
+* `sudo apt install at todotxt-cli`
 * `sudo apt install gnome-shell-pomodoro gnome-shell-pomodoro-data`
 * `sudo apt install meld` (diff gui)
 * `sudo apt install dconf-editor`
@@ -662,6 +665,10 @@ sudo apt install virt-manager
 sudo usermod -aG libvirt $USER
 newgrp libvirt  # I think this is temporary, u need to logout/login
 ```
+---
+##### vim plugins
+* install pathogen
+* [ansible-vim](https://github.com/pearofducks/ansible-vim) : `git clone https://github.com/pearofducks/ansible-vim ~/.vim/bundle/ansible-vim`
 ---
 ##### Etcetera
 * Beancount: [[Apps/Beancount#Installation]]

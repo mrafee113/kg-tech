@@ -445,3 +445,24 @@
 	LVM provides dynamic volume resizing, snapshot creation, improved disk space utilization, easier data migration, and reduced downtime during maintenance.
 24. How does LVM contribute to the efficient allocation and management of storage resources in enterprise environments?
 	LVM's features allow for optimal use of storage resources, scalability, and simplified management of storage devices across a large number of servers.
+
+### IPTables
+1. What is IPTables?
+	IPTables is a user-space utility in Linux used to manage firewall rules. It allows administrators to define rules to filter, forward, and manipulate network traffic, enhancing security and controlling network behavior.
+2. How can you view the existing IPTables rules?
+	You can view existing IPTables rules using the following command: ``` iptables -L -n ```
+3. What are the default policies in IPTables?
+	IPTables has three default policies: INPUT (incoming packets), FORWARD (routed packets), and OUTPUT (outgoing packets). 
+	The default policy can be one of ACCEPT, DROP, or REJECT. 
+4. How can you add a rule to allow incoming SSH (port 22) connections?
+	To allow incoming SSH connections, you can add the following rule:
+	`iptables -A INPUT -p tcp --dport 22 -j ACCEPT`
+5. What is Network Address Translation (NAT) in IPTables?
+	NAT in IPTables involves modifying the source or destination IP address of packets as they pass through the firewall. It's commonly used for sharing a single public IP address among multiple internal devices.
+6. How can you save IPTables rules to persist across reboots?
+	You can use the `iptables-save` command to save IPTables rules to a file. To load the saved rules during system startup, you can use the `iptables-restore` command from a script or a service.
+7. What is the difference between DROP and REJECT target actions?
+	Both DROP and REJECT are target actions in IPTables: - `DROP` silently discards packets without notifying the sender, leading to connection timeouts. - `REJECT` sends an ICMP "port unreachable" message back to the sender, indicating that the connection was refused.
+8. How can you delete a specific IPTables rule?
+	You can delete a specific IPTables rule using the `-D` option followed by the rule's number from the `iptables -L` output. For example:
+	`iptables -D INPUT 2`

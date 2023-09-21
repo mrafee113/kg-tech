@@ -7,7 +7,7 @@ Although it may seem surprising, in many cases clients may wish to communicate w
 	* not necessarily encrypted
 	* usually used between ISPs or in an intranet
 * microsoft proprietary Point-to-Point Tunneling Protocol (PPTP)
-	* essentialy is (=) PPP+GRE
+	* essentially is (=) PPP+GRE
 	* most often used between users and their ISPs
 	* is often encrypted (e.g. using MPPE)
 * Layer 2 Tunneling Protocol (L2TP)

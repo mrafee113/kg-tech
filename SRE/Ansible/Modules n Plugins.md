@@ -9,15 +9,15 @@
 * These utilities (`sudo`, `su`, `doas`, and so on) generally let you ‘become’ another user to execute a command with the permissions of that user.
 * plugins
 	* `ansible.builtin`
-		* `runas` - run as user
-		* `su` - substitude user
-		* `sudo` - substitude user do
+		* [`runas`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/runas_become.html#ansible-collections-ansible-builtin-runas-become) - run as user
+		* [`su`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/su_become.html#ansible-collections-ansible-builtin-su-become) - substitude user
+		* [`sudo`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/su_become.html#ansible-collections-ansible-builtin-su-become) - substitude user do
 	* `ansible.netcommon`
-		* `enable` - switch to elevated permissions on a network device
+		* [`enable`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/enable_become.html#ansible-collections-ansible-netcommon-enable-become) - switch to elevated permissions on a network device
 	* `community.general`
-		* `doas`
-		* `machinectl` - systemd's machinectl privilege escalation
-		* `sudosu` - run tasks using sudo su -
+		* [`doas`](https://docs.ansible.com/ansible/latest/collections/community/general/doas_become.html#ansible-collections-community-general-doas-become)
+		* [`machinectl`](https://docs.ansible.com/ansible/latest/collections/community/general/machinectl_become.html#ansible-collections-community-general-machinectl-become) - systemd's machinectl privilege escalation
+		* [`sudosu`](https://docs.ansible.com/ansible/latest/collections/community/general/sudosu_become.html#ansible-collections-community-general-sudosu-become) - run tasks using sudo su -
 
 #### Cache Plugins
 * Cache plugins allow Ansible to store gathered facts or inventory source data without the performance hit of retrieving them from source.
@@ -25,47 +25,47 @@
 * You can use different cache plugins for inventory and facts. If you enable inventory caching without setting an inventory-specific cache plugin, Ansible uses the fact cache plugin for both facts and inventory. If necessary, you can [create custom cache plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-cache-plugins).
 * plugins
 	* `ansible.builtin`
-		* `jsonfile`
-		* `memory` - RAM backed, non persistent
+		* [`jsonfile`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/jsonfile_cache.html#ansible-collections-ansible-builtin-jsonfile-cache)
+		* [`memory`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/memory_cache.html#ansible-collections-ansible-builtin-memory-cache) - RAM backed, non persistent
 	* `ansible.netcommon`
-		* `memory` - RAM backed, non persistent cache
+		* [`memory`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/memory_cache.html#ansible-collections-ansible-netcommon-memory-cache) - RAM backed, non persistent cache
 	* `community.general`
-		* `memcached`
-		* `pickle` - pickle formatted files
-		* `redis`
-		* `yaml`
-	* `community.mongodb.mongodb`
+		* [`memcached`](https://docs.ansible.com/ansible/latest/collections/community/general/memcached_cache.html#ansible-collections-community-general-memcached-cache)
+		* [`pickle`](https://docs.ansible.com/ansible/latest/collections/community/general/pickle_cache.html#ansible-collections-community-general-pickle-cache) - pickle formatted files
+		* [`redis`](https://docs.ansible.com/ansible/latest/collections/community/general/redis_cache.html#ansible-collections-community-general-redis-cache)
+		* [`yaml`](https://docs.ansible.com/ansible/latest/collections/community/general/yaml_cache.html#ansible-collections-community-general-yaml-cache)
+	* [`community.mongodb.mongodb`](https://docs.ansible.com/ansible/latest/collections/community/mongodb/mongodb_cache.html#ansible-collections-community-mongodb-mongodb-cache)
 
 #### Callback Plugins
 * Callback plugins enable adding new behaviors to Ansible when responding to events. By default, callback plugins control most of the output you see when running the command line programs, but can also be used to add additional output, integrate with other tools and marshal the events to a storage backend.
 * If necessary, you can [create custom callback plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-callbacks).
 * plugins
 	* `ansible.builtin`
-		* `default` - default ansible screen output
-		* `minimal` - minimal ansible screen output
-		* `oneline` - one line ansible screen output
-		* `tree` - save host events to files
+		* [`default`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html#ansible-collections-ansible-builtin-default-callback) - default ansible screen output
+		* [`minimal`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/minimal_callback.html#ansible-collections-ansible-builtin-minimal-callback) - minimal ansible screen output
+		* [`oneline`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/oneline_callback.html#ansible-collections-ansible-builtin-oneline-callback) - one line ansible screen output
+		* [`tree`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/tree_callback.html#ansible-collections-ansible-builtin-tree-callback) - save host events to files
 	* `ansible.posix`
-		* `cgroup_perf_recap` - profiles system activity of tasks and full execution using cgroups
-		* `debug` - formatted stdout/stderr display
-		* `json` - ansible screen output as JSON
-		* `jsonl`
-		* `profile_roles` - adds timing information to roles
-		* `profile_tasks` - adds time information to tasks
-		* `skippy` - ansible screen output that ignores skipped status
-		* `timer` - adds time to play stats
+		* [`cgroup_perf_recap`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/cgroup_perf_recap_callback.html#ansible-collections-ansible-posix-cgroup-perf-recap-callback) - profiles system activity of tasks and full execution using cgroups
+		* [`debug`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/debug_callback.html#ansible-collections-ansible-posix-debug-callback) - formatted stdout/stderr display
+		* [`json`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/json_callback.html#ansible-collections-ansible-posix-json-callback) - ansible screen output as JSON
+		* [`jsonl`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/jsonl_callback.html#ansible-collections-ansible-posix-jsonl-callback)
+		* [`profile_roles`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/profile_roles_callback.html#ansible-collections-ansible-posix-profile-roles-callback) - adds timing information to roles
+		* [`profile_tasks`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/profile_tasks_callback.html#ansible-collections-ansible-posix-profile-tasks-callback) - adds time information to tasks
+		* [`skippy`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/skippy_callback.html#ansible-collections-ansible-posix-skippy-callback) - ansible screen output that ignores skipped status
+		* [`timer`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/timer_callback.html#ansible-collections-ansible-posix-timer-callback) - adds time to play stats
 	* `community.general`
-		* `cgroup_memory_recap` - Profiles maximum memory usage of tasks and full execution using cgroups
-		* `dense` - minimal stdout output
-		* `diy` - customize the output
-		* `log_plays` - write playbook output to log file
-		* `mail` - sends failure events via mail
-		* `null` - don't display stuff to screen
-		* `say` - notify using software speech synthesizer
-		* `selective` - only print certain tasks
-		* `syslog_json` - sends JSON events to syslog
-		* `unixy` - condensed ansible output
-		* `yaml` - YAML-ized ansible screen output
+		* [`cgroup_memory_recap`](https://docs.ansible.com/ansible/latest/collections/community/general/cgroup_memory_recap_callback.html#ansible-collections-community-general-cgroup-memory-recap-callback) - Profiles maximum memory usage of tasks and full execution using cgroups
+		* [`dense`](https://docs.ansible.com/ansible/latest/collections/community/general/dense_callback.html#ansible-collections-community-general-dense-callback) - minimal stdout output
+		* [`diy`](https://docs.ansible.com/ansible/latest/collections/community/general/diy_callback.html#ansible-collections-community-general-diy-callback) - customize the output
+		* [`log_plays`](https://docs.ansible.com/ansible/latest/collections/community/general/log_plays_callback.html#ansible-collections-community-general-log-plays-callback) - write playbook output to log file
+		* [`mail`](https://docs.ansible.com/ansible/latest/collections/community/general/mail_callback.html#ansible-collections-community-general-mail-callback) - sends failure events via mail
+		* [`null`](https://docs.ansible.com/ansible/latest/collections/community/general/null_callback.html#ansible-collections-community-general-null-callback) - don't display stuff to screen
+		* [`say`](https://docs.ansible.com/ansible/latest/collections/community/general/say_callback.html#ansible-collections-community-general-say-callback) - notify using software speech synthesizer
+		* [`selective`](https://docs.ansible.com/ansible/latest/collections/community/general/selective_callback.html#ansible-collections-community-general-selective-callback) - only print certain tasks
+		* [`syslog_json`](https://docs.ansible.com/ansible/latest/collections/community/general/syslog_json_callback.html#ansible-collections-community-general-syslog-json-callback) - sends JSON events to syslog
+		* [`unixy`](https://docs.ansible.com/ansible/latest/collections/community/general/unixy_callback.html#ansible-collections-community-general-unixy-callback) - condensed ansible output
+		* [`yaml`](https://docs.ansible.com/ansible/latest/collections/community/general/yaml_callback.html#ansible-collections-community-general-yaml-callback) - YAML-ized ansible screen output
 
 #### Cliconf Plugins
 * Cliconf plugins are abstractions over the CLI interface to network devices. They provide a standard interface for Ansible to execute tasks on those network devices.
@@ -76,273 +76,275 @@
 * If necessary, you can [create custom connection plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-connection-plugins).
 * plugins
 	* `ansible.builtin`
-		* `local` - execute on controller
-		* `paramiko_ssh` - run tasks via python ssh (paramiko)
-		* `ssh`
+		* [`local`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/local_connection.html#ansible-collections-ansible-builtin-local-connection) - execute on controller
+		* [`paramiko_ssh`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/paramiko_ssh_connection.html#ansible-collections-ansible-builtin-paramiko-ssh-connection) - run tasks via python ssh (paramiko)
+		* [`ssh`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/ssh_connection.html#ansible-collections-ansible-builtin-ssh-connection)
 	* `ansible.netcommon`
-		* `grpc` - provides a persistent connection using the gRPC protocol
-		* `httpapi` - use httpapi to run command on network appliances
-		* `libssh`
-		* `netconf` provides a persistent connection using the netconf protocol
-		* `network_cli` - use network_cli to run command on network appliances
-		* `persistent` - use a persistent unix socket for connection
+		* [`grpc`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/grpc_connection.html#ansible-collections-ansible-netcommon-grpc-connection) - provides a persistent connection using the gRPC protocol
+		* [`httpapi`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/httpapi_connection.html#ansible-collections-ansible-netcommon-httpapi-connection) - use httpapi to run command on network appliances
+		* [`libssh`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/libssh_connection.html#ansible-collections-ansible-netcommon-libssh-connection)
+		* [`netconf`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/netconf_connection.html#ansible-collections-ansible-netcommon-netconf-connection) provides a persistent connection using the netconf protocol
+		* [`network_cli`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/network_cli_connection.html#ansible-collections-ansible-netcommon-network-cli-connection) - use network_cli to run command on network appliances
+		* [`persistent`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/persistent_connection.html#ansible-collections-ansible-netcommon-persistent-connection) - use a persistent unix socket for connection
 	* `community.docker`
-		* `docker` - run tasks in docker containers
-		* `docker_api` - run tasks in docker containers
+		* [`docker`](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_connection.html#ansible-collections-community-docker-docker-connection) - run tasks in docker containers
+		* [`docker_api`](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_api_connection.html#ansible-collections-community-docker-docker-api-connection) - run tasks in docker containers
 	* `community.general`
-		* `chroot` - interact with local chroot
-		* `lxc` - run tasks in lxc containers via lxc python library
-		* `lxd` - run tasks in lxc containers via lxc CLI
+		* [`chroot`](https://docs.ansible.com/ansible/latest/collections/community/general/chroot_connection.html#ansible-collections-community-general-chroot-connection) - interact with local chroot
+		* [`lxc`](https://docs.ansible.com/ansible/latest/collections/community/general/lxc_connection.html#ansible-collections-community-general-lxc-connection) - run tasks in lxc containers via lxc python library
+		* [`lxd`](https://docs.ansible.com/ansible/latest/collections/community/general/lxd_connection.html#ansible-collections-community-general-lxd-connection) - run tasks in lxc containers via lxc CLI
 	* `community.libvirt`
-		* `libvirt` - run tasks in lxc containers via libvirt
-		* `libvirt_qemu` - run tasks on libvirt/qemu virtual machines
-	* `community.vmware.vmware_tools` - execute tasks inside a VM
-	* `kubernetes.core.kubectl` - executes tasks in pods running on kubernetes
+		* [`libvirt_lxc`](https://docs.ansible.com/ansible/latest/collections/community/libvirt/libvirt_lxc_connection.html#ansible-collections-community-libvirt-libvirt-lxc-connection) - run tasks in lxc containers via libvirt
+		* [`libvirt_qemu`](https://docs.ansible.com/ansible/latest/collections/community/libvirt/libvirt_qemu_connection.html#ansible-collections-community-libvirt-libvirt-qemu-connection) - run tasks on libvirt/qemu virtual machines
+	* [`community.vmware.vmware_tools`](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_tools_connection.html#ansible-collections-community-vmware-vmware-tools-connection) - execute tasks inside a VM
+	* [`kubernetes.core.kubectl`](https://docs.ansible.com/ansible/latest/collections/kubernetes/core/kubectl_connection.html#ansible-collections-kubernetes-core-kubectl-connection) - executes tasks in pods running on kubernetes
 
 #### Filter Plugins
 * Filter plugins manipulate data. With the right filter you can extract a particular value, transform data types and formats, perform mathematical calculations, split and concatenate strings, insert dates and times, and do much more.
 * Ansible uses the [standard filters](https://jinja.palletsprojects.com/en/3.1.x/templates/#builtin-filters "(in Jinja v3.1.x)") shipped with Jinja2 and adds some specialized filter plugins. You can [create custom Ansible filters as plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-filter-plugins).
 * plugins
 	* `ansible.builtin`
-		* `b64decode`
-		* `b64encode`
-		* `basename` - get a path's basename
-		* `bool` - cast
-		* `checksum`
-		* `combinations`
-		* `combine` - combine two dictionaries
-		* `comment` - comment out a string
-		* `commonpath` - gets the common path
-		* `dict2items`
-		* `difference` - the difference of one list from another
-		* `dirname`
-		* `expanduser` - returns a path with `~` translation
-		* `expandvars` - expand environment variables
-		* `extract` - extract a value based on an index or key
-		* `fileglob` - explode a path glob to matching files
-		* `flatten`
-		* `from_json`
-		* `from_yaml`
-		* `from_yaml_all`
-		* `hash`
-		* `human_readable`
-		* `human_to_bytes`
-		* `intersect`
-		* `items2dict`
-		* `log` - math
-		* `mandatory` - make a variables existence mandatory
-		* `md5`
-		* `normpath`
-		* `password_hash`
-		* `path_join`
-		* `permutations`
-		* `pow`
-		* `product` - cartesian product of lists
-		* `quote` - shell quoting
-		* `random`
-		* `realpath`
-		* `regex_escape`
-		* `regex_findall`
-		* `regex_replace`
-		* `regex_search`
-		* `rekey_on_member` - rekey a list of dicts into a dict using a member
-		* `relpath` - make a path relative
-		* `root` - math
-		* `sha1`
-		* `shuffle`
-		* `split`
-		* `splittext` - split a path into root and file extension
-		* `strftime`
-		* `subelements` - returns a product of a list and its elements
-		* `symmetric_difference`
-		* `ternary`
-		* `to_datetime` - from string
-		* `to_json` - from var
-		* `to_nice_json`
-		* `to_nice_yaml`
-		* `to_uuid`
-		* `to_yaml`
-		* ***`type_debug` - show input data type***
-		* `union`
-		* `unique`
-		* `unvault` - open an ansible vault
-		* `urlsplit`
-		* `vault` - vault your secrets
-		* `zip` - combine list elements
-		* `zip_longest`
+		* [`b64decode`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/b64decode_filter.html#ansible-collections-ansible-builtin-b64decode-filter)
+		* [`b64encode`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/b64encode_filter.html#ansible-collections-ansible-builtin-b64encode-filter)
+		* [`basename`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/basename_filter.html#ansible-collections-ansible-builtin-basename-filter) - get a path's basename
+		* [`bool`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/bool_filter.html#ansible-collections-ansible-builtin-bool-filter) - cast
+		* [`checksum`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/checksum_filter.html#ansible-collections-ansible-builtin-checksum-filter)
+		* [`combinations`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/combinations_filter.html#ansible-collections-ansible-builtin-combinations-filter)
+		* [`combine`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/combine_filter.html#ansible-collections-ansible-builtin-combine-filter) - combine two dictionaries
+		* [`comment`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/comment_filter.html#ansible-collections-ansible-builtin-comment-filter) - comment out a string
+		* [`commonpath`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/commonpath_filter.html#ansible-collections-ansible-builtin-commonpath-filter) - gets the common path
+		* [`dict2items`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dict2items_filter.html#ansible-collections-ansible-builtin-dict2items-filter)
+		* [`difference`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/difference_filter.html#ansible-collections-ansible-builtin-difference-filter) - the difference of one list from another
+		* [`dirname`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dirname_filter.html#ansible-collections-ansible-builtin-dirname-filter)
+		* [`expanduser`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/expanduser_filter.html#ansible-collections-ansible-builtin-expanduser-filter) - returns a path with `~` translation
+		* [`expandvars`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/expandvars_filter.html#ansible-collections-ansible-builtin-expandvars-filter) - expand environment variables
+		* [`extract`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/extract_filter.html#ansible-collections-ansible-builtin-extract-filter) - extract a value based on an index or key
+		* [`fileglob`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fileglob_filter.html#ansible-collections-ansible-builtin-fileglob-filter) - explode a path glob to matching files
+		* [`flatten`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/flatten_filter.html#ansible-collections-ansible-builtin-flatten-filter)
+		* [`from_json`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/from_json_filter.html#ansible-collections-ansible-builtin-from-json-filter)
+		* [`from_yaml`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/from_yaml_filter.html#ansible-collections-ansible-builtin-from-yaml-filter)
+		* [`from_yaml_all`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/from_yaml_all_filter.html#ansible-collections-ansible-builtin-from-yaml-all-filter)
+		* [`hash`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/hash_filter.html#ansible-collections-ansible-builtin-hash-filter)
+		* [`human_readable`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/human_readable_filter.html#ansible-collections-ansible-builtin-human-readable-filter)
+		* [`human_to_bytes`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/human_to_bytes_filter.html#ansible-collections-ansible-builtin-human-to-bytes-filter)
+		* [`intersect`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/intersect_filter.html#ansible-collections-ansible-builtin-intersect-filter)
+		* [`items2dict`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/items2dict_filter.html#ansible-collections-ansible-builtin-items2dict-filter)
+		* [`log`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/log_filter.html#ansible-collections-ansible-builtin-log-filter) - math
+		* [`mandatory`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/mandatory_filter.html#ansible-collections-ansible-builtin-mandatory-filter) - make a variables existence mandatory
+		* [`md5`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/md5_filter.html#ansible-collections-ansible-builtin-md5-filter)
+		* [`normpath`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/normpath_filter.html#ansible-collections-ansible-builtin-normpath-filter)
+		* [`password_hash`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/password_hash_filter.html#ansible-collections-ansible-builtin-password-hash-filter)
+		* [`path_join`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/path_join_filter.html#ansible-collections-ansible-builtin-path-join-filter)
+		* [`permutations`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/permutations_filter.html#ansible-collections-ansible-builtin-permutations-filter)
+		* [`pow`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pow_filter.html#ansible-collections-ansible-builtin-pow-filter)
+		* [`product`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/product_filter.html#ansible-collections-ansible-builtin-product-filter) - cartesian product of lists
+		* [`quote`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/quote_filter.html#ansible-collections-ansible-builtin-quote-filter) - shell quoting
+		* [`random`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/random_filter.html#ansible-collections-ansible-builtin-random-filter)
+		* [`realpath`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/realpath_filter.html#ansible-collections-ansible-builtin-realpath-filter)
+		* [`regex_escape`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_escape_filter.html#ansible-collections-ansible-builtin-regex-escape-filter)
+		* [`regex_findall`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_findall_filter.html#ansible-collections-ansible-builtin-regex-findall-filter)
+		* [`regex_replace`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_replace_filter.html#ansible-collections-ansible-builtin-regex-replace-filter)
+		* [`regex_search`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_search_filter.html#ansible-collections-ansible-builtin-regex-search-filter)
+		* [`rekey_on_member`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/rekey_on_member_filter.html#ansible-collections-ansible-builtin-rekey-on-member-filter) - rekey a list of dicts into a dict using a member
+		* [`relpath`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/relpath_filter.html#ansible-collections-ansible-builtin-relpath-filter) - make a path relative
+		* [`root`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/root_filter.html#ansible-collections-ansible-builtin-root-filter) - math
+		* [`sha1`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sha1_filter.html#ansible-collections-ansible-builtin-sha1-filter)
+		* [`shuffle`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shuffle_filter.html#ansible-collections-ansible-builtin-shuffle-filter)
+		* [`split`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/split_filter.html#ansible-collections-ansible-builtin-split-filter)
+		* [`splittext`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/splitext_filter.html#ansible-collections-ansible-builtin-splitext-filter) - split a path into root and file extension
+		* [`strftime`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/strftime_filter.html#ansible-collections-ansible-builtin-strftime-filter)
+		* [`subelements`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/subelements_filter.html#ansible-collections-ansible-builtin-subelements-filter) - returns a product of a list and its elements
+		* [`symmetric_difference`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/symmetric_difference_filter.html#ansible-collections-ansible-builtin-symmetric-difference-filter)
+		* [`ternary`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/ternary_filter.html#ansible-collections-ansible-builtin-ternary-filter)
+		* [`to_datetime`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_datetime_filter.html#ansible-collections-ansible-builtin-to-datetime-filter) - from string
+		* [`to_json`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_json_filter.html#ansible-collections-ansible-builtin-to-json-filter) - from var
+		* [`to_nice_json`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_nice_json_filter.html#ansible-collections-ansible-builtin-to-nice-json-filter)
+		* [`to_nice_yaml`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_nice_yaml_filter.html#ansible-collections-ansible-builtin-to-nice-yaml-filter)
+		* [`to_uuid`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_uuid_filter.html#ansible-collections-ansible-builtin-to-uuid-filter)
+		* [`to_yaml`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/to_yaml_filter.html#ansible-collections-ansible-builtin-to-yaml-filter)
+		* ***[`type_debug`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/type_debug_filter.html#ansible-collections-ansible-builtin-type-debug-filter) - show input data type***
+		* [`union`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/union_filter.html#ansible-collections-ansible-builtin-union-filter)
+		* [`unique`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unique_filter.html#ansible-collections-ansible-builtin-unique-filter)
+		* [`unvault`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unvault_filter.html#ansible-collections-ansible-builtin-unvault-filter) - open an ansible vault
+		* [`urlsplit`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/urlsplit_filter.html#ansible-collections-ansible-builtin-urlsplit-filter)
+		* [`vault`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/vault_filter.html#ansible-collections-ansible-builtin-vault-filter) - vault your secrets
+		* [`zip`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/zip_filter.html#ansible-collections-ansible-builtin-zip-filter) - combine list elements
+		* [`zip_longest`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/zip_longest_filter.html#ansible-collections-ansible-builtin-zip-longest-filter)
 	* `ansible.utils`
-		* `cidr_merge` - this filter can be used to merge subnets or individual addresses
-		* `consolidate` - consolidate facts together on common attributes
-		* `from_xml` - to python dict
-		* `get_path` - retrieve the value in a variable using a path
-		* `index_of` - find the indices of items in a list matching criteria
-		* `ip4_hex`
-		* `ipaddr`
-		* `ipmath`
-		* `ipsubnet`
-		* `ipv4`
-		* `ipv6`
-		* `ipwrap`
-		* `keep_keys` - keep specific keys from a data recursively
-		* `macaddr`
-		* `hwaddr`
-		* `network_in_network` - this filter returns whether an address or a network passed as argument is in a network.
-		* `network_in_usable` - this filter returns whether an address passed as an argument is usable in a network.
-		* `next_nth_usable` - this filter returns the next nth usable ip within a network described by value.
-		* `nthhost`
-		* `param_list_compare` - generate the final param list combining/comparing base and provided parameters.
-		* `previous_nth_usable`
-		* `reduce_on_network` this filter reduces a list of addresses to only the addresses that match a given network.
-		* `remove_keys` - remove specific keys from a data recursively
-		* `replace_keys` - replaces specific keys with their after value from a data recursively
-		* `to_paths` - flatten a complex object into a dictionary of paths and values
-		* `to_xml` - from json string
-		* `usable_range` - expand the usable IP addresses
-		* `validate` - validate data with provided data
+		* [`cidr_merge`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/cidr_merge_filter.html#ansible-collections-ansible-utils-cidr-merge-filter) - this filter can be used to merge subnets or individual addresses
+		* [`consolidate`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/consolidate_filter.html#ansible-collections-ansible-utils-consolidate-filter) - consolidate facts together on common attributes
+		* [`from_xml`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/from_xml_filter.html#ansible-collections-ansible-utils-from-xml-filter) - to python dict
+		* [`get_path`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/get_path_filter.html#ansible-collections-ansible-utils-get-path-filter) - retrieve the value in a variable using a path
+		* [`index_of`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/index_of_filter.html#ansible-collections-ansible-utils-index-of-filter) - find the indices of items in a list matching criteria
+		* [`ip4_hex`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ip4_hex_filter.html#ansible-collections-ansible-utils-ip4-hex-filter)
+		* [`ipaddr`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipaddr_filter.html#ansible-collections-ansible-utils-ipaddr-filter)
+		* [`ipmath`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipmath_filter.html#ansible-collections-ansible-utils-ipmath-filter)
+		* [`ipsubnet`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipsubnet_filter.html#ansible-collections-ansible-utils-ipsubnet-filter)
+		* [`ipv4`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv4_filter.html#ansible-collections-ansible-utils-ipv4-filter)
+		* [`ipv6`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv6_filter.html#ansible-collections-ansible-utils-ipv6-filter)
+		* [`ipwrap`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipwrap_filter.html#ansible-collections-ansible-utils-ipwrap-filter)
+		* [`keep_keys`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/keep_keys_filter.html#ansible-collections-ansible-utils-keep-keys-filter) - keep specific keys from a data recursively
+		* [`macaddr`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/macaddr_filter.html#ansible-collections-ansible-utils-macaddr-filter)
+		* [`hwaddr`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/hwaddr_filter.html#ansible-collections-ansible-utils-hwaddr-filter)
+		* [`network_in_network`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/network_in_network_filter.html#ansible-collections-ansible-utils-network-in-network-filter) - this filter returns whether an address or a network passed as argument is in a network.
+		* [`network_in_usable`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/network_in_usable_filter.html#ansible-collections-ansible-utils-network-in-usable-filter) - this filter returns whether an address passed as an argument is usable in a network.
+		* [`next_nth_usable`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/next_nth_usable_filter.html#ansible-collections-ansible-utils-next-nth-usable-filter) - this filter returns the next nth usable ip within a network described by value.
+		* [`nthhost`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/nthhost_filter.html#ansible-collections-ansible-utils-nthhost-filter)
+		* [`param_list_compare`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/param_list_compare_filter.html#ansible-collections-ansible-utils-param-list-compare-filter) - generate the final param list combining/comparing base and provided parameters.
+		* [`previous_nth_usable`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/previous_nth_usable_filter.html#ansible-collections-ansible-utils-previous-nth-usable-filter)
+		* [`reduce_on_network`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/reduce_on_network_filter.html#ansible-collections-ansible-utils-reduce-on-network-filter) this filter reduces a list of addresses to only the addresses that match a given network.
+		* [`remove_keys`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/remove_keys_filter.html#ansible-collections-ansible-utils-remove-keys-filter) - remove specific keys from a data recursively
+		* [`replace_keys`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/replace_keys_filter.html#ansible-collections-ansible-utils-replace-keys-filter) - replaces specific keys with their after value from a data recursively
+		* [`to_paths`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/to_paths_filter.html#ansible-collections-ansible-utils-to-paths-filter) - flatten a complex object into a dictionary of paths and values
+		* [`to_xml`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/to_xml_filter.html#ansible-collections-ansible-utils-to-xml-filter) - from json string
+		* [`usable_range`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/usable_range_filter.html#ansible-collections-ansible-utils-usable-range-filter) - expand the usable IP addresses
+		* [`validate`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/validate_filter.html#ansible-collections-ansible-utils-validate-filter) - validate data with provided data
 	* `community.crypto`
-		* `openssl_csr_info`
-		* `openssl_privatekey_info`
-		* `openssl_publickey_info`
-		* `split_pem`
+		* [`openssl_csr_info`](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_csr_info_filter.html#ansible-collections-community-crypto-openssl-csr-info-filter)
+		* [`openssl_privatekey_info`](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_privatekey_info_filter.html#ansible-collections-community-crypto-openssl-privatekey-info-filter)
+		* [`openssl_publickey_info`](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_publickey_info_filter.html#ansible-collections-community-crypto-openssl-publickey-info-filter)
+		* [`split_pem`](https://docs.ansible.com/ansible/latest/collections/community/crypto/split_pem_filter.html#ansible-collections-community-crypto-split-pem-filter)
+		* [`x509_certificate_info`](https://docs.ansible.com/ansible/latest/collections/community/crypto/x509_certificate_info_filter.html#ansible-collections-community-crypto-x509-certificate-info-filter) - retrieve information from X.509 certificates in PEM format
+		* [`x509_crl_info`](https://docs.ansible.com/ansible/latest/collections/community/crypto/x509_crl_info_filter.html#ansible-collections-community-crypto-x509-crl-info-filter) - retrieve information from X.509 CRLs in PEM format
 	* `community.dns`
-		* `get_public_suffix` - returns the public suffix of a DNS name
-		* `get_registrable_domain` - returns the registrable domain name of a DNS name
-		* `remove_public_suffix`
-		* `remove_registrable_domain`
+		* [`get_public_suffix`](https://docs.ansible.com/ansible/latest/collections/community/dns/get_public_suffix_filter.html#ansible-collections-community-dns-get-public-suffix-filter) - returns the public suffix of a DNS name
+		* [`get_registrable_domain`](https://docs.ansible.com/ansible/latest/collections/community/dns/get_registrable_domain_filter.html#ansible-collections-community-dns-get-registrable-domain-filter) - returns the registrable domain name of a DNS name
+		* [`remove_public_suffix`](https://docs.ansible.com/ansible/latest/collections/community/dns/remove_public_suffix_filter.html#ansible-collections-community-dns-remove-public-suffix-filter)
+		* [`remove_registrable_domain`](https://docs.ansible.com/ansible/latest/collections/community/dns/remove_registrable_domain_filter.html#ansible-collections-community-dns-remove-registrable-domain-filter)
 	* `community.general`
-		* `counter` - counts hashable elemets in a sequence
-		* `dict` - convert list of tuples to dict
-		* `dict_kv` - convert a value to a dictionary with a single key-value pair
-		* `from_csv` - convert csv text input into a list of dicts
-		* `groupby_as_dict` - transform a sequence of dictionaries to a dictionary where the dictionaries are indexed by an attribute
-		* `jc` - convert output of many shell commands and file-types to JSON
-		* `json_query` - select a single element or a data subset from a complex data structure
-		* `lists_mergeby` - merge two or more lists of dictionaries by a given attribute
-		* `random_mac`
-		* `to_days` - from duration string
-		* `to_hours`
-		* `to_milliseconds`
-		* `to_minutes`
-		* `to_months`
-		* `to_seconds`
-		* `to_time_unit`
-		* `to_weeks`
-		* `to_years`
-		* `unicode_normalize` - normalizes unicode strings to facilitate comparison of characters with normalized forms
-		* `version_sort` - sort a list according to version order instead of pure alphabetical one
-	* `kubernetes.core.k8s_config_resource_name` - generate resource name for the given resource of type ConfigMap, Secret
+		* [`counter`](https://docs.ansible.com/ansible/latest/collections/community/general/counter_filter.html#ansible-collections-community-general-counter-filter) - counts hashable elemets in a sequence
+		* [`dict`](https://docs.ansible.com/ansible/latest/collections/community/general/dict_filter.html#ansible-collections-community-general-dict-filter) - convert list of tuples to dict
+		* [`dict_kv`](https://docs.ansible.com/ansible/latest/collections/community/general/dict_kv_filter.html#ansible-collections-community-general-dict-kv-filter) - convert a value to a dictionary with a single key-value pair
+		* [`from_csv`](https://docs.ansible.com/ansible/latest/collections/community/general/from_csv_filter.html#ansible-collections-community-general-from-csv-filter) - convert csv text input into a list of dicts
+		* [`groupby_as_dict`](https://docs.ansible.com/ansible/latest/collections/community/general/groupby_as_dict_filter.html#ansible-collections-community-general-groupby-as-dict-filter) - transform a sequence of dictionaries to a dictionary where the dictionaries are indexed by an attribute
+		* [`jc`](https://docs.ansible.com/ansible/latest/collections/community/general/jc_filter.html#ansible-collections-community-general-jc-filter) - convert output of many shell commands and file-types to JSON
+		* [`json_query`](https://docs.ansible.com/ansible/latest/collections/community/general/json_query_filter.html#ansible-collections-community-general-json-query-filter) - select a single element or a data subset from a complex data structure
+		* [`lists_mergeby`](https://docs.ansible.com/ansible/latest/collections/community/general/lists_mergeby_filter.html#ansible-collections-community-general-lists-mergeby-filter) - merge two or more lists of dictionaries by a given attribute
+		* [`random_mac`](https://docs.ansible.com/ansible/latest/collections/community/general/random_mac_filter.html#ansible-collections-community-general-random-mac-filter)
+		* [`to_days`](https://docs.ansible.com/ansible/latest/collections/community/general/to_days_filter.html#ansible-collections-community-general-to-days-filter) - from duration string
+		* [`to_hours`](https://docs.ansible.com/ansible/latest/collections/community/general/to_hours_filter.html#ansible-collections-community-general-to-hours-filter)
+		* [`to_milliseconds`](https://docs.ansible.com/ansible/latest/collections/community/general/to_milliseconds_filter.html#ansible-collections-community-general-to-milliseconds-filter)
+		* [`to_minutes`](https://docs.ansible.com/ansible/latest/collections/community/general/to_minutes_filter.html#ansible-collections-community-general-to-minutes-filter)
+		* [`to_months`](https://docs.ansible.com/ansible/latest/collections/community/general/to_months_filter.html#ansible-collections-community-general-to-months-filter)
+		* [`to_seconds`](https://docs.ansible.com/ansible/latest/collections/community/general/to_seconds_filter.html#ansible-collections-community-general-to-seconds-filter)
+		* [`to_time_unit`](https://docs.ansible.com/ansible/latest/collections/community/general/to_time_unit_filter.html#ansible-collections-community-general-to-time-unit-filter)
+		* [`to_weeks`](https://docs.ansible.com/ansible/latest/collections/community/general/to_weeks_filter.html#ansible-collections-community-general-to-weeks-filter)
+		* [`to_years`](https://docs.ansible.com/ansible/latest/collections/community/general/to_years_filter.html#ansible-collections-community-general-to-years-filter)
+		* [`unicode_normalize`](https://docs.ansible.com/ansible/latest/collections/community/general/unicode_normalize_filter.html#ansible-collections-community-general-unicode-normalize-filter) - normalizes unicode strings to facilitate comparison of characters with normalized forms
+		* [`version_sort`](https://docs.ansible.com/ansible/latest/collections/community/general/version_sort_filter.html#ansible-collections-community-general-version-sort-filter) - sort a list according to version order instead of pure alphabetical one
+	* [`kubernetes.core.k8s_config_resource_name`](https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_config_resource_name_filter.html#ansible-collections-kubernetes-core-k8s-config-resource-name-filter) - generate resource name for the given resource of type ConfigMap, Secret
 
 #### Httpapi Plugins
 * Httpapi plugins tell Ansible how to interact with a remote device’s HTTP-based API and execute tasks on the device.
 * Each plugin represents a particular dialect of API. Some are platform-specific (Arista eAPI, Cisco NXAPI), while others might be usable on a variety of platforms (RESTCONF). Ansible loads the appropriate httpapi plugin automatically based on the `ansible_network_os` variable.
 * plugins
-	* `ansible.netcommon.restconf` - HttpApi Plugin for devices supporting Restconf API
-	* `community.vmware.vmware` - HttpApi Plugin for VMware REST API
+	* [`ansible.netcommon.restconf`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/restconf_httpapi.html#ansible-collections-ansible-netcommon-restconf-httpapi) - HttpApi Plugin for devices supporting Restconf API
+	* [`community.vmware.vmware`](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_httpapi.html#ansible-collections-community-vmware-vmware-httpapi) - HttpApi Plugin for VMware REST API
 
 #### Inventory Plugins
 * Inventory plugins allow users to point at data sources to compile the inventory of hosts that Ansible uses to target tasks, either using the `-i /path/to/file` and/or `-i 'host1, host2'` command line parameters or from other configuration sources. If necessary, you can [create custom inventory plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-inventory-plugins).
 * Most inventory plugins shipped with Ansible are enabled by default or can be used by with the `auto` plugin.
 * plugins
 	* `ansible.builtin`
-		* `advanced_host_list` - parses a ‘host list’ with ranges
-		* `auto` - loads and executes an inventory plugin specified in a YAML config
-		* `constructed` - uses Jinja2 to construct vars and groups based on existing inventory
-		* `generator` - uses Jinja2 to construct hosts and groups from patterns
-		* `host_list` - parses a ‘host list’ string
-		* `ini` - uses an Ansible INI file as inventory source
-		* `script` - executes an inventory script that returns JSON
-		* `toml` - uses a specific TOML file as an inventory source
-		* `yaml` - uses a specific YAML file as an inventory source
+		* [`advanced_host_list`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/advanced_host_list_inventory.html#ansible-collections-ansible-builtin-advanced-host-list-inventory) - parses a ‘host list’ with ranges
+		* [`auto`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/auto_inventory.html#ansible-collections-ansible-builtin-auto-inventory) - loads and executes an inventory plugin specified in a YAML config
+		* [`constructed`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/constructed_inventory.html#ansible-collections-ansible-builtin-constructed-inventory) - uses Jinja2 to construct vars and groups based on existing inventory
+		* [`generator`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/generator_inventory.html#ansible-collections-ansible-builtin-generator-inventory) - uses Jinja2 to construct hosts and groups from patterns
+		* [`host_list`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/host_list_inventory.html#ansible-collections-ansible-builtin-host-list-inventory) - parses a ‘host list’ string
+		* [`ini`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/ini_inventory.html#ansible-collections-ansible-builtin-ini-inventory) - uses an Ansible INI file as inventory source
+		* [`script`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_inventory.html#ansible-collections-ansible-builtin-script-inventory) - executes an inventory script that returns JSON
+		* [`toml`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/toml_inventory.html#ansible-collections-ansible-builtin-toml-inventory) - uses a specific TOML file as an inventory source
+		* [`yaml`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yaml_inventory.html#ansible-collections-ansible-builtin-yaml-inventory) - uses a specific YAML file as an inventory source
 	* `community.docker`
-		* `docker_containers` - ansible dynamic inventory plugin for Docker containers
-		* `docker_machine` - docker machine inventory source
-		* `docker_swarm` - ansible dynamic inventory plugin for Docker swarm nodes
+		* [`docker_containers`](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_containers_inventory.html#ansible-collections-community-docker-docker-containers-inventory) - ansible dynamic inventory plugin for Docker containers
+		* [`docker_machine`](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_machine_inventory.html#ansible-collections-community-docker-docker-machine-inventory) - docker machine inventory source
+		* [`docker_swarm`](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_swarm_inventory.html#ansible-collections-community-docker-docker-swarm-inventory) - ansible dynamic inventory plugin for Docker swarm nodes
 	* `community.general`
-		* `gitlab_runners`
-		* `lxd` - returns Ansible inventory from lxd host
-		* `nmap`
-		* `virtualbox`
-	* `community.libvirt.libvirt` - libvirt inventory source
-	* `kubernetes.core.k8s` - Kubernetes (K8s) inventory source
+		* [`gitlab_runners`](https://docs.ansible.com/ansible/latest/collections/community/general/gitlab_runners_inventory.html#ansible-collections-community-general-gitlab-runners-inventory)
+		* [`lxd`](https://docs.ansible.com/ansible/latest/collections/community/general/lxd_inventory.html#ansible-collections-community-general-lxd-inventory) - returns Ansible inventory from lxd host
+		* [`nmap`](https://docs.ansible.com/ansible/latest/collections/community/general/nmap_inventory.html#ansible-collections-community-general-nmap-inventory)
+		* [`virtualbox`](https://docs.ansible.com/ansible/latest/collections/community/general/virtualbox_inventory.html#ansible-collections-community-general-virtualbox-inventory)
+	* [`community.libvirt.libvirt`](https://docs.ansible.com/ansible/latest/collections/community/libvirt/libvirt_inventory.html#ansible-collections-community-libvirt-libvirt-inventory) - libvirt inventory source
+	* [`kubernetes.core.k8s`](https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_inventory.html#ansible-collections-kubernetes-core-k8s-inventory) - Kubernetes (K8s) inventory source
 
 #### Lookup Plugins
 * Lookup plugins are an Ansible-specific extension to the Jinja2 templating language. You can use lookup plugins to access data from outside sources (files, databases, key/value stores, APIs, and other services) within your playbooks.
 * Like all [templating](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_templating.html#playbooks-templating), lookups execute and are evaluated on the Ansible control machine. Ansible makes the data returned by a lookup plugin available using the standard templating system. You can use lookup plugins to load variables or templates with information from external sources. You can [create custom lookup plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html#developing-lookup-plugins).
 * plugins
 	* `ansible.builtin`
-		* `config` - lookup current Ansible configuration values
-		* `csvfile`
-		* `dict`
-		* `env`
-		* `file`
-		* `fileglob` - list files matching a pattern
-		* `first_found` - return first file found from list
-		* `indexed_items` - rewrites lists to return 'indexed items'
-		* `ini`
-		* `inventory_hostnames` - list of inventory hosts matching a host pattern
-		* `items` - list of items
-		* `lines` - read lines from command
-		* `list` - simply returns what it is given
-		* `nested` - composes a list with nested elements of other lists
-		* `password` - retrieve or regenerate a random password, stored in a file
-		* `pipe` - read output from a command
-		* `random_choice`
-		* `sequence` - generate a list based on a number of sequence
-		* `subelements` - traverse nested key from a list of dictionaries
-		* `template` - retrieve contents of file after templating with jinja2
-		* `together` - merges lists into synchronized list
-		* `unvault` - read vaulted file(s) content
-		* `url` - return contents from URL
-		* `varnames` - lookup matching variable names
-		* `vars` - lookup templated value of variables
+		* [`config`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/config_lookup.html#ansible-collections-ansible-builtin-config-lookup) - lookup current Ansible configuration values
+		* [`csvfile`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/csvfile_lookup.html#ansible-collections-ansible-builtin-csvfile-lookup)
+		* [`dict`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dict_lookup.html#ansible-collections-ansible-builtin-dict-lookup)
+		* [`env`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/env_lookup.html#ansible-collections-ansible-builtin-env-lookup)
+		* [`file`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_lookup.html#ansible-collections-ansible-builtin-file-lookup)
+		* [`fileglob`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fileglob_lookup.html#ansible-collections-ansible-builtin-fileglob-lookup) - list files matching a pattern
+		* [`first_found`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html#ansible-collections-ansible-builtin-first-found-lookup) - return first file found from list
+		* [`indexed_items`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/indexed_items_lookup.html#ansible-collections-ansible-builtin-indexed-items-lookup) - rewrites lists to return 'indexed items'
+		* [`ini`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/ini_lookup.html#ansible-collections-ansible-builtin-ini-lookup)
+		* [`inventory_hostnames`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/inventory_hostnames_lookup.html#ansible-collections-ansible-builtin-inventory-hostnames-lookup) - list of inventory hosts matching a host pattern
+		* [`items`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/items_lookup.html#ansible-collections-ansible-builtin-items-lookup) - list of items
+		* [`lines`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lines_lookup.html#ansible-collections-ansible-builtin-lines-lookup) - read lines from command
+		* [`list`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/list_lookup.html#ansible-collections-ansible-builtin-list-lookup) - simply returns what it is given
+		* [`nested`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/nested_lookup.html#ansible-collections-ansible-builtin-nested-lookup) - composes a list with nested elements of other lists
+		* [`password`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/password_lookup.html#ansible-collections-ansible-builtin-password-lookup) - retrieve or regenerate a random password, stored in a file
+		* [`pipe`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pipe_lookup.html#ansible-collections-ansible-builtin-pipe-lookup) - read output from a command
+		* [`random_choice`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/random_choice_lookup.html#ansible-collections-ansible-builtin-random-choice-lookup)
+		* [`sequence`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sequence_lookup.html#ansible-collections-ansible-builtin-sequence-lookup) - generate a list based on a number of sequence
+		* [`subelements`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/subelements_lookup.html#ansible-collections-ansible-builtin-subelements-lookup) - traverse nested key from a list of dictionaries
+		* [`template`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_lookup.html#ansible-collections-ansible-builtin-template-lookup) - retrieve contents of file after templating with jinja2
+		* [`together`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/together_lookup.html#ansible-collections-ansible-builtin-together-lookup) - merges lists into synchronized list
+		* [`unvault`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unvault_lookup.html#ansible-collections-ansible-builtin-unvault-lookup) - read vaulted file(s) content
+		* [`url`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/url_lookup.html#ansible-collections-ansible-builtin-url-lookup) - return contents from URL
+		* [`varnames`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/varnames_lookup.html#ansible-collections-ansible-builtin-varnames-lookup) - lookup matching variable names
+		* [`vars`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/vars_lookup.html#ansible-collections-ansible-builtin-vars-lookup) - lookup templated value of variables
 	* `ansible.utils`
-		* `get_path` - retrieve the value in a variable using a path
-		* `index_of` - find the indices of items in a list matching some criteria
-		* `to_paths` - flatten a complex object into a dictionary of paths and values
-		* `validate` - validate data with provided criteria
+		* [`get_path`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/get_path_lookup.html#ansible-collections-ansible-utils-get-path-lookup) - retrieve the value in a variable using a path
+		* [`index_of`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/index_of_lookup.html#ansible-collections-ansible-utils-index-of-lookup) - find the indices of items in a list matching some criteria
+		* [`to_paths`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/to_paths_lookup.html#ansible-collections-ansible-utils-to-paths-lookup) - flatten a complex object into a dictionary of paths and values
+		* [`validate`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/validate_lookup.html#ansible-collections-ansible-utils-validate-lookup) - validate data with provided criteria
 	* `community.general`
-		* `bitwarden` - retrieve secrets from bitwarden
-		* `cartesian` - returns the cartesian product of lists
-		* `collection_version` - retrieves the version of an installed collection
-		* `dependent` - composes a list with nested elements of other lists or dicts which can depend on previous loop variables
-		* `dig` - query DNS using dnspython library
-		* `dnstxt` - query a domain's DNS txt fields
-		* `etcd`
-		* `filetree` - recursively match all files in a dictionary tree
-		* `flattened` - return single list completely flattened
-		* `keyring` - grab secrets from the OS keyring
-		* `merge_variables` - merge variables with a certain suffix
-		* `random_string`
-		* `random_words` - generates a number of random words
-		* `redis`
-		* `shelvefile` - read keys from python shelve file
-	* `community.mongodb.mongodb` - lookup info from MongoDB
+		* [`bitwarden`](https://docs.ansible.com/ansible/latest/collections/community/general/bitwarden_lookup.html#ansible-collections-community-general-bitwarden-lookup) - retrieve secrets from bitwarden
+		* [`cartesian`](https://docs.ansible.com/ansible/latest/collections/community/general/cartesian_lookup.html#ansible-collections-community-general-cartesian-lookup) - returns the cartesian product of lists
+		* [`collection_version`](https://docs.ansible.com/ansible/latest/collections/community/general/collection_version_lookup.html#ansible-collections-community-general-collection-version-lookup) - retrieves the version of an installed collection
+		* [`dependent`](https://docs.ansible.com/ansible/latest/collections/community/general/dependent_lookup.html#ansible-collections-community-general-dependent-lookup) - composes a list with nested elements of other lists or dicts which can depend on previous loop variables
+		* [`dig`](https://docs.ansible.com/ansible/latest/collections/community/general/dig_lookup.html#ansible-collections-community-general-dig-lookup) - query DNS using dnspython library
+		* [`dnstxt`](https://docs.ansible.com/ansible/latest/collections/community/general/dnstxt_lookup.html#ansible-collections-community-general-dnstxt-lookup) - query a domain's DNS txt fields
+		* [`etcd`](https://docs.ansible.com/ansible/latest/collections/community/general/etcd_lookup.html#ansible-collections-community-general-etcd-lookup)
+		* [`filetree`](https://docs.ansible.com/ansible/latest/collections/community/general/filetree_lookup.html#ansible-collections-community-general-filetree-lookup) - recursively match all files in a dictionary tree
+		* [`flattened`](https://docs.ansible.com/ansible/latest/collections/community/general/flattened_lookup.html#ansible-collections-community-general-flattened-lookup) - return single list completely flattened
+		* [`keyring`](https://docs.ansible.com/ansible/latest/collections/community/general/keyring_lookup.html#ansible-collections-community-general-keyring-lookup) - grab secrets from the OS keyring
+		* [`merge_variables`](https://docs.ansible.com/ansible/latest/collections/community/general/merge_variables_lookup.html#ansible-collections-community-general-merge-variables-lookup) - merge variables with a certain suffix
+		* [`random_string`](https://docs.ansible.com/ansible/latest/collections/community/general/random_string_lookup.html#ansible-collections-community-general-random-string-lookup)
+		* [`random_words`](https://docs.ansible.com/ansible/latest/collections/community/general/random_words_lookup.html#ansible-collections-community-general-random-words-lookup) - generates a number of random words
+		* [`redis`](https://docs.ansible.com/ansible/latest/collections/community/general/redis_lookup.html#ansible-collections-community-general-redis-lookup)
+		* [`shelvefile`](https://docs.ansible.com/ansible/latest/collections/community/general/shelvefile_lookup.html#ansible-collections-community-general-shelvefile-lookup) - read keys from python shelve file
+	* [`community.mongodb.mongodb`](https://docs.ansible.com/ansible/latest/collections/community/mongodb/mongodb_lookup.html#ansible-collections-community-mongodb-mongodb-lookup) - lookup info from MongoDB
 	* `kubernetes.core`
-		* `k8s` - query the K8s API
-		* `kustomize` - build a set of kubernetes resources using a 'kustomization.yaml' file
+		* [`k8s`](https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_lookup.html#ansible-collections-kubernetes-core-k8s-lookup) - query the K8s API
+		* [`kustomize`](https://docs.ansible.com/ansible/latest/collections/kubernetes/core/kustomize_lookup.html#ansible-collections-kubernetes-core-kustomize-lookup) - build a set of kubernetes resources using a `kustomization.yaml` file
 
 #### Netconf Plugins
 * Netconf plugins are abstractions over the Netconf interface to network devices. They provide a standard interface for Ansible to execute tasks on those network devices.
 * These plugins generally correspond one-to-one to network device platforms. Ansible loads the appropriate netconf plugin automatically based on the `ansible_network_os` variable. If the platform supports standard Netconf implementation as defined in the Netconf RFC specification, Ansible loads the `default` netconf plugin. If the platform supports propriety Netconf RPCs, Ansible loads the platform-specific netconf plugin.
 * plugins
-	* `ansible.netcommon.default` - use default netconf plugin to run standard netconf commands as per RFC
+	* [`ansible.netcommon.default`](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/default_netconf.html#ansible-collections-ansible-netcommon-default-netconf) - use default netconf plugin to run standard netconf commands as per RFC
 
 #### Shell Plugins
 * Shell plugins work to ensure that the basic commands Ansible runs are properly formatted to work with the target machine and allow the user to configure certain behaviors related to how Ansible executes tasks.
 * plugins
-	* `ansible.builtin.sh` - POSIX shell (/bin/sh)
+	* [`ansible.builtin.sh`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sh_shell.html#ansible-collections-ansible-builtin-sh-shell) - POSIX shell (/bin/sh)
 	* `ansible.posix`
-		* `csh` - C shell (/bin/csh)
-		* `fish` - fish shell (/bin/fish)
+		* [`csh`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/csh_shell.html#ansible-collections-ansible-posix-csh-shell) - C shell (/bin/csh)
+		* [`fish`](https://docs.ansible.com/ansible/latest/collections/ansible/posix/fish_shell.html#ansible-collections-ansible-posix-fish-shell) - fish shell (/bin/fish)
 
 #### Strategy Plugins
 * Strategy plugins control the flow of play execution by handling task and host scheduling. For more information on using strategy plugins and other ways to control execution order, see [Controlling playbook execution: strategies and more](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_strategies.html#playbooks-strategies).
 * plugins
 	* `ansible.builtin`
-		* ***`debug` - executes tasks in interactive debug session***
-		* `free` - executes tasks without waiting for all hosts
-		* `host_pinned` - executes tasks on each host without interruption
-		* `linear` - executes tasks in a linear fashion
+		* ***[`debug`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_strategy.html#ansible-collections-ansible-builtin-debug-strategy) - executes tasks in interactive debug session***
+		* [`free`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/free_strategy.html#ansible-collections-ansible-builtin-free-strategy) - executes tasks without waiting for all hosts
+		* [`host_pinned`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/host_pinned_strategy.html#ansible-collections-ansible-builtin-host-pinned-strategy) - executes tasks on each host without interruption
+		* [`linear`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/linear_strategy.html#ansible-collections-ansible-builtin-linear-strategy) - executes tasks in a linear fashion
 
 #### Terminal Plugins
 * Terminal plugins contain information on how to prepare a particular network device’s SSH shell is properly initialized to be used with Ansible. This typically includes disabling automatic paging, detecting errors in output, and enabling privileged mode if supported and required on the device.
@@ -352,67 +354,67 @@
 * Test plugins evaluate template expressions and return True or False. With test plugins you can create [conditionals](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html#playbooks-conditionals) to implement the logic of your tasks, blocks, plays, playbooks, and roles. Ansible uses the standard tests `_ shipped as part of Jinja, and adds some specialized test plugins. You can :ref:`create custom Ansible test plugins <developing_test_plugins>.
 * plugins
 	* `ansible.builtin`
-		* `abs` - is path absolute
-		* `all`
-		* `any`
-		* `changed` - did the task require changes
-		* `contains`
-		* `directory` - does the path resolve to an existing directory
-		* `exists` - path
-		* `failed` - task
-		* `falsy` - pythonic false
-		* `file` - does the path resolve to an existing file
-		* `finished` - async task
-		* `link` - does the path reference existing symbolic link
-		* `link_exists` - does the path exist, no follow
-		* `match` - does string match regular expression from the start
-		* `mount` - does the path resolve to mount point
-		* `nan` - is this not a number
-		* `reachable` - task did not end due to unreachable host
-		* `regex` - does string match regular expression from the start
-		* `same_file` - compares two paths to see if they resolve to the same filesystem object
-		* `search` - does string match a regular expression
-		* `skipped` - task
-		* `started` - async task
-		* `subset` - is the list a subset of this other list
-		* `success` - task
-		* `superset` - lists
-		* `truthy` - pythonic true
-		* `unreachable` - did task end due to the host unreachable
-		* `uri` - is valid URI
-		* `url` - is valid URL
-		* `urn` - is valid URN
-		* `vault_encrypted` - is this an encrypted vault
-		* `version`
+		* [`abs`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/abs_test.html#ansible-collections-ansible-builtin-abs-test) - is path absolute
+		* [`all`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/all_test.html#ansible-collections-ansible-builtin-all-test)
+		* [`any`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/any_test.html#ansible-collections-ansible-builtin-any-test)
+		* [`changed`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/changed_test.html#ansible-collections-ansible-builtin-changed-test) - did the task require changes
+		* [`contains`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/contains_test.html#ansible-collections-ansible-builtin-contains-test)
+		* [`directory`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/directory_test.html#ansible-collections-ansible-builtin-directory-test) - does the path resolve to an existing directory
+		* [`exists`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/exists_test.html#ansible-collections-ansible-builtin-exists-test) - path
+		* [`failed`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/failed_test.html#ansible-collections-ansible-builtin-failed-test) - task
+		* [`falsy`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/falsy_test.html#ansible-collections-ansible-builtin-falsy-test) - pythonic false
+		* [`file`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_test.html#ansible-collections-ansible-builtin-file-test) - does the path resolve to an existing file
+		* [`finished`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/finished_test.html#ansible-collections-ansible-builtin-finished-test) - async task
+		* [`link`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/link_test.html#ansible-collections-ansible-builtin-link-test) - does the path reference existing symbolic link
+		* [`link_exists`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/link_exists_test.html#ansible-collections-ansible-builtin-link-exists-test) - does the path exist, no follow
+		* [`match`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/match_test.html#ansible-collections-ansible-builtin-match-test) - does string match regular expression from the start
+		* [`mount`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/mount_test.html#ansible-collections-ansible-builtin-mount-test) - does the path resolve to mount point
+		* [`nan`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/nan_test.html#ansible-collections-ansible-builtin-nan-test) - is this not a number
+		* [`reachable`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/reachable_test.html#ansible-collections-ansible-builtin-reachable-test) - task did not end due to unreachable host
+		* [`regex`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_test.html#ansible-collections-ansible-builtin-regex-test) - does string match regular expression from the start
+		* [`same_file`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/same_file_test.html#ansible-collections-ansible-builtin-same-file-test) - compares two paths to see if they resolve to the same filesystem object
+		* [`search`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/search_test.html#ansible-collections-ansible-builtin-search-test) - does string match a regular expression
+		* [`skipped`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/skipped_test.html#ansible-collections-ansible-builtin-skipped-test) - task
+		* [`started`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/started_test.html#ansible-collections-ansible-builtin-started-test) - async task
+		* [`subset`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/subset_test.html#ansible-collections-ansible-builtin-subset-test) - is the list a subset of this other list
+		* [`success`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/success_test.html#ansible-collections-ansible-builtin-success-test) - task
+		* [`superset`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/superset_test.html#ansible-collections-ansible-builtin-superset-test) - lists
+		* [`truthy`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/truthy_test.html#ansible-collections-ansible-builtin-truthy-test) - pythonic true
+		* [`unreachable`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unreachable_test.html#ansible-collections-ansible-builtin-unreachable-test) - did task end due to the host unreachable
+		* [`uri`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_test.html#ansible-collections-ansible-builtin-uri-test) - is valid URI
+		* [`url`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/url_test.html#ansible-collections-ansible-builtin-url-test) - is valid URL
+		* [`urn`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/urn_test.html#ansible-collections-ansible-builtin-urn-test) - is valid URN
+		* [`vault_encrypted`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/vault_encrypted_test.html#ansible-collections-ansible-builtin-vault-encrypted-test) - is this an encrypted vault
+		* [`version`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/version_test.html#ansible-collections-ansible-builtin-version-test)
 	* `ansible.utils`
-		* `in_any_network` - if an IP or network falls in a network
-		* `in_network`
-		* `in_one_network` - if IP address belongs in any of the networks in the list
-		* `ip` - test if something in an IP address or network
-		* `ip_address` - test if something in an IP address
-		* `ipv4`
-		* `ipv4_address`
-		* `ipv6`
-		* `ipv6_address`
-		* `ipv4_hostmask` - test if an address is a valid hostmask
-		* `ipv4_netmask` - test if an address is a valid netmask
-		* `ipv6_ipv4_mapped` - test if something appears to be a mapped IPv6 to IPv4 mapped address
-		* `ipv6_sixtofour` - test if something appears to be a 6to4 address
-		* `loopback`
-		* `mac` - validity
-		* `multicast` - test for a multicast IP address
-		* `private` - ip
-		* `public` - ip
-		* `reserved` - ip
-		* `resolvable` - test if an IP or name can be resolved via /etc/hosts or DNS
-		* `subnet_of` - networks
-		* `supernet_of` - networks
-		* `validate` - validate data with provided data
+		* [`in_any_network`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/in_any_network_test.html#ansible-collections-ansible-utils-in-any-network-test) - if an IP or network falls in a network
+		* [`in_network`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/in_network_test.html#ansible-collections-ansible-utils-in-network-test)
+		* [`in_one_network`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/in_one_network_test.html#ansible-collections-ansible-utils-in-one-network-test) - if IP address belongs in any of the networks in the list
+		* [`ip`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ip_test.html#ansible-collections-ansible-utils-ip-test) - test if something in an IP address or network
+		* [`ip_address`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ip_address_test.html#ansible-collections-ansible-utils-ip-address-test) - test if something in an IP address
+		* [`ipv4`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv4_test.html#ansible-collections-ansible-utils-ipv4-test)
+		* [`ipv4_address`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv4_address_test.html#ansible-collections-ansible-utils-ipv4-address-test)
+		* [`ipv6`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv6_test.html#ansible-collections-ansible-utils-ipv6-test)
+		* [`ipv6_address`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv6_address_test.html#ansible-collections-ansible-utils-ipv6-address-test)
+		* [`ipv4_hostmask`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv4_hostmask_test.html#ansible-collections-ansible-utils-ipv4-hostmask-test) - test if an address is a valid hostmask
+		* [`ipv4_netmask`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv4_netmask_test.html#ansible-collections-ansible-utils-ipv4-netmask-test) - test if an address is a valid netmask
+		* [`ipv6_ipv4_mapped`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv6_ipv4_mapped_test.html#ansible-collections-ansible-utils-ipv6-ipv4-mapped-test) - test if something appears to be a mapped IPv6 to IPv4 mapped address
+		* [`ipv6_sixtofour`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/ipv6_sixtofour_test.html#ansible-collections-ansible-utils-ipv6-sixtofour-test) - test if something appears to be a 6to4 address
+		* [`loopback`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/loopback_test.html#ansible-collections-ansible-utils-loopback-test)
+		* [`mac`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/mac_test.html#ansible-collections-ansible-utils-mac-test) - validity
+		* [`multicast`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/multicast_test.html#ansible-collections-ansible-utils-multicast-test) - test for a multicast IP address
+		* [`private`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/private_test.html#ansible-collections-ansible-utils-private-test) - ip
+		* [`public`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/public_test.html#ansible-collections-ansible-utils-public-test) - ip
+		* [`reserved`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/reserved_test.html#ansible-collections-ansible-utils-reserved-test) - ip
+		* [`resolvable`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/resolvable_test.html#ansible-collections-ansible-utils-resolvable-test) - test if an IP or name can be resolved via /etc/hosts or DNS
+		* [`subnet_of`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/subnet_of_test.html#ansible-collections-ansible-utils-subnet-of-test) - networks
+		* [`supernet_of`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/supernet_of_test.html#ansible-collections-ansible-utils-supernet-of-test) - networks
+		* [`validate`](https://docs.ansible.com/ansible/latest/collections/ansible/utils/validate_test.html#ansible-collections-ansible-utils-validate-test) - validate data with provided data
 
 #### Vars Plugin
 * Vars plugins inject additional variable data into Ansible runs that did not come from an inventory source, playbook, or command line. Playbook constructs like ‘host_vars’ and ‘group_vars’ work using vars plugins. For more details about variables in Ansible, see [Using Variables](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#playbooks-variables).
 * plugins
-	* `ansible.builtin.host_group_vars` - in charge of loading group_vars and host_vars
+	* [`ansible.builtin.host_group_vars`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/host_group_vars_vars.html#ansible-collections-ansible-builtin-host-group-vars-vars) - in charge of loading group_vars and host_vars
 
 ### Plugins vs Modules
 If you are looking to add functionality to Ansible, you might wonder whether you need a module or a plugin. Here is a quick overview to help you understand what you need:
@@ -432,26 +434,26 @@ If you are looking to add functionality to Ansible, you might wonder whether you
 * For a developer-focused description of the differences between modules and other plugins, see [Modules and plugins: what is the difference?](https://docs.ansible.com/ansible/latest/dev_guide/developing_locally.html#modules-vs-plugins).
 
 #### `ansible.builtin`
-* `add_host` - add a host (and alternatively a group) to the ansible-playbook in-memory inventory
-* `apt`
-* `apt_key`
-* `apt_repository`
-* `assemble` - assemble configuration files from fragments
-* `assert`
-* `async_status`
-* `blockinfile` - insert/update/remove a text block surrounded by marker lines
-* `command` - execute commands on targets
-* `copy` - copy files to remote locations
-* `cron` - manage cron.d and crontab entries
-* `debconf` - configure a .deb package
-* ***`debug` - print statements during execution***
-* `dnf`
-* `dpkg_selections` - dpkg package selection selections
-* `expect` - executes a command and responds to prompts
-* `fail` - fail with custom message
-* `fetch` - fetch files from remote nodes
-* `file` - manage files and file properties
-* `find` - return a list of files based on specific criteria
+* [`add_host`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/add_host_module.html#ansible-collections-ansible-builtin-add-host-module) - add a host (and alternatively a group) to the ansible-playbook in-memory inventory
+* [`apt`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html#ansible-collections-ansible-builtin-apt-module)
+* [`apt_key`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html#ansible-collections-ansible-builtin-apt-key-module)
+* [`apt_repository`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_repository_module.html#ansible-collections-ansible-builtin-apt-repository-module)
+* [`assemble`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/assemble_module.html#ansible-collections-ansible-builtin-assemble-module) - assemble configuration files from fragments
+* [`assert`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/assert_module.html#ansible-collections-ansible-builtin-assert-module)
+* [`async_status`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html#ansible-collections-ansible-builtin-async-status-module)
+* [`blockinfile`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html#ansible-collections-ansible-builtin-blockinfile-module) - insert/update/remove a text block surrounded by marker lines
+* [`command`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#ansible-collections-ansible-builtin-command-module) - execute commands on targets
+* [`copy`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html#ansible-collections-ansible-builtin-copy-module) - copy files to remote locations
+* [`cron`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/cron_module.html#ansible-collections-ansible-builtin-cron-module) - manage cron.d and crontab entries
+* [`debconf`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debconf_module.html#ansible-collections-ansible-builtin-debconf-module) - configure a .deb package
+* ***[`debug`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html#ansible-collections-ansible-builtin-debug-module) - print statements during execution***
+* [`dnf`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html#ansible-collections-ansible-builtin-dnf-module)
+* [`dpkg_selections`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dpkg_selections_module.html#ansible-collections-ansible-builtin-dpkg-selections-module) - dpkg package selection selections
+* [`expect`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/expect_module.html#ansible-collections-ansible-builtin-expect-module) - executes a command and responds to prompts
+* [`fail`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fail_module.html#ansible-collections-ansible-builtin-fail-module) - fail with custom message
+* [`fetch`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html#ansible-collections-ansible-builtin-fetch-module) - fetch files from remote nodes
+* [`file`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html#ansible-collections-ansible-builtin-file-module) - manage files and file properties
+* [`find`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/find_module.html#ansible-collections-ansible-builtin-find-module) - return a list of files based on specific criteria
 * [`gather_facts`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/gather_facts_module.html#ansible-collections-ansible-builtin-gather-facts-module) - gathers facts about remote hosts
 * [`get_url`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#ansible-collections-ansible-builtin-get-url-module) - downloads files from HTTP, HTTPS, or FTP to node
 * [`getent`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/getent_module.html#ansible-collections-ansible-builtin-getent-module) - A wrapper to the unix getent utility

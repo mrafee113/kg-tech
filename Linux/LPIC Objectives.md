@@ -132,9 +132,6 @@
 > `time done: 2' 10"`
 > `performance: 85%`
 
-`
-* commands
-
 [[Linux/File Management#Commands]]
 
 ###### 103.4 streams, pipes and redirects
@@ -345,8 +342,8 @@
 > `time done: 1' 45"`
 > `performance: 80%`
 
-[[Linux/Network Management#The Network Interface]]
-[[Linux/Network Management#Systemd]]
+[[Linux/Network Management/Network Management#The Network Interface]]
+[[Linux/Network Management/Network Management#Systemd]]
 
 ###### 109.3 basic network troubleshooting
 > `weight: 4, pg: 33, score: 132`
@@ -354,8 +351,8 @@
 > `time done: 1'`
 > `performance: 166%`
 
-[[Linux/Network Management#Basic Network Troubleshooting]]
-[[Linux/Network Management#Basic Network Troubleshooting]]
+[[Linux/Network Management/Network Management#Basic Network Troubleshooting]]
+[[Linux/Network Management/Network Management#Basic Network Troubleshooting]]
 
 ###### 109.4 Configure client side DNS
 > `weight: 2, pg: 16, score: 32`
@@ -363,7 +360,7 @@
 > `time done: 34"`
 > `performance: 67%`
 
-[[Linux/Network Management#Configuring Client-side DNS]]
+[[Linux/Network Management/Network Management#Configuring Client-side DNS]]
 
 ##### 110: Security
 > [!summary]
@@ -381,8 +378,8 @@
 * password management and aging
 	* [[Linux/User Management#^passwd]]
 	* [[Linux/User Management#^chage]]
-[[Linux/Network Management#Discovering Open Ports]]
-[[Linux/Network Management#^user-limits-ulimit]]
+[[Linux/Network Management/Network Management#Discovering Open Ports]]
+[[Linux/Network Management/Network Management#^user-limits-ulimit]]
 * Dealing with Logged in Users
 	* [[Linux/User Management#^last]]
 	* The who and w utilities focus on currently logged in users and are quite similar. The former displays who is logged on, while the latter also shows information on what they are doing.
@@ -397,7 +394,7 @@
 > `performance: 113%`
 
 [[Linux/User Management#^shadow-passwords]]
-[[Linux/Network Management#inetd and xinetd]]
+[[Linux/Network Management/Network Management#inetd and xinetd]]
 [[Linux/Process Management#Checking Services for unnecessary Daemons]]
 
 ###### 110.3 Securing data with encryption

@@ -132,3 +132,183 @@ There are 3 types of IP addresses, and the type affects how forwarding is perfor
 * As we described in Chapter 3, link-layer framing normally imposes an upper limit on the maximum size of a frame that can be transmitted. To keep the IP datagram abstraction consistent and isolated from link-layer details, IP employs fragmentation and reassembly. Whenever the IP layer receives an IP datagram to send, it determines which local interface the datagram is to be sent over next (via a forwarding table lookup; see Chapter 5) and what MTU is required. IP compares the outgoing interface’s MTU with the datagram size and performs fragmentation if the datagram is too large. Fragmentation in IPv4 can take place at the original sending host and at any intermediate routers along the end-to-end path. Note that datagram fragments can themselves be fragmented.
 * When an IP datagram is fragmented, it is not reassembled until it reaches its final destination. Two reasons have been given for this, the second more compelling than the first. First, not performing reassembly within the network alleviates the forwarding software (or hardware) in routers from implementing this feature. Second, it is possible for different fragments of the same datagram to follow different paths to their common destination. If this happens, no single router along the path would in general be capable of reassembling the original datagram because it would see only a subset of the fragments. The first argument is not terribly convincing at face value given the current performance levels of routers, but it is even less convincing when one considers that most routers must ultimately be capable of functioning as end hosts anyhow (e.g., when being managed or configured). The second argument remains compelling.
 
+### Path MTU
+
+> [!Question] ChatGPT
+> **Explain Path MTU**
+>
+> Path Maximum Transmission Unit (Path MTU) refers to the maximum size of an IP packet that can be transmitted without fragmentation along the entire path of a network route. It's an important concept in networking, particularly for ensuring efficient and reliable data transmission across networks with varying link and router capabilities.
+>
+> In Internet Protocol (IP) networks, data is transmitted in packets. These packets have a maximum size defined by the Maximum Transmission Unit (MTU), which is the largest size of data that a network link can carry in a single transmission. However, as data travels through different network links and routers, it's possible that some links have smaller MTUs than others. If a packet is too large to pass through a link with a smaller MTU, it will need to be fragmented into smaller pieces, transmitted, and then reassembled at the receiving end.
+> 
+> Path MTU plays a role in optimizing data transmission by avoiding fragmentation. Here's how it works:
+>
+> 1. **Path Discovery:** When a device wants to send data to a destination, it first attempts to discover the smallest MTU along the entire path between the sender and receiver. This is achieved using the "Path MTU Discovery" process.
+>    
+> 2. **ICMP Messages:** If a router along the path encounters a packet that is larger than its MTU, it can send an Internet Control Message Protocol (ICMP) "Fragmentation Needed" message back to the sender. This message indicates the MTU of the router.
+>    
+> 3. **Sender Behavior:** Upon receiving an ICMP "Fragmentation Needed" message, the sender adjusts the size of the packets it sends to match the smallest MTU in the path. This ensures that no fragmentation is required during transmission, reducing the chances of packet loss, reassembly overhead, and potential performance issues.
+>    
+> 4. **Optimized Transmission:** By using the smallest MTU along the path, data can be transmitted efficiently without fragmentation. This helps improve the reliability and performance of data transmission.
+>    
+> 5. **MTU Black Hole:** In some cases, a router may not send the required ICMP message when it encounters a large packet. This can lead to a "black hole" situation, where large packets get dropped, and the sender is unaware of the issue.
+>    
+>
+> It's worth noting that while Path MTU Discovery can significantly improve data transmission efficiency, some networks or devices might block ICMP messages due to security concerns. In such cases, the sender may need to use a conservative MTU value to avoid fragmentation, even though a larger MTU could be supported on parts of the path.
+
+### Network Layers
+> [!Question] ChatGPT
+> **Thouroughly explain TCP/IP Layers in comparison to OSI and in relation to the protocols.**
+>
+> The TCP/IP protocol suite and the OSI (Open Systems Interconnection) model are two different conceptual frameworks used to describe the functionality of networking protocols. Both models are used to help understand how networking protocols work together to enable communication between devices on a network. Let's break down the TCP/IP layers in comparison to OSI and how they relate to specific protocols:
+>
+> **TCP/IP Protocol Suite:**
+> The TCP/IP protocol suite consists of four layers, often referred to as a "stack," each responsible for specific networking functions. These layers are:
+>
+> 1. **Application Layer:** This layer deals with the communication between end-user applications and network services. It includes protocols that define the structure and content of data exchanged between applications. Examples of protocols at this layer include HTTP, HTTPS, FTP, SMTP, and DNS.
+>
+> 2. **Transport Layer:** The transport layer handles end-to-end communication and data segmentation, ensuring data reliability and integrity. It manages flow control, error correction, and retransmission of lost or corrupted packets. Two key transport layer protocols are TCP (Transmission Control Protocol) and UDP (User Datagram Protocol).
+>
+> 3. **Internet Layer:** Also known as the network layer, this layer handles routing and forwarding of data packets between different networks. It encapsulates data into packets, adds source and destination IP addresses, and manages routing decisions. The main protocol at this layer is the IP (Internet Protocol), which defines IP addresses and packet routing.
+>
+> 4. **Link Layer:** The link layer deals with the physical transmission of data on the local network segment. It includes both the data link and physical layers of the OSI model. This layer is responsible for framing data into frames, managing access to the physical medium, and addressing devices on the local network. Ethernet, Wi-Fi, and PPP are examples of link layer protocols.
+>
+> **OSI Model:**
+> The OSI model consists of seven layers, each representing a specific aspect of networking functionality:
+>
+> 1. **Application Layer:** Similar to the TCP/IP application layer, it deals with user application communication and network services.
+>
+> 2. **Presentation Layer:** Responsible for data translation, encryption, and compression, ensuring that data sent by one application is understood by another.
+>
+> 3. **Session Layer:** Manages communication sessions between applications and provides mechanisms for checkpointing, recovery, and synchronization.
+>
+> 4. **Transport Layer:** Similar to the TCP/IP transport layer, it ensures reliable end-to-end communication and manages flow control and error correction.
+>
+> 5. **Network Layer:** Corresponds to the TCP/IP internet layer, handling routing, addressing, and packet forwarding across different networks.
+>
+> 6. **Data Link Layer:** Similar to the TCP/IP link layer, it deals with framing, addressing, and error detection on the local network segment.
+>
+> 7. **Physical Layer:** Deals with the actual transmission of raw binary data over physical media, defining characteristics such as voltage levels, cable types, and physical connectors.
+> 
+> **Relation to Protocols:**
+> Both models describe the functionality of networking protocols, but they don't have a one-to-one correspondence between layers and protocols. Protocols can span multiple layers, and different protocols can exist within the same layer. For example:
+>
+> - HTTP, a protocol at the TCP/IP application layer, deals with web page retrieval. In the OSI model, its functions spread across the application and presentation layers.
+>
+> - TCP and UDP are transport layer protocols in the TCP/IP model, while the OSI model exclusively has these functions in the transport layer.
+>
+> - Ethernet operates at the link layer in both models but also encompasses the data link and physical layers in the OSI model.
+>
+> In summary, while both the TCP/IP and OSI models provide a conceptual framework for understanding networking protocols, the specific protocols they encompass and the way they organize networking functions may differ.
+
+### Protocols
+* ***Application Layer (Layer 7):**
+   1. **HTTP (Hypertext Transfer Protocol)**
+      - Often uses TCP for reliable transport.
+      - port 80
+   2. **HTTPS (Hypertext Transfer Protocol Secure)**
+      - Relies on SSL/TLS for encryption and TCP for transport.
+      - port 443
+   3. **SSH (Secure Shell)**
+      * Used for secure remote access and data communication between devices.
+      * For security it often uses Public Key Cryptography.
+      * Relies on TCP
+      * port 22
+   4. **FTP (File Transfer Protocol)**
+      - Often uses TCP for reliable data transfer.
+      - port 21
+   5. **SFTP (SSH File Transfer Protocol)**
+      - Secure version of FTP that uses SSH for encrypted file transfer.
+      - Requires SSH for security.
+      - port 22
+   6. **SMTP (Simple Mail Transfer Protocol)**
+      - Used for sending emails between mail servers.
+      - Often uses TCP for reliable communication.
+      - port 25
+   7. **POP3 (Post Office Protocol version 3)**
+      - Used by email clients to retrieve emails from mail servers.
+      - Typically used with TCP.
+      - port 110
+   8. **IMAP (Internet Message Access Protocol)**
+      - Used by email clients to manage and retrieve emails from mail servers.
+      - Also relies on TCP for communication.
+      - port 143
+   9. **DNS (Domain Name System)**
+      - Uses UDP for query/response and sometimes TCP for larger queries.
+      - port 53
+   10. **SNMP (Simple Network Management Protocol)**
+      - Used for monitoring and managing network devices.
+      - Typically relies on UDP.
+      - port 161
+   11. **Telnet**
+      - Provides terminal emulation for remote access to devices.
+      - Often uses TCP.
+      - port 23
+   12. **LDAP (Lightweight Directory Access Protocol)**
+      - Used to access and manage directory information.
+      - Relies on TCP.
+      - port 389
+   13. **HTTP/2 and HTTP/3:** Updates to HTTP with improved performance and security.
+      - HTTP/2 uses multiplexing and compression, HTTP/3 uses QUIC protocol for transport.
+   14. **SSL (Secure Sockets Layer) / TLS (Transport Layer Security):** Used to secure data transmission over the internet.
+     - Often used with HTTPS, SMTPS, IMAPS, and other secure protocols.
+     - port 443
+   15. **VPN Protocols (e.g., PPTP, L2TP, IPsec):** Used for creating secure virtual private networks.
+      - Work with various transport and network layer protocols.
+   16. **S/MIME (Secure/Multipurpose Internet Mail Extensions):** Adds security to email by encrypting and digitally signing messages.
+      - Works with email protocols like SMTP, POP3, and IMAP.
+
+* ***Presentation Layer (Layer 6):**
+	- This layer is often associated with data translation, encryption, and compression, but it's less focused on distinct protocols.
+
+* ***Session Layer (Layer 5):**
+	- This layer is responsible for managing communication sessions, but it's less associated with distinct protocols.
+
+* ***Transport Layer (Layer 4):**
+   1. **TCP (Transmission Control Protocol)**
+      - Provides reliable, connection-oriented data transfer.
+      - Often used with application protocols that require reliable communication.
+      - Relies on the Internet Protocol (IP)
+   2. **UDP (User Datagram Protocol)** 
+      - Provides lightweight, connectionless data transfer.
+      - Used for applications that prioritize speed over reliability.
+      - Relies on the Internet Protocol (IP)
+   3. **QUIC (Quick UDP Internet Connections)**
+      * It's a modern connection-less transport protocol developed by Google to improve the performance of web applications over the internet.
+      * It's designed to address some of the limitations and inefficiencies of traditional transport protocols like TCP (Transmission Control Protocol) and TLS (Transport Layer Security) when used in combination.
+      * Relies on UDP
+      * Has built-in encryption similar to TLS
+
+* ***Network Layer (Layer 3):**
+   1. **IP (Internet Protocol)**
+      - Provides logical addressing and routing of data packets.
+      - Relies on ARP for ip discovery
+   2. **ICMP (Internet Control Message Protocol)**
+      - Used for sending error and control messages.
+      - Works alongside IP for error reporting and diagnostics.
+   3. **ARP (Address Resolution Protocol)**
+      - Maps IP addresses to MAC addresses on a local network.
+      - Relies on Ethernet frames on Ethernet networks.
+   4. **RIP (Routing Information Protocol)**
+      - Used for dynamic routing within small networks.
+      - Works with IP for routing updates.
+   5. **OSPF (Open Shortest Path First)**
+      - Interior gateway protocol for larger networks.
+      - Operates with IP for routing and link-state updates.
+   6. **BGP (Border Gateway Protocol)**
+      - Used for routing between autonomous systems.
+      - Works with IP for inter-domain routing.
+
+* ***Data Link Layer (Layer 2):**
+   1. **Ethernet**
+      - Provides the physical and data link layer functionality for LANs.
+      - Uses MAC addresses for addressing.
+   2. **802.11 (WiFi)**
+      - Wireless LAN standard for wireless data transmission.
+      - Includes various security protocols like WPA, WPA2, WPA3.
+   3. **PPP (Point-to-Point Protocol)**
+      - Used for dial-up and serial connections.
+      - Often used for establishing point-to-point connections.
+
+* ***Physical Layer (Layer 1):**
+	- This layer defines the physical medium and signaling for data transmission, so it's not typically associated with distinct protocols.

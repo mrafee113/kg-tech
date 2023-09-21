@@ -4,46 +4,13 @@
 * [[SRE/Docker/CLI Reference|Docker Command-Line]]
 * [[SRE/Docker/Dockerfile Reference|Dockerfile]]
 * [[SRE/Docker/Composefile reference/Composefile reference|Composefile]]
+* [[SRE/Docker/Installation|Installation]]
 
 # Manuals
 > [source](https://docs.docker.com/desktop/)
 > The source url seems misleading. But the manuals are stored there. They are accessible through the left pane of the webpage.
 
 * [[SRE/Docker/Compose Manual|Docker Compose]]
-
-## Installation
-
-### Install Docker on Debian
-> [source](https://docs.docker.com/engine/install/debian/)
-* `sudo apt update`
-* `sudo apt install ca-certificates curl gnupg`
-* add the official gpg ring
-	* `sudo install -m 0755 -d /etc/apt/keyrings`
-	* `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
-	* `sudo chmod a+r /etc/apt/keyrings/docker.gpg`
-* set up the repo
-	```sh
-	echo \
-	  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-	  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-	  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-	```
-* install docker engine
-	* `sudo apt update`
-	* `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
-* configure vpn for bypassing sanctions against iran
-	* `sudo mkdir -p /etc/systemd/system/docker.service.d`
-	* `sudo vim /etc/systemd/system/docker.service.d/proxy.conf`
-	* proxy.conf
-		```
-			[Service]
-			Environment="HTTP_PROXY=socks5://192.168.1.105:10808"
-			Environment="HTTPS_PROXY=socks5://192.168.1.105:10808"
-		```
-	* `sudo systemctl daemon-reload`
-	* `sudo systemctl restart docker`
-* verify installation
-	* `sudo docker run hello-world`
 
 ## Docker: Get Started
 > [source](https://docs.docker.com/get-started/)
@@ -69,6 +36,9 @@
 	* Artifacts
 	* Registries
 	* Context
+	* Networks
+	* Volumes
+	* Secrets
 * Manuals
 	* Networks
 	* Storage

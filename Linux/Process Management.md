@@ -157,12 +157,12 @@ Jobs are processes that have been started interactively through a terminal, sent
 
 ### Process Priority
 * systems-calls are in charge of all inter-device communication
-* Linux, as a preemptive multi-processing operating system, implements a scheduler that organizes the process queue. The scheduler also decides which queued `thread` will be executed. `thred` and `process` are interchangable terms here.
+* Linux, as a preemptive multi-processing operating system, implements a scheduler that organizes the process queue. The scheduler also decides which queued `thread` will be executed. `thread` and `process` are interchangeable terms here.
 * every process has two things that intervene in it having control of cpu
 	* the scheduling priority
 	* the scheduling policy
 		* real-time policies
-			* procesess are scheduled by priority value directly
+			* processes are scheduled by priority value directly
 			* any real-time process has a higher priority than a normal process
 		* normal policies
 			* processes usually have the same scheduling priority
@@ -185,6 +185,72 @@ Jobs are processes that have been started interactively through a terminal, sent
 			* `renice -[niceness] -p [PID]` changes the niceness of a running process
 				* `-g` and `-u` are used to modify all the processes of a group or user respectively
 
+> [!Question] ChatGPT
+> **Thoroughly explain Linux process priority, niceness, and priority-policy in the context of process scheduling.**
+> 
+> In the context of process scheduling in Linux, process priority, niceness, and priority policy are concepts that determine how the operating system allocates CPU time to different processes. These concepts play a significant role in determining the order in which processes are executed and how system resources are distributed among them. Let's explore each of these concepts in detail:
+>
+> 1. **Process Priority:** Process priority is a numerical value assigned to a process that reflects its importance in terms of CPU scheduling. Priorities are typically represented as integers, where lower values indicate higher priority. The process scheduler uses these priorities to determine the order in which processes are allocated CPU time. Processes with higher priority values are given preference in CPU scheduling over processes with lower priority values.
+> 
+> 2. **Niceness:** Niceness is a concept that provides a more user-friendly way to adjust process priorities. It's represented as a value between -20 and +19, where lower values indicate higher priority (more "nice") and higher values indicate lower priority (less "nice"). The niceness value is essentially an offset from the default priority, which is usually 0.
+>
+ >    - Positive Niceness (Higher Values): Processes with higher niceness values are considered to be less urgent or less important. They are "nicer" to other processes, allowing them to have more CPU time. These processes are assigned lower priorities.
+>    
+ >   - Negative Niceness (Lower Values): Processes with negative niceness values are more urgent or important. They are given higher priority and compete for CPU time more aggressively.
+>     
+> 3. **Priority Policy:** Priority policy refers to the strategy used by the Linux scheduler to allocate CPU time to processes. The most common priority policies are:
+> 
+>    - **Round Robin (SCHED_RR):** In this policy, each process is given a fixed time slice to execute. Processes with the same priority are scheduled in a round-robin fashion. Real-time processes often use this policy.
+>     
+>    - **First-Come, First-Served (SCHED_FIFO):** Processes with the same priority are scheduled based on their arrival time. Once a process starts executing, it continues until it voluntarily yields or is preempted by a higher-priority process.
+>      
+>    - **Completely Fair Scheduler (CFS):** This is the default scheduler in modern Linux systems. It aims to provide "fair" allocation of CPU time to processes based on their priorities and resource needs. It uses virtual runtimes to estimate how long each process has been running.
+>      
+>    - **Batch (SCHED_BATCH):** This policy is designed for batch processing tasks that can tolerate slightly lower priority and longer response times.
+>      
+>    - **Idle (SCHED_IDLE):** This policy is used for processes that run only when the CPU has no other tasks to perform.
+>      
+>
+> In summary, process priority, niceness, and priority policy are integral components of process scheduling in Linux. They allow administrators and users to influence the order in which processes receive CPU time, based on the urgency and importance of each process. These concepts help strike a balance between fairness, responsiveness, and resource utilization in a multi-tasking environment.
+
+> [!Question] ChatGPT
+> **What are real-time and normal priority policies?**
+>
+> In the context of process scheduling in Linux, real-time and normal priority policies refer to two distinct approaches for managing the execution of processes based on their priority levels. These policies determine how the operating system allocates CPU time to processes with different priority values. Let's explore both real-time and normal priority policies:
+>
+> 1. **Real-Time Priority Policy:** The real-time priority policy is designed to cater to processes that have stringent timing requirements. Real-time processes need to meet specific deadlines and have predictable response times. Linux provides two types of real-time scheduling policies: SCHED_FIFO and SCHED_RR.
+>    
+>    - **SCHED_FIFO (First-Come, First-Served):** Processes scheduled with SCHED_FIFO operate in a strict priority-based manner. A process with a higher priority level preempts processes with lower priorities. The process continues to execute until it yields the CPU or is preempted by a higher-priority process. This policy is suitable for applications where maintaining precise timing is critical, such as industrial control systems.
+>        
+>    - **SCHED_RR (Round Robin):** Similar to SCHED_FIFO, SCHED_RR assigns strict priorities to processes. However, processes of the same priority are scheduled in a round-robin fashion, allowing each process to run for a fixed time slice before switching to the next process of the same priority.
+>        
+> 2. **Normal Priority Policy:** The normal priority policy, also known as the Completely Fair Scheduler (CFS), is the default scheduler in modern Linux systems. It aims to provide fairness and efficient resource allocation among processes while considering their priority levels. The CFS scheduler uses a concept called "virtual runtime" to approximate how long each process has been running relative to its priority.
+>    
+>    - Processes with higher priority values (lower niceness values) receive more CPU time compared to processes with lower priority values. However, even lower-priority processes receive some CPU time, ensuring that no process is starved of resources.
+>        
+>    - The CFS scheduler divides the available CPU time among active processes using a fair sharing algorithm. This approach provides more balanced resource allocation and responsiveness in typical multitasking scenarios.
+>        
+>
+> In summary, real-time priority policies (SCHED_FIFO and SCHED_RR) are designed for time-critical applications where predictable response times are crucial. Normal priority policies, such as the Completely Fair Scheduler (CFS), aim to provide balanced resource allocation and responsiveness in a multitasking environment without favoring any specific process too heavily. The choice between these policies depends on the nature of the application and its timing requirements.
+
+> [!Question] ChatGPT
+> **Is the nice value a value that Linux subtracts from the priority value and then determines scheduling based on the result of the subtraction? If not, how else does Linux interact with these two values?**
+>
+> Yes, you're correct! The nice value in Linux is used as an offset that is subtracted from the default priority value of a process. This subtraction determines the actual priority that the process is assigned for scheduling purposes. The lower the nice value, the higher the resulting priority of the process. Conversely, higher nice values result in lower priorities.
+>
+> Here's how the interaction between the nice value and priority works:
+>
+> 1. **Calculating Priority:**
+>    
+>    - The default priority for a process is usually set at a mid-range value, often around 120.
+>    - The nice value ranges from -20 (highest priority) to +19 (lowest priority). Negative nice values represent higher priority levels, while positive nice values represent lower priority levels.
+> 2. **Calculating Final Priority:**
+>    
+>    - The actual priority that the scheduler uses to determine which process to run next is calculated by adding the nice value to the default priority. The resulting value is used for scheduling decisions.
+>    - For processes with lower nice values (higher priority), the subtraction reduces the calculated priority.
+>    - For processes with higher nice values (lower priority), the addition increases the calculated priority.
+>
+> In summary, the nice value acts as an offset that adjusts the priority of a process for scheduling purposes. The scheduler determines the execution order of processes based on their calculated priorities. This approach allows administrators and users to influence the scheduling behavior of processes without directly manipulating the underlying priority values, making it more intuitive and user-friendly to adjust process priorities.
 ### Job Scheduling
 #### Cron/Systemd Timers
 * `cron` is a **daemon** that runs continuously and wakes up every minute to check a set of tables to find tasks to execute. These tables are called `crontabs` and contain the so-called `cron jobs`. 

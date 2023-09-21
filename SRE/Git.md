@@ -91,8 +91,27 @@
 	* `--bare` I didn't get the point of this.
 * `git daemon` for starting git server
 
+> [!Question] ChatGPT
+> **In git:**
+> 1. **How can I see the changes of a file that hasn't been `git add`ed?**
+> 	You can use the `git diff` command followed by the path to the file.
+>>	`git diff path/to/your/file.txt`
+>
+>    This command will show the difference between the current state of the file in your working directory and the last committed version.
+>>
+> 2. **How can I see the changes of a file that has only been `git add`ed but not `git commit`ed?**
+>	You can use the same git diff command with the `--staged` (or `--cached`) option to view the changes in the staging area.
+>>	`git diff --staged path/to/your/file.txt`
+>
+>    This will show the difference between the version of the file in the last commit and the staged changes.
+>>
+> 1. **How can I see the changes of a file that has been committed given the file and the commit?**
+>    Use the git show command followed by the commit hash and the path to the file.
+>>	`git show <commit-hash>:path/to/your/file.txt`
+>
+>    This command will display the changes made to the specified file in that specific commit.
 ### .git Directory
-* `.git/objects` dir: Contains a bunch of 2 letter name directories. The directory names are the first two letters of the sha1 hash of the object stored in git. Each folder contains one or more binary files with commit hashes as their names. The obviously correspond to each commit.
+* `.git/objects` dir: Contains a bunch of 2 letter name directories. The directory names are the first two letters of the sha1 hash of the object stored in git. Each folder contains one or more binary files with commit hashes as their names. They obviously correspond to each commit.
 * `.git/config` file: This is a project-specific configuration file. Config entries in here will override the config entries in the `.gitconfig` file in your home directory, at least for this project.
 * `.git/refs/heads` dir: This directory contains the branch pointers, each of which contain a commit hash.
 * `.git/refs/tags` dir: This directory contains the tag pointers, each of which contain a commit hash.
@@ -100,3 +119,16 @@
 * `git catfile [hash]` inspects a git object
 	* `-t` shows the object type
 	* `-p` pretty prints the contents based on type
+
+> [!Question] ChatGPT
+> **Name and explain GIT pointers**
+>
+> In Git, pointers are fundamental mechanisms that help track and manage different aspects of the version control system, including branches, commits, and more. Here are some of the key Git pointers and their explanations:
+> 1. **HEAD:** The `HEAD` pointer represents the current snapshot or commit in the repository. It is essentially a reference to the latest commit on the currently checked-out branch. It allows you to know which commit you're currently working on. 
+> 2. **Branches:** Branches are pointers that point to specific commits in the repository. When you create a new branch, Git creates a new pointer that references the commit you were on when you created the branch. As you make new commits on the branch, the branch pointer moves forward to point to the latest commit. 
+> 3. **Tags:** Tags are similar to branches in that they are also pointers, but they are used to mark specific points in history as significant milestones, like releases. Unlike branches, tags don't move as new commits are added; they remain fixed at the specific commit they were created on. 
+> 4. **Remote Branches:** Remote branches are pointers that track branches on remote repositories, such as those on GitHub. These pointers allow your local repository to know about the state of branches in the remote repository and facilitate synchronization between the local and remote copies of the code. 
+> 5. **Detached `HEAD`:** A detached `HEAD` occurs when `HEAD` is directly pointing to a commit rather than a branch. This usually happens when you check out a specific commit using its hash. In this state, any new commits you make will not be part of any branch and can potentially be lost if you switch branches. 
+> 6. **`ORIG_HEAD`:** The `ORIG_HEAD` pointer is used by Git to keep track of the previous state of `HEAD` before a potentially dangerous operation, like a `git reset` or `git merge`. This allows you to undo the operation if needed. 
+>
+> These pointers play a crucial role in Git's functionality, allowing you to navigate, track changes, and manage the history of your codebase effectively. Understanding these pointers is essential for efficiently working with version control in Git.
