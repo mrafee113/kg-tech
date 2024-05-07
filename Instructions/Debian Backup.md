@@ -1,13 +1,7 @@
 * Docker
-    * Backup
-        * clean tagged images: `docker-rm-tagged <registry-tag>`
-        * export docker images: `docker-export-images <destination>`
-    * Restore: #todo
-
 * **virtualenv names and freeze**
 	* backup: `venvs-backup-modules /tmp/venvs`
 	* restore: `venvs-restore-modules <backup-dir> [--proxy]`
-
 * **JetBrains** -> export `settings.zip`
 * Chrome -> export `cookies` [webstore](https://chrome.google.com/webstore/detail/cookie-backup-and-restore/cndobhdcpmpilkebeebeecgminfhkpcj)
 * `/var/cache/locate/updatedb`
@@ -36,7 +30,28 @@
 	* ubuntu dock
 	* wokspace indicator
 * backup each google chrome extensions:
-	* #todo 
+	* [ADHD Reader](https://chromewebstore.google.com/detail/adhd-reader/gcbchiambcokahmamemkoadlanaealmf)
+	* (deactive) [AI Prompt Genius](https://chromewebstore.google.com/detail/ai-prompt-genius/jjdnakkfjnnbbckhifcfchagnpofjffo)
+	* [Aria2 Explorer](https://chromewebstore.google.com/detail/aria2-explorer/mpkodccbngfoacfalldjimigbofkhgjn)
+	* [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
+	* [BlipRead](https://chrome.google.com/webstore/detail/pimmlmgpidiceckodhdifoppcidlndbp)
+	* [Cookie Backup and Restore](https://chrome.google.com/webstore/detail/cndobhdcpmpilkebeebeecgminfhkpcj)
+	* *backup* [Custom Search Engine](https://chrome.google.com/webstore/detail/kelahdmegihhooaelnaahkeggodajdjf)
+	* *backup* [Dark Reader](https://chrome.google.com/webstore/detail/eimadpbcbfnmbkopoojfekhnkhdbieeh)
+	* [Daxab](https://chrome.google.com/webstore/detail/enakmcmeealkdoeindgoeogldodhdeda)
+	* [Gnome shell integration](https://chrome.google.com/webstore/detail/gphhapmejobijbbhgpjhcjognlahblep)
+	* [Google docs offline](https://chrome.google.com/webstore/detail/ghbmnnjooekpmoecnnnilnnbdlolhkhi)
+	* [gkeep fullscreen](https://chrome.google.com/webstore/detail/kcfmkpjpemonceecfpgamaahlkfpjhdk)
+	* (deactive) [grammarly](https://chrome.google.com/webstore/detail/kbfnbcaeplbcioakkpcpgfkobkghlhen)
+	* *backup* [highlight this](https://chrome.google.com/webstore/detail/fgmbnmjmbjenlhbefngfibmjkpbcljaj)
+	* [input tab gkeep](https://chrome.google.com/webstore/detail/bmfmbanhkhjhfeckobkcecohknhlnamb)
+	* *backup* [proxy switchyomega](https://chrome.google.com/webstore/detail/padekgcemlokbadohgkifijomclgjgif)
+	* [Reader Mode](https://chrome.google.com/webstore/detail/llimhhconnjiflfimocjggfjdlmlhblm)
+	* [ruffle flash emulator](https://chrome.google.com/webstore/detail/donbcfbmhbcapadipfkeojnmajbakjdc)
+	* [save to gdrive](https://chrome.google.com/webstore/detail/gmbmikajjgmnabiglmofipeabaddhgne)
+	* [superpower gpt](https://chrome.google.com/webstore/detail/amhmeenmapldpjdedekalnfifgnpfnkc)
+	* [video speed controller](https://chrome.google.com/webstore/detail/nffaoalbilbmmfgbnbgppjihopabppdk)
+	* *backup* [webtime tracker](https://chromewebstore.google.com/detail/webtime-tracker/ppaojnbmmaigjmlpjaldnkgnklhicppk)
 * gnome
 	* [gnome terminal](https://askubuntu.com/questions/967517/how-to-backup-gnome-terminal-emulator-settings)
 		* Based on [this article](https://github.com/linuxmint/Cinnamon/wiki/Backing-up-and-restoring-your-cinnamon-settings-(dconf)), you can dump your settings using:
@@ -50,23 +65,17 @@
 	* evince: `/org/gnome/evince/`
 	* pomodoro: `/org/gnome/pomodoro/`
     * tilix: `/com/gexperts/Tilix/` 
+* authenticator
+* export/import vscode profile
 
 ### Restore
 #### Home
 * `Bedroom` dir
-	* `Backups` dir
-	* `Desktop` dir
-	* `Documents` dir
-	* `Downloads` dir
-	* `Pictures` dir
-	* `Projects` dir
-	* `Scripts` dir
-	* `VBoxVMs` dir
-	* `Videos` dir
 * `.android` dir: contains android sdk files
 * `.aria2c`
 * `.bash_history`
 * `.bashrc`
+* `.dir_colors`
 * `.config` dir
 	* `aria2` dir
 	* `artha.conf`
@@ -89,6 +98,8 @@
 	* `user-dirs.dirs`
 	* `user-dirs.conf`
 	* `user-dirs.locale`
+	* `hakuneko-desktop/hakuneko.settings`
+	* `mcomix`
 * `.docker` dir
 * `.FBReader` dir
     * `network.xml`
