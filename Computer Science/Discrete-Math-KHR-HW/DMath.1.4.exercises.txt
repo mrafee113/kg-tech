@@ -1,0 +1,250 @@
+1.
+	a) T
+	b) T
+	c) F
+
+3.
+	Q(x, y) = "x is the capital of y"
+	a) T
+	b) F
+	c) F
+	d) T
+
+5.
+	P(x) = "x spends more than five hours every weekday in class"
+	domain = all students
+	a) ∃xP(x) = there exists a student x who spends more than five hours every weekday in class
+	b) ∀xP(x) = all students spend more than five hours every weekday in class
+	c) ∃x ¬P(x) = there exists a student who spends less than five hours every weekday in class
+	d) ∀x ¬P(x) = all students spend less than five hours every weekday in class
+
+7.
+	C(x) = "x is a comedian"
+	F(x) = "x is funny"
+	domain = all people
+	a) ∀x(C(x) → F(x)) = every comedian is funny
+	b) ∀x(C(x) ∧ F(x)) = all people are comedians and funny
+	c) ∃x(C(x) → F(x)) = if there is a person that is a comedian, that person is funny.
+	d) ∃x(C(x) ∧ F(x)) = there is at least one funny comedian
+
+9.
+	P(x) = "x can speak russian"
+	Q(x) = "x knows the computer language C++"
+	domain = all students at your school
+	a) ∃x(P(x) & Q(x)) 
+	b) ∃x(P(x) & ~Q(x))
+	c) ∀x(P(x) | Q(x))
+	d) ∀x(~P(x) & ~Q(x))
+
+11.
+	P(x) = "x = x**2"
+	domain = integers
+	a) T
+	b) T
+	c) F
+	d) F
+	e) T (let x = 1)
+	f) F (let x = 2)
+
+13.
+	domain = integers
+	a) T
+	b) T (let n = 1)
+	c) T (let n = 0)
+	d) F (let n = -1)
+
+15.
+	domain = integers
+	a) T
+	b) F (n = sqrt(2) which is out of domain)
+	c) T
+	d) F
+
+17.
+	domain = {0, 1, 2, 3, 4}
+	a) P(0) | P(1) | P(2) | P(3) | P(4)
+	b) P(0) & P(1) & P(2) & P(3) & P(4)
+	c) ~P(0) | ~P(1) | ~P(2) | ~P(3) | ~P(4)
+	d) ~P(0) & ~P(1) & ~P(2) & ~P(3) & ~P(4)
+	e) ~(P(0) | P(1) | P(2) | P(3) | P(4))
+	f) ~(P(0) & P(1) & P(2) & P(3) & P(4))
+
+19.
+	domain = {1, 2, 3, 4, 5}
+	a) P(1) | P(2) | P(3) | P(4) | P(5)
+	b) P(1) & P(2) & P(3) & P(4) & P(5)
+	c) ~(P(1) | P(2) | P(3) | P(4) | P(5))
+	d) ~(P(1) & P(2) & P(3) & P(4) & P(5))
+	e) ∀x((x ≠ 3) → P(x)) ∨ ∃x¬P(x) ≡ ∀x((x = 3) | P(x)) | ∃x¬P(x)
+	   (P(1) & P(2) & T & P(4) & P(5)) | ~P(1) | ~P(2) | ~P(3) | ~P(4) | ~P(5)
+	  ≡ Q | ~(Q & P(3)) ≡ Q | ~Q | ~P(3) ≡ T
+
+21.
+	a) true  domain: computer science students
+	   false domain: psychology students
+	b) true  domain: old people
+	   false domain: children
+	c) true  domain: siblings of a household
+	   false domain: all people
+	d) true  domain: me and my friend
+	   false domain: all people
+
+23.
+	domain 1: all students in your class
+	domain 2: all people
+	let Q(x) = "x is a student in my class"
+	a)
+		let P(x) = "x can speak Hindi"
+		1: ∃x(P(x))
+		2: ∃x(Q(x) & P(x))
+	b)
+		let P(x) = "x is friendly"
+		1: ∀x(P(x))
+		2: ∀x(Q(x) -> P(x))
+	c)
+		let P(x) = "x was born in california"
+		1: ∃x(~P(x))
+		2: ∃x(Q(x) & ~P(x))
+	d)
+		let P(x) = "x has been in a movie"
+		1: ∃x(P(x))
+		2: ∃x(Q(x) & P(x))
+	e)
+		let P(x) = "x has taken a course in logic programming"
+		1: ~∃x(P(x)) ≡ ∀x(~P(x))
+		2: ∀x(Q(x) -> ~P(x))
+
+25.
+	let P(x) = "x is perfect"
+	let Q(x) = "x is my friend"
+	a) ∀x(~P(x))
+	b) ~∀x(P(x))
+	c) ∀x(Q(x) -> P(x))
+	d) ∃x(Q(x) -> P(x))
+	e) ∀x(Q(x) & P(x))
+	f) ~∀x(Q(x)) | ∃x(~P(x))
+
+27.
+	let P(x) = "x studies in my school"
+	let Q(x) = "x has lived in Vietnam"
+	let R(x) = "x can speak Hindi"
+	let E(x) = "x knows Java, Prolog, and C++"
+	let F(x) = "x is in my class"
+	let D(x) = "x enjoys Thai food"
+	let J(x) = "x plays hockey"
+	a) ∃x(P(x) & Q(x)) domain = all people
+	b) domain = my school ∃x(~R(x))
+	c) domain = my school ∃x(E(x))
+	d) domain = my school ∀x(F(x) -> D(x))
+	e) domain = my class ∃x(~J(x))
+
+29.
+	domain = logical propositions
+	let P(x) = "x is a tautology"
+	let Q(x) = "x is a contradiction"
+	a) ∃x(P(x))
+	b) ∀x(Q(x) -> P(~x))
+	c) ∃x∃y(~P(x) & ~Q(x) & ~P(y) & ~Q(y) & P(x | y))
+	d) ∃x∃y((P(x) & P(y)) -> P(x & y))
+
+31.
+	domain: x{0, 1, 2}, y{0, 1}, z{0, 1}
+	a) Q(0, 0, 0) & Q(0, 1, 0)
+	b) Q(0, 1, 1) | Q(1, 1, 1) | Q(2, 1, 1)
+	c) ~Q(0, 0, 0) | ~Q(0, 0, 1)
+	d) ~Q(0, 0, 1) | ~Q(1, 0, 1) | ~Q(2, 0, 1)
+
+33.
+	a)
+		domain: dogs
+		let P(x) = "x is old"
+		let Q(x) = "x can learn new tricks"
+		"Some old dogs can learn new tricks"
+		≡ ∃x(P(x) & Q(x)) => ~∃x(P(x) & Q(x) ≡ ∃x(~P(x) | ~Q(x))
+		≡ "there is a dog that is not old or cannot learn new tricks"
+	
+	b)
+		domain: rabbits
+		let P(x) = "x knows calculus"
+		"No rabbit knows calculus"
+		≡ ∀x(~P(x)) => ~∀x(~P(x)) ≡ ∀(P(x)) ≡ "All rabbits know calculus"
+	
+	c)
+		domain: birds
+		let P(x) = "x can fly"
+		"every bird can fly"
+		≡ ∀x(P(x)) => ~∀x(P(x)) ≡ ∃x(~P(x)) ≡ "there is a bird that cannot fly"
+	
+	d)
+		domain: dogs
+		let P(x) = "x can walk"
+		"there is no dog that can walk"
+		≡ ∀x(~P(x)) => ~∀x(~P(x)) ≡ ∃x(P(x)) ≡ "there is a dog that can walk"
+	
+	e)
+		domain: people in this class
+		let P(x) = "x knows french"
+		let R(x) = "x knows russian"
+		"there is no one in this class that knows french and russian"
+		≡ ∀x(~P(x) & ~R(x)) => ~∀x(~P(x) & ~R(x)) ≡ ∃x(P(x) | R(x))
+		≡ "there is a person in this class that can speak french or russian"
+	
+35.
+	a) ∀x(x > 1) => ∃x(x <= 1)
+	b) ∀x(x ≤ 2) => ∃x(x > 2)
+	c) ∃x(x ≥ 4) => ∀x(x < 4)
+	d) ∃x(x < 0) => ∀x(x >= 0)
+	e) ∀x((x < −1) ∨ (x > 2)) => ∃x((x >= -1) & (x <= 2))
+	f) ∃x((x < 4) ∨ (x > 7)) => ∀x((x >= 4) & (x <= 7))
+
+37.
+	domain: integers
+	a) not possible
+	b) let x = 0
+	c) let x = 2
+
+39.
+	a)
+		domain: airline passengers
+		let P(x) = "x is an elite flyer"
+		let Q(x) = "x has flown more than 25000 miles in a year"
+		let R(x) = "x has taken more than 25 flights during that year"
+		∀x((Q(x) | R(x)) -> P(x))
+	b)
+		domain: runners
+		let P(x) = "x is a man"
+		let Q(x, y) = "the best previous running time of x is less than 3 hours"
+		let R(x) = "x qualifies for the marathon"
+		∀x(((P(x) & Q(x, 3)) | (~P(x) & Q(x, 3.5))) -> R(x))
+	
+	c)
+		domain: students
+		let M(x) = "x has written a master's thesis"
+		let C(x, y, g) = "x has taken y course hours and has taken at least grade g in all courses"
+		let D(x) = "x can receive a master's degree"
+		∀x(((M(x) | C(x, 45, B)) | C(x, 60, B)) -> D(x))
+	d)
+		domain x: students
+		domain c: courses
+		let C(x, y) = "x has taken more than y credit hours in a semester"
+		let G(x, c, g) = "x has received grade G in course c"
+		∃x(∀c(G(x, c, A)) & C(x, 21))
+
+41.
+	F(p) = "printer p is out of service"
+	B(p) = "printer p is busy"
+	L(j) = "print job j is lost"
+	Q(j) = "print job j is queued"
+	a) if a printer is out of service and is busy, then there is a job that is lost.
+	b) if every printer is busy, then there's a job in the queue
+	c) if there's a job that's queued and lost, then a printer is out of service
+	d) if every printer is busy and every job is queued, then at least one print job is lost.
+
+45. :HARD:
+47.
+	- ∃x(P(x) ∨ Q(x)) ≡ P(x1) | Q(x1) | ... | P(xn) | Q(xn)
+	- ∃xP(x) ∨ ∃xQ(x) ≡ P(x1) | ... | P(xn) | Q(x1) | ... | Q(xn)
+
+49. :INTERESTING APPROACH:
+51. :like 49:
+53. :proof by contradiction:

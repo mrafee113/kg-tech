@@ -1,0 +1,113 @@
+1.
+	"socrates is human" -> "socrates is moral"
+	"socrates is human"
+	--
+	socrates is moral
+	Modes Ponens
+
+3.
+	a) p -> q | p
+	   addition
+	b) p & q -> p
+	   simplification
+	c) (p -> q) & p -> q
+	   modes ponens
+	d) (p -> q) & ~q -> ~p
+	   modes tollens
+	e) (p -> q) & (q -> r) -> r
+	   hypothetical syllogism
+
+5.
+	- p = randy works hard
+	- p -> q = if randy works hard, then he is a dull boy
+	- q -> r = if randy is a dull boy, then he will not get the job
+	-> r = randy will not get the job
+	-- p
+	-- p -> q & q -> r
+	-- r :hypothetical syllogism
+
+7.
+	- ∀x(Ma(x) -> Mo(x)) = all men are mortal
+	- Ma(Socrates) = socrates is a man
+	-> Mo(Socrates) = socrates is mortal
+	-- universal instantiation
+
+9.
+	a) - T(d) -> (R(d) | S(d)) = If i take the day off, it either rains or snows
+	   - T(tue) | T(thu) = I took tuesday off or I took thursday off
+	   - ~R(tue) & ~S(tue) = it was sunny on tue
+	   - ~S(thu) = it did not snow on thu
+	   
+	   -- ~R(tue) & ~S(tue) = ~(R(tue) | S(tue))
+	   -- ~T(tue) :conditional statement
+	   -- ~T(tue) | T(thu) = T(thu)
+	   -- ~S(thu) & T(thu) :conjunction
+	   -- ~S(thu) & (R(thu) | S(thu)) = R(thu) :disjunctive syllogism
+	
+	b) - p -> q = if i eat spicy foods then I have strange dreams
+	   - r -> q = if there's thunder while i am sleep, then i have strange dreams
+	   - ~q = I did not have strange dreams
+
+	   -- ~p
+	   -- ~r
+	
+	c) - p | q = i am either clever or lucky
+	   - ~q = i am not lucky
+	   - q -> r = if i am lucky then i'll win the lottery
+
+	   -- ~q & (p | q) -> p
+	
+11. :interesting:
+19.
+	a) no. fallacy of affirming the conclusion
+	b) yes. modus tollens (contrapositive)
+	c) no. fallacy of denying the hypothesis
+
+23.
+	in steps 3 and 5 the same elements have been chosen which is not random.
+	we have no evidence whatsoever if the element c is true for Q(c) and P(c) at the same time.
+
+25.
+	- ∀x(P(x) → Q(x))
+	- ¬Q(a)
+	---
+	- ¬P(a)
+
+	-- ∀x(P(x) → Q(x))
+	-- P(a) -> Q(a) :universal instantiation
+	-- ~Q(a)
+	-- ~P(a) :modus tollens
+
+27.
+	- ∀x(P(x) & R(x))
+	- P(a) & R(a) :universal instantiation
+	- P(a) :simplification
+	- ∀x(P(x) -> (Q(x) & S(x))
+	- Q(a) & S(a) :universal modus ponens
+	- S(a) :simplification
+	- R(a) :simplification
+	- R(a) & S(a) :conjunction
+	- ∀x(R(a) & S(a))
+
+29.
+	- ∀x(P(x) | Q(x))
+	- P(a) | Q(a) :universal instantiation
+	- ∀x(~Q(x) | S(x))
+	- ~Q(a) | S(a) :universal instantiation
+	- ∀x(R(x) -> ~S(x))
+	- R(a) -> ~S(a) :universal instantiation
+	- ∃x~P(x)
+	- presume P(a) = false
+	- Q(a)
+	- S(a)
+	- ~R(a)
+	- ∃x~R(x)
+
+31.
+	- ~p | q = it is not raining or yvette has her umbrella
+	- ~q | ~r = yvette does not have her umbrella or she does not get wet
+	- p | ~r it is raining or yvette does not get wet
+	-> ~r = yvette does not get wet
+
+	-- (~p | q) & (p | ~r) -> q | ~r :resolution
+	-- (q | ~r) & (~q | ~r) -> ~r | ~r = ~r

@@ -1,0 +1,164 @@
+1.
+	theorem: the sum of two odd integers is even.
+	Let's assume the hypothesis is true, which means that having two
+		integers a and b, they are odd. By the definition of an odd
+		integer we have a = 2k + 1 and b = 2t + 1, where k and t
+		are integers.
+	We want to show that a + b is even. Let's write it down.
+		a + b = 2k + 1 + 2t + 1 = 2(k + t + 1)
+		Since k and t are integers, and a + b is of the form 2i,
+		we conclude that this is true.
+
+3.
+	We want to prove the theorem that states "the square of an even number
+		is an even number".
+	Let's go ahead and presume the hypothesis is true, which means
+		having numbers a and k: a = 2k
+	We want to show that a**2 is also even. Taking squares from both
+		sides of the equation we'll have a**2 = 4k**2, which can be
+		expressed as a**2 = 2(2k**2). Since this complies with the
+		definition of even numbers, we can conclude that a**2 is even.
+	
+	> note: I should've presumed the numbers to be integers.
+
+5.
+	theorem: if m + n and n + p are even integers, where m, n, and p
+		are integers, then m + p is even.
+	
+	direct poof:
+		let's go ahead and presume that the hypothesis is true.
+			that means m + n and n + p are even integers.
+			therefore having k and t as integers we can have:
+			m + n = 2k, n + p = 2t
+		We want to show that m + p is even. By summing the two equations
+			we have: m + n = 2k + 2t - 2n = 2(k + t + n)
+		Since m + n is that of the form of an even integer, we conclude
+			that the theorem is true.
+
+7. :I HAVE NO IDEA WHAT JUST HAPPENED IN THE SOLUTIONS MANUAL:
+9. :hard:
+11. :fucking counterexample: idiot...
+13.
+	theorem: if x is irrational, then 1/x is irrational
+	contrapositive:
+		p="x is irrational"
+		q="1/x is irrational"
+		~p="x is rational"
+		~q="1/x is rational"
+	we want to prove ~q -> ~p
+	direct proof:
+		having a and b as integers, b != 0: 1/x = a/b
+		we invert both sides presuming a != 0: x = b/a
+		except for values 0, we have shown that x is rational.
+		which means that the ~q -> ~p is true. which means that
+		the original statement that p -> q is true.
+
+15.
+	theorem: if x is irrational and x > 0, then sqrt(x) is also irrational.
+	contrapositive:
+		p="x is irrational"
+		q="sqrt(x) is irrational"
+		~p="x is rational"
+		~q="sqrt(x) is rational"
+	direct proof:
+		assumming the hypothesis is true, having a and b as integers and b!=0,
+			we can have: sqrt(x) = a/b
+		Let's take a square off both sides: x = a**2/b**2
+		Since x can be written as the division of two integers, we conclude that 
+		x is rational.
+		Since we've proven ~q -> ~p is true, therefore we conclude that p -> q is
+		true as well.
+
+17.
+	theorem: p -> q
+		p="x + y >= 2"
+		q="x >= 1, y >= 1"
+	contraposition:
+		~p="x + y < 2"
+		~q="x < 1, y < 1"
+	direct:
+		assumming the hypothesis is true, adding the two unequalities
+		together: x + y < 2
+		since we proved ~q -> ~p is true, we can conclude that p -> q is
+		true as well.
+
+19.
+	theorem:
+		p="n**3 + 5 is odd"
+		q="n is even"
+	a) contraposition
+		~p="n**3 + 5 is even"
+		~q="n is odd"
+	direct:
+		assumming the hypothesis is true, we have: n = 2k + 1
+		taking a cube from both sides of the equation we have:
+			n**3 = (2k + 1)**3 = (2k + 1)(4k**2 + 4k + 1) \
+			= 8k**3 + 12k**2 + 6k + 1
+		by adding 5 to each side we have:
+			n**3 + 5 = 8k**3 + 12k**2 + 6k + 6 = 2(4k**3 + 6k**2 + 3k + 3)
+		since this is even, we have proven ~q -> ~p to be
+		true, therefore p -> q is true.
+	b) contradiction:
+		negation: p & ~q = "n**3 + 5 is odd" and "n is odd"
+		presumming ~q to be true:
+			n = 2k + 1
+			n**3 + 5 = 2(4k**3 + 6k**2 + 3k + 3)
+			contradiction => ~q false => q is true
+
+21.
+	theorem:
+		P(n) = "if n is a positive integer greater than 1, then n**2 > n"
+		P(0) = "if 0 is a positive integer greater than 1, then 0**2 > 0"
+	since the hypothesis is false, the conditional statement is automatically true.
+	vacuous proof
+
+23.
+	P(n) = "if a and b are positive real numbers, then (a + b)**n >= a**n + b**n"
+	theorem:
+		P(1) = "if a and b are positive real numbers, then (a + b) >= a + b"
+	this is trivial.
+
+25.
+	theorem: at least ten of any 64 days chosen must fall on the
+		same day of the week
+	contradiction: if there are 9 days or less in the same day of the week,
+		it would account for at most 63 days.
+
+27. :too algebraic:
+29.
+	theorem: if n is a positive integer, then n is odd
+		if and only if 5n + 6 is odd.
+	direct proof:
+		assumming the hypothesis is true, we have n = 2k + 1.
+		multiplying both side by 5 and adding 6:
+			5n + 6 = 10k + 5 + 6 = 10k + 10 + 1 = 2(5k + 5) + 1
+		since we've shown that 5n + 6 is by definition an odd number,
+		the theorem is proven.
+
+31.
+	theorem: if mn = 1, then m = 1 and n = 1, or else m = -1 and n = -1
+	direct:
+		assumming mn = 1.
+			if we assume that m, as an integer is 1, then 1 * n = 1
+				which means that n = 1
+			and if we assume that m, as an integer is -1, then -1 * n = 1
+				which means that n = -1
+
+33. :creative:
+	the author tried a few values of x and figured that x is even,
+	then tried to prove the other statments using "x is even".
+
+35. by contraposition...
+37.
+	x + 3 > 0 => x > -3
+	x - 3 > 0 => x > 3
+	=> -3 < x < 3
+
+39.
+	p -> q
+	q -> r
+	---
+	p -> r
+	hypothetical syllogism
+
+41. :contradiction:

@@ -1,0 +1,99 @@
+1.
+	domain: all real numbers
+	a) for every real number x, there is a real number y that is greater than x
+	b) the multiplication of two positive real numbers is positive
+	c) for any two real numbers x and y, there's a real number z that is the multiplication of the other two
+
+3.
+	a) there's a person who has sent an email to another person or to himself
+	b) there's a person who has sent an email to every person
+	c) for every person, there's a person whom the first person has sent an email to
+	d) there's a person who has sent an email to every person
+	e) for every person, there's a person whom the first person has sent an email to
+	f) every person has sent an email to every other persons and to himself
+
+5.
+	domain x: all students in your school
+	domain y: all websites
+	a) sarah smith has visited website www.att.com
+	b) there's a person who's visited www.imdb.org
+	c) there's a website that Jose Orez has visited.
+	d) there's a website that Ashok Puri and Cindy Yoon have visited
+	e) if David Belcher has visited every website, there's a person besides him that has visited every website
+	f) there exists two people who have visited every website if and only if the other one has
+
+7.
+	domain x: all students at my school
+	domain y: all cuisines
+	a) Abdallah Hosein doesn't like japanese cuisine
+	b) there's a person who likes korean cuisine and all people like mexican cuisine
+	c) there's a cuisine that Monique Aresnault or Jay Johnson like
+	d) for every two different people, there's a cuisine that they both don't like
+	e) there are two people that like every cuisine if the other one does
+	f) for every two people, there's a cuisine that they both like if and only if the other one does too
+
+9.
+	L(x, y) = "x loves y"
+	domain: all people
+	a) ∀xL(x, Jerry)
+	b) ∀x∃yL(x, y)
+	c) ∃x∀yL(y, x)
+	d) ∀x~∀yL(x, y) ≡ ~∃x∀yL(x, y)
+	e) ∃x~L(Lydia, x)
+	f) ∃x∀y~L(y, x)
+	g) ∃!x∀yL(y, x) ≡ ∃x(∀yL(y, x) & ∀z((∀wL(w, z)) -> z = x))
+	h) ∃x∃y(x != y & L(lynn, x) & L(lynn, y) & ∀z(L(lynn, z) -> (z = x) | (z = y)))
+	i) ∀xL(x, x)
+	j) ∃x∀y((x != y -> ~L(x, y)) & (x = y -> L(x, y))) ≡ ∃x∀y(L(x, y) <-> x = y)
+
+11.
+	S(x) = "x is a student"
+	F(x) = "x is a faculty member"
+	A(x, y) = "x has asked y a question"
+	domain: all people associated with my school
+	a) A(Lois, Professor Michaelson)
+	b) ∀x(S(x) -> A(x, Professor Gross))
+	c) ∀y(F(y) -> (A(x, Professor Miller) | A(Professor Miller, x))
+	d) ∃x∀y(S(x) & (F(y) -> ~A(x, y)))
+	e) ∃x∀y(F(x) & (S(y) -> ~A(y, x)))
+	f) ∃x∀y(S(x) & (F(y) -> A(x, y)))
+	g) ∃x(F(x) & ∀y((F(y) & y != x) -> A(x, y)))
+	h) ∃x(S(x) & ∀y(F(y) -> ~A(y, x)))
+
+13.
+	M(x, y) = "x has sent y an email"
+	T(x, y) = "x has telephoned y"
+	a) ~M(chou, koko)
+	b) ~M(arlene, sarah) | ~T(arlene, sarah)
+
+19.
+	a) ∀x∀y((y < 0 & x < 0) -> x + y < 0)
+
+21. ∀x((x > 0) -> ∃a∃b∃c∃d(x = a**2 + b**2 + c**2 + d**2))
+24.
+	a) for each real number there's a number that does not change the former's value when added.
+	b) the subtraction of any negative number from a positive number is strictly positive
+	c) in the subtraction of any two real negative numbers or zeroes, the result is positive
+	d) the multiplication of any two non-zero real numbers is not zero, and vice-versa
+
+27.	
+	domain: integers
+	a) F let n = 0
+	b) T let n = -1
+	c) T
+	d) T let n = 1
+	e) T let n = 1, m = 2
+	f) F
+	g) F
+	h) T let n = 3, m = 1
+	i) F let n = 2, m = 3
+
+31.
+	a) ∃x∀y∃z~T(x, y, z)
+	b) ∃x∀y~P(x, y) & ∃x∀y~Q(x, y)
+	c) ∃x∀y(~P(x, y) | ∀z~R(x, y, z))
+	d) ∃x∀y(P(x, y) & ~Q(x, y))
+
+35.
+	true domain: all integers
+	false domain: {1, 2, 3}

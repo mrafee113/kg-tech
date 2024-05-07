@@ -1,0 +1,44 @@
+1.
+	exhaustive:
+		n = 1: 1 + 1 >= 2
+		n = 2: 4 + 1 >= 4
+		n = 3: 9 + 1 >= 8
+		n = 4: 16 + 1 >= 16
+
+3.
+	case 1: x >= 5 => x**3 >= 125
+	case 2: 0 < x < 5 => x**3 < 125
+		x = 0 => x**3 = 0
+		x = 1 => x**3 = 1
+		x = 2 => x**3 = 8
+		x = 3 => x**3 = 27
+		x = 4 => x**3 = 64
+
+5.
+	theorem: if x and y are real numbers, then
+		max(x, y) + min(x, y) = x + y
+	case 1: x < y => y + x = x + y
+	case 2: x > y => x + y = x + y
+	case 3: x = y => x + x = x + y = y + y
+
+7.
+	if we prove presuming x < y, without loss of generality it is a given
+		that the case x >= y is also true.
+	x < y:
+		min: x = (x + y - |x - y|)/2 => x - y = x - y
+		max: y = (x + y + |x - y|)/2 => y - x = y - x
+
+9.
+	triangle inequality: if x and y are real numbers, then
+		|x| + |y| >= |x + y|
+	case 1: x >= 0, y >= 0
+		x + y >= x + y
+	case 2: x <= 0, y <= 0
+		-x - y >= -x - y
+	case 3: :HARD:
+
+11.
+17.
+
+:: I give up. I hate proofs.
+

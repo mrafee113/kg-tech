@@ -1,71 +1,24 @@
 * Docker
-    * clean tagged images
-    * export docker images
+    * Backup
+        * clean tagged images: `docker-rm-tagged <registry-tag>`
+        * export docker images: `docker-export-images <destination>`
+    * Restore: #todo
 
-* **/home/mehdi**
-	* `.zshrc`
-	* `.mehdirc`
-	* `.zshrc.zni`
-	* `.vimrc`
-	* `.python_history`
-	* `.pypirc`
-	* `.zsh_history (.histfile)`
-	* `.gitconfig`
-	* `.aria2c`
-	* `.wdm`
-	* `.vim`
-	* `.venvs`
-    * `.todo-txt` dir
-    * `.tldr-userpath`
-
-* steam data for csgo
 * **virtualenv names and freeze**
-	* backup
-		```zsh
-		destination="/tmp/venvs"
-		file_extension=".pip.txt"
-	
-		mkdir $destination
-		for d in */ ; do           
-	        source ./$d/bin/activate
-	        len=${#d}
-	        filename=$(cut -c 1-$(($len-1)) <<< "$d")
-	        filename="$filename""$file_extension"
-	        pip freeze > $destination/$filename
-		done
-		```
-	* restore
-		```zsh
-		src="/home/mehdi/Bedroom/Backups/venvs"
-		file_extension=".pip.txt"
-		
-		cd $src
-		for d in *$file_extension ; do
-			vname=${d/$file_extension/}
-			mkvirtualenv $vname
-			workon $vname
-			pip install -r $d
-		done
-		```
-
-* **.config**
-	* `user-dirs.conf`
-	* `user-dirs.dirs`
-	* `gspread`
+	* backup: `venvs-backup-modules /tmp/venvs`
+	* restore: `venvs-restore-modules <backup-dir> [--proxy]`
 
 * **JetBrains** -> export `settings.zip`
-* Chrome -> export `cookies`
+* Chrome -> export `cookies` [webstore](https://chrome.google.com/webstore/detail/cookie-backup-and-restore/cndobhdcpmpilkebeebeecgminfhkpcj)
 * `/var/cache/locate/updatedb`
 * backup postgres databases
 	* `psql`
 		* `\l` lists databases
 	* `pg_dump [dbname] > file.psqldb` backs up
-		* `psql [dbname] < file.psqldb` restores
+		* `psql < file.psqldb` restores
 	* `pg_dumpall > file.psqlcluster` backups up entire cluster (reserves roles, ...)
 		* `psql -f file.psqlcluster postgres`
 	* remember, when using pgdump, the postgres user should have write access to the desired directory used. e.g. `/tmp`
-* obsidian plugins & settings
-* `/etc/tsocks`
 * gnome extensions names
 	* `ls -la ~/.local/share/gnome-shell/extensions > ~/.gnome-ext.bak`
 	* dash to dock: `/org/gnome/shell/extensions/dash-to-dock/`
@@ -96,6 +49,7 @@
 	* gnome-text-editor: `/org/gnome/TextEditor/`
 	* evince: `/org/gnome/evince/`
 	* pomodoro: `/org/gnome/pomodoro/`
+    * tilix: `/com/gexperts/Tilix/` 
 
 ### Restore
 #### Home
@@ -109,30 +63,42 @@
 	* `Scripts` dir
 	* `VBoxVMs` dir
 	* `Videos` dir
-* `.logins` dir: contains .files which contain user passwords
 * `.android` dir: contains android sdk files
 * `.aria2c`
-* `.cache` dir
-	* `google-chrome` dir
+* `.bash_history`
+* `.bashrc`
 * `.config` dir
 	* `aria2` dir
 	* `artha.conf`
 	* `artha.log`: list of words looked up
 	* `autostart` dir
-	* `google-chrome` dir
+    * `gspread` dir
 	* `htop/htoprc`
 	* `libreoffice` dir
 	* `nautilus/search-metadata`
 	* `neofetch/config.conf`
+    * `obsidian` dir
+        * `Dictionaries/*`
+        * `Custom Dictionary.txt`
+        * `Custom Dictionary.txt.backup`
+        * `Preferences`
+    * `tilix` dir
 	* `ulauncher` dir
 		* `settings.json`
 		* `ext_preferences` dir
 	* `user-dirs.dirs`
 	* `user-dirs.conf`
-	* `user-dirs.dirs.backup`
 	* `user-dirs.locale`
+* `.docker` dir
+* `.FBReader` dir
+    * `network.xml`
+    * `options.xml`
+    * `ui.xml`
 * `.gitconfig`
+* `.histfile`
 * `.ipython`
+* `.kube` dir
+* `.lesshst`
 * `.local` dir
 	* `backgrounds` dir
 * `.mehdirc`
@@ -144,6 +110,9 @@
 * `.pypirc`
 * `.python_history`
 * `.ssh` dir (maybe?? be careful!)
+* `.todo-txt` dir
+* `.tldr-userpath`
+* `.vagrant.d` dir
 * `.vimrc`
 * `.vim` dir
 	* `colors` dir
@@ -154,6 +123,13 @@
 
 #### Root
 * `/etc` dir
+    * `apt` dir
+        * `sources.list`
+        * `sources.list.d/*` dir
+        * `apt.conf.d/` dir
+            * `20auto-upgrades`
+            * `70debconf`
+        * `preferences.d/*` dir
 	* `at.deny`
 	* `anacrontab`
 	* `cron*` dirs and files
@@ -184,7 +160,7 @@
 		* `resolved.conf`
 		* `system.conf`
 		* `user.conf`
-	* `tsocks.conf`
+    * `tsocks.*`
 	* `ufw` dir
 	* `vim/` dir
 	* `wgetrc`

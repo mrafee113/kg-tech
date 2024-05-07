@@ -1,0 +1,285 @@
+#change power options
+#add persian keyboard (with keypad)
+#disks settings
+ mount at startup internal disks
+
+#connect vpn
+sudo pacman -Syu
+
+#python
+sudo pacman -S python-virtualenv python-virtualenvwrapper
+#restore .mehdirc
+mkvirtualenv system_venv
+
+#install from add/remove programs
+#chrome
+#spotify
+#vlc
+#slack-desktop
+#anydesk
+
+sudo pacman -S pass
+#install from add/remove programs
+#pass-import
+#pass-update
+
+sudo pacman -S httpie htop testdisk peek audacity snapd
+sudo pacman -S discord  #set push to talk to LCtrl+LAlt
+sudo systemctl enable --now snapd.socket #logout
+
+sudo snap install telegram-desktop
+
+sudo pacman -S postgresql postgis
+sudo -u postgres -i
+ #postgres
+ initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data/'
+ exit
+sudo systemctl enable --now postgresql.service
+psql --version
+sudo su postgres -c psql
+ #postgres
+ create database mehdi;
+ create user mehdi with password '';
+ alter role mehdi with CREATEDB;
+ \q
+sudo pacman -S pgadmin4
+
+#tor?
+#ubuntu:
+#tor #uses socks5
+sudo apt install tor obfs4proxy tor-geoipdb torsocks
+#get torlogs using journalctl -extf Tor
+#get tor bridges from https://bridges.torproject.org/
+#edit torrc
+ #add at the end:
+  #UseBridges 1
+  #ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+  #Bridge obfs4 ip:port hash-of-your-obfs4-bridge
+  sudo systemctl restart tor@default.service
+#tor port: 9050
+#change tor nodes
+ EntryNodes {ne}, {de}
+ ExitNodes {us}, {ne}, {de}
+ StrictNodes 1
+#privoxy #can port socks5 to http/https
+sudo apt install privoxy
+#edit /etc/privoxy/config
+ #uncomment/add:
+  #forward-socks5 / 127.0.0.1:9050 .
+sudo systemctl enable privoxy.service
+sudo systemctl start privoxy.service
+#privoxy port: 8118
+#torsocks #torify terminal commands
+#if torsocks does not work:
+ #command does not support socks5
+ #use http/https (no need for torsocks):
+  export http_proxy="http://127.0.0.1:8118/"
+  export https_proxy="https://127.0.0.1:8118/"
+
+#virtualbox
+uname -a #find kernel version e.g. 5.6.15-1-MANJARO
+sudo pacman -S virtualbox #choose linux56-virtualbox-host-modules
+sudo modprobe vboxdrv
+#install from add/remove programs
+#virtualbox-ext-oracle
+sudo gpasswd -a mehdi vboxusers
+
+#vagrant
+sudo pacman -S vagrant
+mkdir ~/.vagrants ~/.vagrants/data
+restore ~/.vagrants/box-list.txt
+mkdir ~/.vagrants/ubuntu-20.04
+cd ~/.vagrants/ubuntu-20.04
+vagrant init
+ #edit vagrant file
+ config.vm.box = "bento/ubuntu-20.04"
+ config.ssh.password = "vagrant"
+ config.vm.network "forwarded_port", guest: 22, host: 2200, id: "ssh"
+ config.vm.network "forwarded_port", guest: 80, host: 2300
+ config.vm.network "private_network", ip: "192.168.30.2"
+ config.vm.synced_folder "../data", "/home/vagrant/data"
+
+#vagrant-up error#1
+ There was an error while executing `VBoxManage`, a CLI used by Vagrant
+ for controlling VirtualBox. The command and stderr is shown below.
+
+ Command: ["hostonlyif", "create"]
+
+ Stderr: 0%...
+ Progress state: NS_ERROR_FAILURE
+ VBoxManage: error: Failed to create the host-only adapter
+ VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
+ VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterfaceWrap, interface IHostNetworkInterface
+ VBoxManage: error: Context: "RTEXITCODE handleCreate(HandlerArg*)" at line 95 of file VBoxManageHostonly.cpp
+ #solution:
+  sudo modprobe vboxnetadp
+
+#vagrant-up error#2 (due to private network need)
+ There was an error while executing `VBoxManage`, a CLI used by Vagrant
+ for controlling VirtualBox. The command and stderr is shown below.
+
+ Command: ["startvm", "42f1d4bf-6b01-4f74-99eb-2088c2589d17", "--type", "headless"]
+
+ Stderr: VBoxManage: error: Failed to open/create the internal network 'HostInterfaceNetworking-vboxnet1' (VERR_SUPDRV_COMPONENT_NOT_FOUND).
+ VBoxManage: error: Failed to attach the network LUN (VERR_SUPDRV_COMPONENT_NOT_FOUND).
+ VBoxManage: error: One of the kernel modules was not successfully loaded. Make sure that VirtualBox is correctly installed, and if you are using EFI Secure Boot that the modules are signed if necessary in the right way for your host system.  Then try to recompile and reload the kernel modules by executing '/sbin/vboxconfig' as root (VERR_SUPDRV_COMPONENT_NOT_FOUND)
+ VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component ConsoleWrap, interface IConsole
+ #solution:
+  sudo /sbin/vboxreload
+  
+#pycharm
+ #download zip from soft98.ir
+ unzip charm.zip
+ cd charm
+ tar xvzf charm.tar.gz
+ mkdir ~/.local/JetBrains
+ cp -rv charm ~/.local/JetBrains
+ cd ~/.local/JetBrains/charm/bin
+ ./pycharm.sh
+
+ #crack using readme
+ #config
+  #Run configuration templates for new projects
+  #import settings
+
+#zsh
+sudo pacman -S zsh zsh-completions
+zsh /usr/share/zsh/functions/Newuser/zsh-newuser-install -f
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"\n
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"\n
+#.zshrc
+ ZSH_THEME="spaceship"
+ plugins=(
+	git
+	zsh-syntax-highlighting
+	zsh-autosuggestions
+	common-aliases
+	compleat
+	dirhistory
+	django
+	docker
+	httpie
+	pip
+	zsh-interactive-cd
+	pass
+	command-not-found
+	colored-man-pages
+	vagrant
+ )
+
+#settings
+ #changed background
+ #added online google account
+ #display
+  set night light to 20:00-05:00
+ #keyboard shortcuts
+  home folder: Alt+Return
+  Launch Calculator: Super+Return
+  Switch applications: Disabled
+  Switch windows: Alt+Tab
+  Switch windows of an application: Super+Tab
+  Restore the keyboard shortcuts: Disabled
+  Hide window: Super+Down
+  Restore window: Disabled
+  Toggle fullscreen mode: Alt+F11
+  add: Terminal: gnome-terminal: Ctrl+Alt+T
+ #add persian keyboard
+ #fix date & time
+ 
+#layouts: manjaro -> gnome
+
+#unzip vimix theme
+cd vimix
+./install.sh
+
+#install from add/remove program
+#yaru theme
+#yaru icon pack
+
+#gnome-tweak-tool
+sudo pacman -S chrome-gnome-shell
+ #config
+  #general
+   over-amplification
+  #apprearance
+   applications: Yaru-Dark
+   cursor: Xcursor-breeze-snow
+   icons: Yaru
+   shell: Matcha-sea
+  #top bar
+   battery percentage
+   date
+   seconds
+  #window titlebars
+   double-click toggle maximize
+   middle-click minimize
+   secondary-click menu
+
+#extensions
+ arc menu
+  load settings
+ auto move windows
+  add rule: spotify - workspace#1
+  dash to dock
+  #position and size
+   position on screen: bottom
+   #intelligent autohide
+    autohide
+    enable in fullscreen mode
+    push to show
+    dodge windows: only focused application's windows
+    0.200
+    0.200
+    0.250
+    100
+   dock size limit: 90%
+   panel mode: uncheck
+   icon size limit 44px
+  #launchers
+   show favorite applications
+   show running applications
+   show open windows previews
+   isolate workspaces
+   isolate monitors: uncheck
+   show applications icon
+   move... : uncheck
+   animate show applications
+   show trash: uncheck
+   show mounted: uncheck
+  #behavior
+   use keybo...
+   cycle through
+   #click action
+    shift+click: show window previews
+    middle-click: minimize window
+    shift+middle-click: launch new instance
+   switch workspace
+  #appearance
+   built-in theme: uncheck
+   shrink: uncheck
+   customize windo: dots
+   dash color: #183635
+   customize opacity: fixed: 56%
+   force straight: uncheck
+ Desktop Icons
+ KStatusNotifierItem/AppIndicator Support
+ Pamac Updates Indicator
+ Removable Drive Menu
+ user themes
+ refresh wifi connections
+ steal my focus
+ persian calendar
+  all check
+  %WW   %D/%M/%Y
+
+#terminal preferrences
+ #colors
+ scheme: solarized dark
+ background: #003628
+ terminal-text-color: #839496
+ 3rd: (palette color 2) #953A13
+ 7th: (palette color 6) #2AA198
+ 9th: (palette color 8) #146A09

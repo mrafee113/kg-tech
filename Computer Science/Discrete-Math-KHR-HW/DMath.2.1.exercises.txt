@@ -1,0 +1,79 @@
+5.
+	a) B proper subset of A
+	b) none
+	c) A proper subset of B
+
+7.
+	a) yes
+	b) no
+	c) no
+
+9.
+	a) yes
+	b) no
+	c) yes
+	d) no
+	e) no
+	f) no
+
+11.
+	a) no
+	b) no
+	c) no
+	d) yes
+	e) no
+	f) no
+	g) yes; every set is a subset of itself
+
+13.
+	a) T
+	b) T
+	c) F
+	d) T
+	e) T
+	f) F
+
+19.
+	random element x
+	x ∈ A -> x ∈ B since A is a subset of B
+	x ∈ B -> x ∈ C since B is a subset of C
+
+21.
+	a) 1
+	b) 1
+	c) 2
+	d) 3
+
+23.
+	a) {nil, {a}}
+	b) {nil, {a}, {b}, {a, b}}
+	c) {nil, {nil}, {{nil}}, {nil, {nil}}}
+
+25.
+	a) 8
+	b) 16
+	c) 2
+
+27. :creative:
+33. :interesting:
+37. b*m elements
+39. m**n
+41. the first produces a set of 3-tuples, and the second
+	produces a set of pairs.
+43. the cartesian product of power sets is going to produce 
+	pairs of nested sets, and the power set of a cartesian
+	product is going to produce elements that are sets of pairs.
+
+45.
+	a) T
+	b) F
+	c) F let x = 0
+	d) T let x = 1
+
+47.
+	a) -1, 0, 1
+	b) ..., -3, -2, -1, 2, 3, ...
+	c) nil
+
+49. :extra hard:
+51. :extra easy: python

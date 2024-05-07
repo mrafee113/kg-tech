@@ -1,5 +1,11 @@
+##### sudo
+* `su -`
+* `usermod -aG sudo <username>`
+* reboot
+---
 ##### change power options
 ##### add persian keyboard (with keypad)
+##### change timezone
 ---
 ##### fix brightness controller
 * obviously only if it doesn't work
@@ -9,10 +15,14 @@
 	GRUB_CMDLINE_LINUX=""
 	```
 * `sudo update-grub`
-* also change nvidia drivers to recommended in gnome software updates
 * don't forget to restart
 ---
-##### [asus-fan-control](https://github.com/dominiksalvet/asus-fan-control)
+##### [nvidia](https://wiki.debian.org/NvidiaGraphicsDrivers)
+* add `non-free` and `contrib` to `/etc/apt/sources.list`
+* `sudo apt update`
+* `sudo apt install linux-headers-amd64`
+* `sudo apt install nvidia-driver firmware-misc-non-free`
+* reboot
 ---
 ##### mount drive to startup with disks
 ---
@@ -23,34 +33,6 @@
 * `systemctl start v2ray`
 * restore `/usr/local/etc/v2ray/config.json`
 * `service v2ray restart`
----
-##### destroy [snap](https://www.debugpoint.com/remove-snap-ubuntu/)
-* `sudo snap --purge firefox`
-* `sudo snap --purge snap-store`
-* `sudo snap --purge gnome-3-38-2004`
-* `sudo snap --purge gtk-common-themes`
-* `sudo snap --purge snapd-desktop-integration`
-* `sudo snap --purge bare`
-* `sudo snap --purge core20`
-* `sudo snap --purge core22`
-* purge the rest from `snap list`
-* at last: `sudo snap --purge snapd`
-* `sudo apt remove --purge --autoremove snapd`
-* prevent `apt update` bringing snap back:
-	* `sudo -H vim /etc/apt/preferences.d/nosnap.pref` :
-	* `Package: snapd`
-	* `Pin: release a=*`
-	* `Pin-Priority: -10`
-* `sudo apt update`
-* `sudo apt install --install-suggest gnome-software`
-* `sudo add-apt-repository ppa:mozillateam/ppa`
-* `sudo apt update`
-* `sudo apt install -t 'o=LP-PPA-mozillateam' firefox`
-* `echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrade-firefox`
-* `sudo -H vim /etc/apt/preferences.d/mozillateamppa`
-	* `Package: firefox*`
-	* `Pin: release o=LP-PPA-mozillateam`
-	* `Pin-Priority: 501`
 ---
 ##### home
 ###### create customized home folders
@@ -70,7 +52,7 @@
 * `vim ~/.config/user-dirs.dirs`
 	```bash
 	XDG_DESKTOP_DIR="$HOME/Bedroom/Desktop"
-	XDG_DOWNLOAD_DIR="$HOME/Bedroom/Downloads"
+	XDG_DESKTOP_DIR="$HOME/Bedroom/Desktop"
 	XDG_PICTURES_DIR="$HOME/Bedroom/Pictures"
 	XDG_VIDEOS_DIR="$HOME/Bedroom/Videos"
 	XDG_DOCUMENTS_DIR="$HOME/Bedroom/Documents"
@@ -78,17 +60,6 @@
 * `cp -rv /etc/xdg/user-dirs.conf ~/.config/user-dirs.conf`
 * `vim ~/.config/user-dirs.conf`
 	* `enabled=False`
-
-###### change nautilus startup folder
-* `cp -rv /usr/share/applications/org.gnome.Nautilus.desktop ~/.local/share/applications`
-* `cd ~/.local/share/appliactions`
-* `chmod +x org.gnome.Nautilus.desktop`
-* `vim org.gnome.Nautilus.desktop`
-	* `DBusActivatable=true`    -> comment out
-	* `Exec=nautilus --new-window /home/mehdi/Bedroom`
-		* under `[Desktop Action new-window]`
-		* do not change the FIRST Exec under `[Desktop Entry]`
-* logout
 ---
 ##### depr: windscribe.deb
 * `sudo apt install ./windscribe-version.deb`
@@ -106,14 +77,59 @@
 	* [omgubuntu.co.uk](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04)
 * `sudo apt install firefox`
 ---
+##### apt backports, testing and unstable
+* [apt-pinning](https://jaqque.sbih.org/kplug/apt-pinning.html)
+* `/etc/apt/sources.list`
+```
+deb     <url> <dist-name> main contrib non-free non-free-firmware
+deb-src <url> <dist-name> main contrib non-free non-free-firmware
+
+deb     <url> <dist-name>-backports main contrib non-free
+deb-src <url> <dist-name>-backports main contrib non-free
+
+deb     <url> <dist-name>-security main non-free-firmware
+deb-src <url> <dist-name>-security main non-free-firmware
+
+deb     <url> <dist-name>-updates main contrib non-free non-free-firmware
+deb-src <url> <dist-name>-updates main contrib non-free non-free-firmware
+
+# apt-pinning
+deb <url> stable   main non-free contrib
+deb <url> testing  main non-free contrib
+deb <url> unstable main non-free contrib
+```
+* add this line to `/etc/apt/apt.conf.d/70debconf`:
+    * `APT::Cache-Limit "100000000";`
+* `sudo vim /etc/apt/preferences.d/90non-stable.pref`
+```
+Package: *
+Pin: release a=stable
+Pin-Priority: 700
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 650
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: 600
+```
+* `sudo apt update`
+##### auto-upgrade
+* create this file `/etc/apt/apt.conf.d/20auto-upgrades`:
+```
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Download-Upgradeable-Packages "0";
+APT::Periodic::AutocleanInterval "0";
+APT::Periodic::Unattended-Upgrade "0";
+```
 ##### upgrade
-* `sudo apt-get update`
-* `sudo apt-get upgrade`
+* `sudo apt update`
+* `sudo apt upgrade`
 * `sudo apt-get dist-upgrade`
 ---
 ##### virtualenvwrapper
-* `sudo apt install python3-pip`
-* `sudo pip install virtualenv virtualenvwrapper`
+* `sudo apt install virtualenvwrapper`
 * [readthedocs.io](https://virtualenvwrapper.readthedocs.io/en/latest/)
 	* `pip install virtualenvwrapper`
 	* `export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3`
@@ -126,13 +142,16 @@
 	* alternative idea: instead of restoring, create a requirements file for each so bullshit packages are not included. That way you are not forced to keep the versions and install the latest version of each package. If you don't do that and just pip freeze and remove versions and then restore, versions will colide.
 ---
 ##### apt pkgs
+* `sudo apt install pv`
+* `sudo apt install icdiff`
+* `sudo apt install xclip`
+* `sudo apt install python3-pip`
 * `sudo apt install git curl wget httpie exa vim`
-* `sudo apt install ripgrep` - usage: `rg`
+* `sudo apt install fbreader`
 * `sudo apt install gparted htop ipython3 testdisk fzf`
 * `sudo apt install vlc vlc-l10n vlc-plugin-access-extra vlc-plugin-base vlc-plugin-qt vlc-plugin-video-output vlc-plugin-video-splitter vlc-plugin-visualization`
-* *depc*: `snap install spotify discord telegram-desktop`
 * `sudo apt install ripgrep fd-find aria2 ipython3 jmtpfs locate`
-* `sudo add-apt-repository ppa:openshot.developers/ppa; sudo apt install openshot-qt`
+* `sudo apt install openshot-qt`
 * `sudo apt install apt-transport-https ca-certificates gnupg lsb-release`
 * `sudo apt install bat exa broot gping duf jq`
 * `sudo apt install net-tools traceroute ethtool netstat nmap tcpdump iptraf mtr ncftp yafc lsscsi qbittorrent`
@@ -145,6 +164,10 @@
 * `sudo apt install gnome-shell-pomodoro gnome-shell-pomodoro-data`
 * `sudo apt install meld` (diff gui)
 * `sudo apt install dconf-editor`
+* `sudo apt install python3-launchpadlib`
+* `sudo apt install mcomix`
+* install hakuneko
+* install hitomi downloader
 * peek: gif video recorder
 	* `sudo add-apt-repository ppa:peek-developers/stable`
 	* `sudo apt update`
@@ -153,14 +176,25 @@
 	* set push to talk to `Left-Ctrl + Left-Alt`
 * virtualbox/vmware
 ---
+##### nekoray
+* [releases](https://github.com/Matsuridayo/nekoray/releases)
+---
 ##### ULauncher
+```bash
+sudo apt update && sudo apt install -y gnupg
+gpg --keyserver keyserver.ubuntu.com --recv 0xfaf1020699503176
+gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
+          http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main" \
+          | sudo tee /etc/apt/sources.list.d/ulauncher-jammy.list
+sudo apt update && sudo apt install ulauncher
+```
 * `sudo apt install ulauncher`
 * plugins
 	* [file-search](https://github.com/brpaz/ulauncher-file-search)
 	* [calculate-anything](https://github.com/tchar/ulauncher-albert-calculate-anything)
 	* [ukill](https://github.com/isacikgoz/ukill)
 	* [better-file-browser](https://github.com/fisadev/ulauncher-better-file-browser)
-	* [gnome-tracker](https://github.com/dalanicolai/gnome-tracker-extension)
 * settings
 	* hotkey: ctrl+shift+space
 	* color theme: elementary dark
@@ -213,63 +247,9 @@
 	* selenium ui testing
 	* xpathview + xslt
 ---
-##### depr: vscode
-* `sudo apt install ./vscode.deb`
-* terminal # Ctrl+Shift+\` 
-* extensions
-	* Python (microsoft)
-	* Djaneiro
-	* Darcula IntelliJ Theme
-	* material icon theme
-	* Git History
-* vscode commands -> `CTRL+SHIFT+P`
-* select python enterpreter
-* file -> preference -> settings -> json -> add:
-```json
-	"editor.formatOnSave": true,
-	"editor.rulers": [
-		80,
-		120
-	],
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
-		"**/.DS_Store": true,
-		".vscode": true,
-		"**/*.pyc": true,
-		"**/.idea": true,
-		"**/.github": true,
-	},
-	"workbench.editor.enablePreview": false,
-	"editor.minimap.enabled": true,
-	"python.linting.pylintArgs": [
-		"--load-plugins",
-		"pylint_django"
-	]
-```
-* `pip install autopep8`
-* `pip install pylint`
-* restart vscode
-* hints
-	* code .
-	* code --add {dir} -> add folder to windows
-	* code --diff {file} {file} -> compare
-	* code --new-window -> open new empty window
-	* code --reuse-window -> open new tab
-	* code --install-extension-id \[{extension-id}/{extension-vsix-path}\]
----
-##### ubuntu settings
+##### debian settings
 * change background
 	* `cp -rv [photo] ~/.local/share/backgrounds/`
-* *depr*: added online google account
-* ubuntu desktop
-	* icons
-	* small
-	* topleft
-	* show personal folder: `no`
-	* dock -> dont show volumes
 * multitasking
 	* hot-corner
 * sound: click
@@ -292,28 +272,30 @@
 * fix date & time
 * region: set format to `uk`
 ---
-##### depr: pdfstudioviewer
-* [qoppa.com](https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.deb)
----
 ##### gnome-tweaks
 * `sudo apt install gnome-tweaks chrome-gnome-shell gnome-shell-extensions`
 
 ###### config
 * general
 	* over-amplification
-* apprearance
-	* applications: `Yaru-Dark`
-	* cursor: `Xcursor-breeze-snow`
-	* icons: Yaru
-	* shell: `Matcha-sea`
+* apprearance `sudo apt install yaru-theme-gnome-shell yaru-theme-gtk yaru-theme-icon`
+	* applications: `Yaru-red-dark`
+	* cursor: `Yaru`
+	* icons: `Yaru-red-dark`
+	* shell: `Yaru-red-dark`
+    * Legacy Applications: `Yaru-red-dark`
 * top bar
-	* battery percentage
 	* date
 	* seconds
 * window titlebars
 	* double-click toggle maximize
 	* middle-click minimize
 	* secondary-click menu
+    * titlebar buttons
+        * maximize
+        * minimize
+        * right
+
 ---
 ##### manually install gnome-shell-connector
 * https://wiki.gnome.org/Projects/GnomeShellIntegration/Installation
@@ -353,7 +335,7 @@
 * stopwatch
 * persian calendar
 	* all check
-	* `%MM %D/%M/%Y`
+	* `%MM %Y/%M/%D`
 * dash to dock
 	* position and size
 		* position on screen: `bottom`
@@ -399,22 +381,15 @@
 * vitals
 	* processor: usage
 	* memory: usage
-	* fan
+	* fan: cpu
+    * fan: gpu
 	* temperature: average
 	* network: wlp3s0 down
 	* network: wlp3s0 up
 * impatience
 ---
-##### vimix theme & Yaru icon pack
-* `sudo apt install vimix yaru-theme-icon`
-* change at tweaks
-	* cursor: `yaru`
-	* icons: `yaru-red-dark`
-	* shell: `yaru-olive-dark`
-	* legacy-application: `yaru-red-dark`
----
 ##### terminal preferrences
- * inside `colors` tab
+* inside `colors` tab
 * scheme: `solarized dark`
 	* background: `#003628`
 	* terminal-text-color: `#839496`
@@ -429,9 +404,26 @@
 	* 197: Solarized Dark
 	* 05: Adventure Time
 * [dracula themes](https://draculatheme.com/gnome-terminal)
----
-##### broot
-* https://packages.azlux.fr/
+
+##### tilix
+* global
+	* require \<control\> modifier to edit title on click
+	* close window when last session is closed
+	* strip first character of paste if comment of variable declaration
+    * strip trailing whitespaces and linebreak characters on paste
+* appearance
+    * window style: normal
+    * terminal title style: small
+    * tab position: top
+    * theme variant: dark
+    * default session name: ${title}
+    * application title: ${username}@${hostname}:${directory}
+    * use a wide handle for splitters
+    * place the sidebar on the right
+    * show the terminal title even if it's the only terminal
+    * use overlay scrollbars
+    * use tabs instead of sidebar
+
 ---
 ##### zsh
 * `sudo apt-get install zsh`
@@ -442,79 +434,16 @@
 * zsh-syntax-highlighting: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH}/plugins/zsh-syntax-highlighting`
 * zsh-autosuggestions: `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH}/plugins/zsh-autosuggestions`
 * zsh-completions
-	* `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH}/plugins/zsh-autosuggestions`
+	* `git clone https://github.com/zsh-users/zsh-completions ${ZSH}/plugins/zsh-completions`
 	* add this in `.zshrc` before `$ZSH/oh-my-zsh.sh`: `fpath+=${ZSH}/plugins/zsh-completions/src`
 * ports: `git clone https://github.com/caarlos0-graveyard/ports ${ZSH}/plugins/ports`
-* plugins
-	* geeky
-		```zsh
-		plugins=(
-				git
-				zsh-interactive-cd  # sudo apt install fzf
-				zsh-syntax-highlighting
-				zsh-completions
-				common-aliases
-				compleat
-				dirhistory
-				django
-				docker
-				httpie
-				vagrant
-				pip
-				ports
-				celery
-				command-not-found
-				colored-man-pages
-				history
-					# wd
-					# wd add {name}
-					# wd !add {name} -> overwrite existing
-					# wd {name}      -> change directory
-					# wd ..
-					# wd ...
-					# wd rm {name}
-					# wd list        -> ~/.warpc
-					# wd ls {name}   -> list files of warp point
-					# wd path {name}
-					# wd show
-					# wd clean       -> remove wd-s to non-existent dirs
-				web-search
-				copydir
-		)
-		```
-	* noob
-		```zsh
-		plugins=(
-		        git
-		        zsh-interactive-cd
-		        zsh-syntax-highlighting
-		        zsh-autosuggestions
-		        zsh-completions
-		        common-aliases
-		        ports
-		        compleat
-		        command-not-found
-		        history
-		)
-		```
----
-##### depr: pass
-* https://www.passwordstore.org/
-* https://git.zx2c4.com/password-store/about/
-* `sudo apt install pass`
-* `sudo apt install pass-extension-tomb`
-* `git clone https://github.com/roddhjav/pass-update/`
-* `cd pass-update`
-* `sudo make install`
-* `cd ..`
-* `sudo rm -r pass-update`
-* `mkdir ~/.password-store`
-* `cd ~/.password-store`
-* `mkdir .extensions`
-* `git clone https://github.com/roddhjav/pass-import/ pass-import-extension`
-* `cd pass-import-extension`
-* deactivate -> be on local python -> not `system_venv`
-* make local \#python3-setuptools \#pip3 yaml
+* [dracula dircolors](https://draculatheme.com/dircolors)
+```bash
+git clone https://github.com/dracula/dircolors.git /tmp/dircolors
+mkdir -p ~/.dir_colors
+cp /tmp/dircolors ~/.dir_colors/dracula.dircolors
+ln -s /home/<user>/.dir_colors/dracula.dircolors /home/<user>/.dir_colors/dircolors
+```
 ---
 ##### postgresql
 ###### install
@@ -527,57 +456,10 @@
 ###### psycopg2
 * `sudo apt install libpq-dev python3-dev`
 ---
-##### depr: sublimetext
-* install: [sublimetext.com/docs](https://www.sublimetext.com/docs/linux_repositories.html)
-* `wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null`
-* `echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list`
-* `sudo apt update`
-* `sudo apt install sublime-text`
-* install package control
-	* tools -> package control
-* restore settings
----
 ##### locate
 * `sudo apt install locate`
 * restore backup `/var/cache/locate/updatedb`
 * update indexes: `sudo updatedb`
----
-##### depr: tor
-* uses socks5
-* `sudo apt install tor obfs4proxy tor-geoipdb torsocks`
-* get torlogs using `journalctl -extf Tor`
-* get tor bridges from https://bridges.torproject.org/
-* edit `torrc` and add at the end:
-```bash
-	UseBridges 1
-	ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy
-	Bridge obfs4 ip:port hash-of-your-obfs4-bridge
-```
-* `sudo systemctl restart tor@default.service`
-* tor port: `9050`
-* change tor nodes
-```bash
-	EntryNodes {ne}, {de}
-	ExitNodes {us}, {ne}, {de}
-	StrictNodes 1
-```
----
-##### depr: privoxy
-* can port socks5 to http/https
-* `sudo apt install privoxy`
-* edit `/etc/privoxy/config` -> uncomment/add:
-	* `forward-socks5 / 127.0.0.1:9050 .`
-* `sudo systemctl enable privoxy.service`
-* `sudo systemctl start privoxy.service`
-* privoxy port: `8118`
----
-##### depr: torsocks
-* torify terminal commands
-* if torsocks does not work:
-	* command does not support socks5
-	* use http/https (no need for torsocks):
-	* export http_proxy="http://127.0.0.1:8118/"
-	* export https_proxy="https://127.0.0.1:8118/"
 ---
 ##### syncthing
 * `sudo apt install syncthing`
@@ -592,78 +474,29 @@
 			* `Alphabetic` pull order
 			* `send`
 ---
-##### depr: Draw.io
-* download `.deb` file from github
----
-##### depr: [recoll](https://www.lesbonscomptes.com/recoll/pages/index-recoll.html)
-* os search utility
-* `sudo add-apt-repository ppa:recoll-backports/recoll-1.15-on`
-* `sudo apt update`
-* `sudo apt isntall recoll`
-* `sudo apt install python3-recoll gssp-recoll`
-* `sudo apt install poppler-utils` -> for pdftotext
-* `sudo apt install pdftk` -> for indexing pdf attachments
-* `sudo apt install gir1.2-poppler-0.18` -> for indexing pdf annotations
-* `deactivate; pip install epub`
-* add this to ULauncher plugins: [`gnome-tracker-extension`][https://github.com/dalanicolai/gnome-tracker-extension]
-	* `gnome-text-editor` instead of `gedit`
-* settings
-	* Index Settings: restore `recoll.conf`
-	* `recoll.conf` examle
-		 ```sh
-		textfilemaxmbs = 50
-		topdirs = /etc /home/mehdi/.config /home/mehdi/Bedroom /usr/share/applications \
-		/var/redis
-		skippedPaths = /etc/alternatives /etc/apparmor.d /etc/brltty /etc/console-setup \
-		/etc/fonts /etc/libreoffice /etc/pam.d /etc/sane.d \
-		/etc/ssl /etc/X11 /etc/xdg /home/mehdi/.config/Bitwarden \
-		/home/mehdi/.config/google-chrome /home/mehdi/.config/JetBrains \
-		/home/mehdi/.config/libreoffice /home/mehdi/.config/notion-app-enhanced \
-		/home/mehdi/.config/obsidian /home/mehdi/.config/sublime-text \
-		/home/mehdi/Bedroom/Backups /home/mehdi/Corridor \
-		/home/mehdi/snap /media
-		processwebqueue = 1
-		webcachekeepinterval = 
-		```
-	* Crontab
-		* days of week = `5` (fri)
-		* hours = `9`
-		* minutes = `0`
----
-##### depr: flathub
-* preferably never use this. it's like snap!!
-* `sudo apt install flatpak`
-* `sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
----
-##### depr: cubic
-* `sudo add-apt-repository ppa:cubic-wizard/release`
-* `sudo apt install cubic`
----
 ##### bash completion
 * `sudo apt install bash-completion`
 * `pip completion --zsh >> ~/.zshrc` or restore `.zshrc`
 ---
+##### Obsidian
+* https://obsidian.md/download
+---
 ##### useless packages
-* `sudo apt purge --autoremove gnome-mines aisleriot gnome-mines gnome-mahjongg gnome-sudoku`
-* `sudo apt purge --autoremove thunderbird`
-* `sudo apt purge --autoremove transmission-gtk`
-* `sudo apt purge --autoremove rhythmbox totem libtotem-plparser18:amd64 libtotem-plparser-common`
----
-##### Steam: CSGO
-* `sudo apt install steam`
-* username: `jesus_chwist`
-* password: old typical password
-* restore the csgo data
----
-##### Libvirt/QEMU
 ```bash
-sudo apt install qemu-system
-sudo apt install libvirt-daemon libvirt-daemon-system libvirt-daemon-system-systemd libvirt-daemon-config-network libvirt-daemon-driver-qemu libvirt-daemon-driver-lxc libvirt-daemon-driver-vbox
-sudo apt install libvirt-clients libvirt-dev libvirt-doc
-sudo apt install virt-manager
+for pkg in \
+    gnome-mines gnome-mahjong gnome-sudoku gnome-2048 \
+    gnome-weather gnome-maps gnome-klotski gnome-nibbles \
+    gnome-robots gnome-taquin gnome-tetravex \
+    aisleriot thunderbird transmission-gtk rhythmbox \
+    totem libtotem-plparser18:amd64 libtotem-plparser-common \
+    evolution five-or-more four-in-a-row hitori lightsoff \
+    quadrapassel iagno swell-foop synaptic tali; do
 
-sudo usermod -aG libvirt $USER
-newgrp libvirt  # I think this is temporary, u need to logout/login
+    dpkg-query --status "$pkg" 2>1 >/dev/null
+    if [ $? -ne 0 ]; then continue; fi
+    
+    sudo apt purge --autoremove "$pkg"
+done
 ```
 ---
 ##### vim plugins
@@ -673,3 +506,5 @@ newgrp libvirt  # I think this is temporary, u need to logout/login
 ##### Etcetera
 * Beancount: [[Apps/Beancount#Installation]]
 * Vagrant: [[SRE/Vagrant/Installation]]
+* Docker: [[SRE/Docker/Installation]]
+* Anki: [[Apps/Anki]]

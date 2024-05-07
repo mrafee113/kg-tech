@@ -1,0 +1,3 @@
+> [source](https://kubernetes.io/docs/concepts/services-networking/cluster-ip-allocation/)
+
+* In Kubernetes, [Services](https://kubernetes.io/docs/concepts/services-networking/service/) are an abstract way to expose an application running on a set of Pods. Services can have a cluster-scoped virtual IP address (using a Service of `type: ClusterIP`). Clients can connect using that virtual IP address, and Kubernetes then load-balances traffic to that Service across the different backing Pods.

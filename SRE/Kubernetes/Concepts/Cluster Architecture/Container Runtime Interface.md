@@ -1,0 +1,7 @@
+> [source](https://kubernetes.io/docs/concepts/architecture/cri/)
+
+* The CRI is a plugin interface which enables the kubelet to use a wide variety of container runtimes, without having a need to recompile the cluster components.
+* You need a working [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes) on each Node in your cluster, so that the [kubelet](https://kubernetes.io/docs/reference/generated/kubelet) can launch [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) and their containers.
+* The Container Runtime Interface (CRI) is the main protocol for the communication between the kubelet and Container Runtime.
+* The Kubernetes Container Runtime Interface (CRI) defines the main [gRPC](https://grpc.io/) protocol for the communication between the [cluster components](https://kubernetes.io/docs/concepts/overview/components/#node-components) [kubelet](https://kubernetes.io/docs/reference/generated/kubelet) and [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes).
+* **The API**: The kubelet acts as a client when connecting to the container runtime via gRPC. The runtime and image service endpoints have to be available in the container runtime.

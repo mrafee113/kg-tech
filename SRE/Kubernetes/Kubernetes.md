@@ -6,98 +6,107 @@
 * [[SRE/Kubernetes/Tutorials/Basics|Basics]]
 * [[SRE/Kubernetes/Tutorials/The Hard Way|The Hard Way]]
 
-### Concepts
-
-
 ### Addons
 > [[SRE/Kubernetes/Addons/Addons|addons]]
 * [[SRE/Kubernetes/Addons/MetalLB|MetalLB]]
 
-### Docs: Table of Contents
+### Docs
+* [[SRE/Kubernetes/Concepts/Concepts|Concepts]]
+
+#### Table of Contents
 > [source](https://kubernetes.io/docs/)
 
-* sum: `35.53 + 60% * 22.05 + 5% * 10.13 = 49' 15"`
-* `4hpd` -> `12.48days`
+> [!Information]
+> sum: `35.53 + 60% * 22.05 + 5% * 10.13 = 2955" = 49' 15"`
+> `4hpd` -> `12.48days`
+> progress: `2129"` -> `72%` | `99.86%`
 
+* day: `19 + 16 + 14 + 19`
 * [Concepts](https://kubernetes.io/docs/concepts/): `0"` + `35' 32"`
-	* [Overview](https://kubernetes.io/docs/concepts/overview/): `20"` + `3' 29"`
-		* [Objects in Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/): `19"` + `2' 34"`
-			* [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/): `17"`
-			* [Object Names and IDs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/): `15"`
-			* [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/): `27"`
-			* [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/): `17"`
-			* [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/): `15"`
-			* [Field Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/): `14"`
-			* [Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/): `17"`
-			* [Owners and Dependants](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/): `16"`
-			* [Recommended Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/): `16"`
-		* [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/): `19"`
-		* [The Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/): `19"`
-	* [Cluster Architecture](https://kubernetes.io/docs/concepts/architecture/): `0"` + `1' 59"`
-		* [Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/): `34"`
-		* [Communication between Nodes and the Control Plane](https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/): `17"`
-		* [Controllers](https://kubernetes.io/docs/concepts/architecture/controller/): `19"`
-		* [About cgroups v2](https://kubernetes.io/docs/concepts/architecture/cgroups/): `16"`
-		* [Container Runtime Interface](https://kubernetes.io/docs/concepts/architecture/cri/): `14"`
-		* [Garbage Collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/): `19"`
-	* [Containers](https://kubernetes.io/docs/concepts/containers/): `14"` + `1' 22"`
-		* [Images](https://kubernetes.io/docs/concepts/containers/images/): `32"`
-		* [Container Environment](https://kubernetes.io/docs/concepts/containers/container-environment/): `13"`
-		* [Runtime Class](https://kubernetes.io/docs/concepts/containers/runtime-class/): `17"`
-		* [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/): `20"`
-	* [Workloads](https://kubernetes.io/docs/concepts/workloads/): `16"` + `11' 53"`
-		* [Pods](https://kubernetes.io/docs/concepts/workloads/pods/): `28"` + `2' 42"`
-			* [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/): `39"`
-			* [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/): `32"`
-			* [Disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/): `24"`
-			* [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/): `14"`
-			* [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/): `18"`
-			* [User Namespaces](https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/): `20"`
-			* [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/): `15"`
-		* [Workload Resources](https://kubernetes.io/docs/concepts/workloads/controllers/): `15"` + `9' 10"`
-			* [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): `5' 34"`
-			* [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/): `31"`
-			* [StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/): `32"`
-			* [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/): `25"`
-			* [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/): `58"`
-			* [Automatic Cleanup for Finished Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/): `15"`
-			* [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/): `25"`
-			* [ReplicationController](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/): `30"`
-	* [Services, Load Balancing, and Networking](https://kubernetes.io/docs/concepts/services-networking/): `17"` + `3' 5"`
-		* [Service](https://kubernetes.io/docs/concepts/services-networking/service/): `47"`
-		* [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/): `43"`
-		* [EndpointSlices](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/): `22"`
-		* [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/): `31"`
-		* [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/): `26"`
-		* [Service ClusterIP allocation](https://kubernetes.io/docs/concepts/services-networking/cluster-ip-allocation/): `16"`
-	* [Storage](https://kubernetes.io/docs/concepts/storage/): `0"` + `4' 30"`
-		* [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/): `57"`
-		* [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): `57"`
-		* [Projected Volumes](https://kubernetes.io/docs/concepts/storage/projected-volumes/): `21"`
-		* [Ephemeral Volumes](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/): `22"`
-		* [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/): `32"`
-		* [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/): `16"`
-		* [Volume Snapshot](https://kubernetes.io/docs/concepts/storage/volume-snapshots/): `20"`
-		* [Volume Snapshot Classes](https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/): `14"`
-		* [CSI Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/): `15"`
-		* [Storage Capacity](https://kubernetes.io/docs/concepts/storage/storage-capacity/): `16"`
-	* [Configuration](https://kubernetes.io/docs/concepts/configuration/): `0"` + `2' 13"`
-		* [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/): `19"`
-		* [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/): `24"`
-		* [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/): `43"`
-		* [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/): `47"`
-	* [Scheduling, Preemption and Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/): `0"` + `2' 33"`
-		* [Kubernetes Scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/): `16"`
-		* [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/): `39"`
-		* [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/): `24"`
-		* [Pod Priority and Preemption](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/): `28"`
-		* [Node-Pressure Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/): `30"`
-		* [API-Initiated Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/api-eviction/): `16"`
-	* [Cluster Administration](https://kubernetes.io/docs/concepts/cluster-administration/): `14"` + `3' 7"`
-		* [Managing Resources](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/): `24"`
-		* [Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/): `14"`
-		* [Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/): `29"`
-		* [Metrics for Kubernetes System Components](https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/): `19"`
+	* `35' 34"` |
+	* [Overview](https://kubernetes.io/docs/concepts/overview/): `20"` | `14"` -> `142%` ->> `3' 51"` | `3' 18"` -> `116%`
+		* `3' 31"` | `3' 4"` -> `114%`
+		* [Objects in Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/): `19"` | `18"` -> `105%` ->> `2' 53"` | `2' 38"` -> `109%`
+			* `2' 34"` | `2' 20"` -> `110%`
+			* [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/): `17"` | `13"` -> `130%`
+			* [Object Names and IDs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/): `15"` | `12"` -> `125%`
+			* [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/): `27"` | `33"` -> `84%`
+			* [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/): `17"` | `14"` -> `121%`
+			* [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/): `15"` | `8"` -> `187%`
+			* [Field Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/): `14"` | `7"` -> `200%`
+			* [Finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/): `17"` | `17"` -> `100%`
+			* [Owners and Dependants](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/): `16"` | `23"` -> `69%`
+			* [Recommended Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/): `16"` | `13"` -> `123%`
+		* [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/): `19"` | `21"` -> `90%`
+		* [The Kubernetes API](https://kubernetes.io/docs/concepts/overview/kubernetes-api/): `19"` | `5"` -> `380%`
+	* [Cluster Architecture](https://kubernetes.io/docs/concepts/architecture/): `1' 59"`  | `2' 1"` -> `98%`
+		* [Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/): `34"` | `48"` -> `71%`
+		* [Communication between Nodes and the Control Plane](https://kubernetes.io/docs/concepts/architecture/control-plane-node-communication/): `17"` | `17"` -> `100%`
+		* [Controllers](https://kubernetes.io/docs/concepts/architecture/controller/): `19"` | `19"` -> `100%`
+		* [About cgroups v2](https://kubernetes.io/docs/concepts/architecture/cgroups/): `16"` | `7"` -> `228%`
+		* [Container Runtime Interface](https://kubernetes.io/docs/concepts/architecture/cri/): `14"` | `6"` -> `233%`
+		* [Garbage Collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/): `19"` | `24"` -> `79%`
+	* [Containers](https://kubernetes.io/docs/concepts/containers/): `14"` | `7"` -> `200%` ->> `1' 36"` | `1' 1"` -> `157%`
+		* `1' 22"` | `54"` -> `151%`
+		* [Images](https://kubernetes.io/docs/concepts/containers/images/): `32"` | `31"` -> `103%`
+		* [Container Environment](https://kubernetes.io/docs/concepts/containers/container-environment/): `13"` | `3"` -> `433%`
+		* [Runtime Class](https://kubernetes.io/docs/concepts/containers/runtime-class/): `17"` |  `7"` -> `242%`
+		* [Container Lifecycle Hooks](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/): `20"` | `13"` -> `153%`
+	* [Workloads](https://kubernetes.io/docs/concepts/workloads/): `16"` | `6"` -> `266%` ->> `12' 21"` | `7' 22"` -> `167%`
+		* `12' 5"` | 
+		* [Pods](https://kubernetes.io/docs/concepts/workloads/pods/): `28"` | `30"` -> `93%` ->> `3' 10"` | `2' 40"` -> `118%`
+			* `2' 42"` | `2' 10"` -> `124%`
+			* [Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/): `39"` | `49"` -> `79%`
+			* [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/): `32"` | `23"` -> `139%`
+			* [Disruptions](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/): `24"` | `22"` -> `109%`
+			* [Ephemeral Containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/): `14"` | `10"` -> `140%`
+			* [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/): `18"` | `12"` -> `150%`
+			* [User Namespaces](https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/): `20"` | `2"` -> `1000%`
+			* [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/): `15"` | `12"` -> `125%`
+		* [Workload Resources](https://kubernetes.io/docs/concepts/workloads/controllers/): `15"` | `2"` -> `750%` ->> `8' 55"` | `4' 42"` -> `189%`
+			* `8' 40"` | `4' 40"` -> `185%`
+			* [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/): `5' 34"` | `1' 53"` -> `295%`
+			* [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/): `31"` | `26"` -> `119%`
+			* [StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/): `32"` | `38"` -> `84%`
+			* [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/): `25"` | `27"` -> `92%`
+			* [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/): `58"` | `46"` -> `126%`
+			* [Automatic Cleanup for Finished Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/): `15"` | `11"` -> `136%`
+			* [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/): `25"` | `20"` -> `125%`
+	* [Services, Load Balancing, and Networking](https://kubernetes.io/docs/concepts/services-networking/): `17"` | `8"` -> `212%` ->> `3' 5"` | `2' 22"` -> `130%`
+		* [Service](https://kubernetes.io/docs/concepts/services-networking/service/): `47"` | `1' 11"` -> `66%`
+		* [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/): `43"` | `32"` -> `134%`
+		* [EndpointSlices](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/): `22"` | `6"` -> `366%`
+		* [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/): `31"` | `13"` -> `238%`
+		* [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/): `26"` | `8"` -> `325%`
+		* [Service ClusterIP allocation](https://kubernetes.io/docs/concepts/services-networking/cluster-ip-allocation/): `16"` | `4"` -> `400%`
+	* [Storage](https://kubernetes.io/docs/concepts/storage/): `4' 30"` | `1' 10"` -> `385%`
+		* [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/): `57"` | `30"` -> `190%`
+		* [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/): `57"` | `7"` -> `814%`
+		* [Projected Volumes](https://kubernetes.io/docs/concepts/storage/projected-volumes/): `21"` | `5"` -> `420%`
+		* [Ephemeral Volumes](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/): `22"` | `5"` -> `440%`
+		* [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/): `32"` | `6"` `533%`
+		* [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/): `16"` | `3"` -> `533%`
+		* [Volume Snapshot](https://kubernetes.io/docs/concepts/storage/volume-snapshots/): `20"` | `6"` -> `333%`
+		* [Volume Snapshot Classes](https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/): `14"` | `1"` -> `1400%`
+		* [CSI Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/): `15"` | `3"` -> `500%`
+		* [Storage Capacity](https://kubernetes.io/docs/concepts/storage/storage-capacity/): `16"` | `4"` -> `400%`
+	* [Configuration](https://kubernetes.io/docs/concepts/configuration/): `2' 13"` | `36"` -> `369%`
+		* [Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/): `19"` | `16"` -> `118%`
+		* [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/): `24"` | `4"` -> `600%`
+		* [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/): `43"` | `10"` -> `430%`
+		* [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/): `47"` | `6"` -> `783%`
+	* [Scheduling, Preemption and Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/): `2' 33"` | `27"` -> `566%`
+		* [Kubernetes Scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/): `16"` | `7"` -> `228%`
+		* [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/): `39"` | `5"` -> `780%`
+		* [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/): `24"` | `5"` -> `480%`
+		* [Pod Priority and Preemption](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/): `28"` | `3"` -> `930%`
+		* [Node-Pressure Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/): `30"` | `3"` -> `1000%`
+		* [API-Initiated Eviction](https://kubernetes.io/docs/concepts/scheduling-eviction/api-eviction/): `16"` | `4"` -> `400%`
+	* [Cluster Administration](https://kubernetes.io/docs/concepts/cluster-administration/): `14"` | `6"` -> `230%` ->> `3' 21"` | `11"` -> `1182%`
+		* [Managing Resources](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/): `24"` | `2"` -> `1200%`
+		* [Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/): `14"` | `3"` -> `460%`
+		* [Logging Architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/): `29"` | `2"` -> `1450%`
+		* [Metrics for Kubernetes System Components](https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/): `19"` | `4"` -> `475%`
 		* [System Logs](https://kubernetes.io/docs/concepts/cluster-administration/system-logs/): `22"`
 		* [Proxies in Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/proxies/): `13`
 		* [API Priorities and Fairness](https://kubernetes.io/docs/concepts/cluster-administration/flow-control/): `49"`
@@ -184,3 +193,4 @@
 	* [Kubectl](https://kubernetes.io/docs/reference/kubectl/): `30"` + `40"`
 		* [Kubectl Cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/): `40"`
 		* [Kubectl Commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands): `0"`
+* [Kubectl Book: kubectl.docs.kubernetes.io](https://kubectl.docs.kubernetes.io/)

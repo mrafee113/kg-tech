@@ -1,0 +1,114 @@
+1.
+	a) 21 = 3 * 7 => F
+	b) 29 => T
+	c) 71 => T
+	d) 97 => T
+	e) 111 = 3 * 37 => F
+	f) 143 = 11 * 13 => F
+
+3.
+	a) 88 = 11 * 2**3 
+	b) 27 = 3**3
+	c) 93 = 3 * 31
+	d) 1001 = 7 * 11 * 13
+	e) 1111 = 11 * 101
+	f) 909,090 = 2 * 3**3 * 5 * 7 * 13 * 37
+
+5.
+	10! = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+	= 2**8 * 3**4 * 5**2 * 7
+
+15.
+	for i in range(2, 30):
+		if math.gcd(i, 30) == 1:
+			print(i)
+	7, 11, 13, 17, 19, 23, 29
+
+17.
+	def pairwise_relatively_prime(l: list):
+		for i in l:
+			for j in l:
+				if i == j:
+					continue
+				if math.gcd(i, j) != 1:
+					return False
+		return True
+	
+	a) T
+	b) F
+	c) T
+	d) T
+
+The value of the Euler 𝝓-function at the positive
+	integer n is deﬁned to be the number of positive
+	integers less than or equal to n that are relatively
+	prime to n. For instance, 𝜙(6) = 2 because of
+	the positive integers less or equal to 6, only 1
+	and 5 are relatively prime to 6.
+	[Note: 𝜙 is the Greek letter phi.]
+		
+21.
+	def phi(n: int):
+		counter = 0
+		for i in range(1, n):
+			if math.gcd(i, n) == 1:
+				counter += 1
+		return counter
+	
+	a) 2
+	b) 4
+	c) 12
+
+23.
+	phi(p**k) = p - 1
+
+25.
+	a) 3**5 * 5**3
+	b) 1
+	c) 23**17
+	d) 41*43*53
+	e) 1
+	f) 1111
+
+27.
+	1000 = 2**3 * 125 = 2**3 * 5**3
+	625 = 5**4
+	gcd = 5**3
+	lcm = 2**3 * 5**4
+	625 * 1000 = 625000 =? 5**3 * 2**3 * 5**4
+
+29.
+	92928 = 2**8 * 3 * 11**2
+	123552 = 2**5 * 3**3 * 11 * 13
+	gcd = 2**5 * 3 * 11
+	lcm = 2**8 * 3**3 * 11**2 * 13
+	92928 * 123552 = 11481440256 =? 2**5 * 2**8 * 3 * 3**3 * 11 * 11**2 * 13
+	
+31.
+	a)
+		gcd(12, 18) = gcd(12, 6) = 6
+		18 = 12 * 1 + 6
+		12 = 2 * 6
+	b)
+		gcd(100, 101) = gcd(100, 1) = 1
+		101 = 100 * 1 + 1
+	c)
+		gcd(123, 277) = gcd(123, 31) = gcd(31, 30) = 1
+		277 = 2 * 123 + 31
+		123 = 31 * 3 + 30
+	d)
+		gcd(12345, 54321) = gcd(12345, 4941) = gcd(4941, 2463)
+		= gcd(2463, 15) = gcd(15, 3) = 3
+		54321 = 12345 * 4 + 4941
+		12345 = 4941 * 2 + 2463
+		4941 = 2463 * 2 + 15
+		2463 = 164 * 15 + 3
+	e)
+		gcd(1529, 14038) = gcd(1529, 277) = gcd(277, 144)
+		= gcd(144, 133) = 1
+		14038 = 1529 * 9 + 277
+		1529 = 277 * 5 + 144
+		277 = 144 * 1 + 133
+	f)
+		gcd(11111, 111111) = 1
+		111111 = 11111 * 10 + 1

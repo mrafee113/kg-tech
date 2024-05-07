@@ -10,7 +10,7 @@
 
 ## Installation
 > [google docs](https://docs.google.com/document/d/1FqyrTPwiHVLyncWTf3v5TcooCu9z5JRX8Nm41lVZi0U/edit)
-* ubuntu
+* ubuntu | debian
 	```bash
 	sudo apt install beancount
 	```

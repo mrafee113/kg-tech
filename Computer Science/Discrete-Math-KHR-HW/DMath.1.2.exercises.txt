@@ -1,0 +1,182 @@
+1.
+	p= you can edit a wikipedia entry
+	q= you are an administrator
+	~p -> ~q
+	q -> p
+
+3.
+	p= you can graduate
+	q= you owe money to the university
+	r= you have completed the requirements of your major
+	s= you have an overdue library book
+	p -> (q & ~r & ~s)
+
+5.
+	p= you are eligible to be the president of the USA
+	q= you are at least 35 years old
+	r= you were born in the USA
+	s= at the time of your birth, both of your parents were citizens
+	t= you have lived at least 14 years in the USA
+	p -> q & (r | s) & t
+
+7.
+	p= the message is scanned for viruses
+	q= the message was sent from an unknown system
+	a) q -> p
+	b) q & ~p
+	c) q -> p
+	d) ~p -> ~q
+
+9.
+	p= the system is in multiuser state
+	q= the system is operating normally
+	r= the kernel is functioning
+	s= the system is in interrupt mode
+	1. the system is in multiuser state if and only if it is operating normally.
+		q <-> p ->> (p -> q) & (q -> p)
+	2. if the system is operating normally, the kernel is functioning.
+		q -> r
+	3. the kernel is not functioning or the system is in interrupt mode.
+		~r | s
+	4. if the system is not in multiuser state, then it is in interrupt mode.
+		~p -> s
+	5. the system is not in interrupt mode.
+		~s
+	5 => s=false
+	4 & s=false => ~p=false => p=true
+	3 & s=false => ~r=true => r=false
+	2 & r=false => q=false
+	1 & (T -> F) & (F -> T) = F & T = F
+	this system is inconsistent
+
+11.
+	p= the router can send packets to the edge system
+	q= the router supoorts the new address space
+	r= the latest software release is installed
+	1. the router can send packets to the edge system only if it supports the new address space
+		p -> q
+	2. for the router to support the new address space it is necessary that the latest software release be installed
+		q -> r
+	3. the router can send packets to the edge system if the latest software release is installed
+		r -> p
+	4. the router does not support the new address space
+		~q
+	4 => q=false
+	1 & q=false => p=false
+	3 & p=false => r=false
+	the system is consistent
+
+13.
+	- New & Jersey & Beaches
+	- (Isle & Jersey & Beaches) | (Jersey & Beaches & ~New)
+
+15.
+	- Ethiopian & Restaurants & New (York | Jersey)
+
+19. :VERY HARD:
+21. :INTERESTING:
+
+Exercises 23-27 relate to inhabitants of the island of knights and knaves,
+	where knights always tell the truth and knaves always lie. You
+	encounter two people, A and B. Determine, if possible, what A and B are
+	if they address you in the ways described. If you cannot determine what
+	these two people are, can you draw any conclusions?
+
+23. :IMPORTANT: Note how the negation of "at least of us is a knave" is evaluated
+25.
+	A: i am a knave or b is a knight
+	p= a is a knight
+	q= b is a knight
+	p & (~p | q) = p & q
+	~p & ~(~p | q) = ~p & p & ~q => contradiction
+	so A is a knight and B is a knight
+
+27.
+	A: we are both knaves
+	p= a is a knight
+	q= b is a knight
+	p & ~p & ~q => contradiction => ~p=true => p=false
+	~p & ~(p & q) = ~p & (~p | q) = ~p | (~p & ~q) => q=true
+
+Exercies 28-35 relate to inhabitants of an island on which there are
+	three kinds of people: knights who always tell the truth, knaves
+	who always lie, an spies who can either lie or tell the truth.
+	you encounter three people, A, B, and C. you know one of these
+	people is a knight, one is a knave, and one is a spy. each of the
+	three people knows the type of person each of other two is. for
+	each of these situations, if possible, determine whether there
+	is a unique solution and determine who the knave, knight, and
+	spy are. when there is no unique solution, list all possible
+	solutions or state that there are no solutions.
+
+29.
+	A: i am the knight
+	B: i am the knave
+	C: b is the knight
+	- neither the knight nor the knave would say they are the knave.
+	B is a spy => C is the knave => A is the knight
+
+31.
+	A: i am the knight
+	B: a is telling the truth
+	C: i am the spy
+	C is either a spy and telling the truth or a knave.
+	if B is telling the truth, B is a spy.
+	if B is lying, B is a spy or a knave. so A is a spy or a knave.
+	C is not a knight. B is not the knight. so A is the knight.
+	so B was telling the truth, and is a spy.
+	then C is a knave.
+
+33.
+	A: i am the knight
+	B: i am the knight
+	C: i am the knight
+	- A is the knight, B is the spy, and C is the knave.
+	- A is the knight, B is the knave and C is the spy.
+	- B is the knight, A is the spy, and C is the knave.
+	- B is the knight, A is the knave, and C is the spy.
+	- C is the knight, A is the spy, and B is the knave.
+	- C is the knight, A is the knave, and C is the spy.
+
+35.
+	A: i am not the spy
+	B: i am not the spy
+	C: i am not the spy
+	the knave always lies, so telling "i am not the spy" would be a contradiction,
+		for which there are no solutions.
+
+Exercises 36-42 are puzzles that can be solved by translating statements
+	into logical expressions and reasoning from these expressions using truth tables.
+
+37. :IMPORTANT:
+39.
+	p= the butler is telling the truth
+	q= the cook is telling the truth
+	r= the gardener is telling the truth
+	s= the handyman is telling the truth
+	- if the butler is telling the truth, so is the cook
+	- the cook and the gardener cannot both be telling the truth
+	- the gardener and the handyman are not both lying
+	- if the handyman is telling the truth, then the cook is lying
+	presume p=true => q=true => r=false => s=false => contradiction => p=false
+	presume s=true => q=false => p=false ->> nothing about s
+	presume q=true & p=false => r=false => s=true
+
+	finally: ~p & q & ~r & s
+
+41. :MUCH SIMPLER THAN I THOUGHT:
+	sign 1: in this room there is a lady, and in the other one a tiger
+	sign 2: in one of these rooms, there is a lady, and in one of them there is a tiger
+	r= sign 1 is telling the truth= p & ~q
+	s= sign 2 is telling the truth= (p & ~q) | (~p & q)
+	p= room one has a lady, not a tiger
+	q= room two has a lady, not a tiger
+	presume r=true => s=false => (p & ~q) = false => contradiction => ~r & s
+
+43. given any set of 2 senatros, at least one of them is corrupt
+		=> there are no sets of 2 senators with both of them being honest
+		=> there's only one honest senator
+
+45. a) ~p | (~q & r)
+	b) (~p & ~q) | (p & r)
+

@@ -1,0 +1,134 @@
+1. aT, bT, cT, dF
+
+3.
+	a) Linda is older or the same age as Sanjay
+	b) Mei makes less money or the same money as Isabella
+	c) Moshe is shorter or the same height as Monica
+	d) Abby is poorer than Ricardo or has the same amount of wealth
+
+5.
+	a) Mei does not have an MP3 player
+	b) There is pollution in New Jersey
+	c) 2 + 1 != 3
+	d) The summer in Maine is not hot and sunny.
+
+7.
+	a) Steve has less than or equals to 100GB free disk space on his laptop.
+	b) Zach unblocks e-mails and texts from Jennifer
+	c) 7 * 11 * 13 != 999
+	d) Diane did not ride her bicycle 100 miles on Sunday.
+
+9. acme: r::138B n::8B, nadir: r::87B n::5B, quixote: r::111B n::13B
+	a) F
+	b) T
+	c) T
+	d) T
+	e) T
+
+11.
+	p= "swimming at the New Jersey shore is allowed"
+	q= "sharks have been spotted near the shore"
+	a) ~q= "no sharks have been spotted near the shore
+	b) p&q= "swimming at the New Jersey shore is allowed and sharks have been spotted there"
+	c) ~p|q= "either sharks have been spotted near the shore, or swimming at the New Jersey shore is not allowed"
+	d) p->~q= "if swimming at the New Jersey shore is allowed, then no sharks have been spotted near the shore"
+	e) ~q->p= "if no sharks have been spotted near the shore, then swimming at the New Jersey shore is allowed"
+	f) ~p->~q= "if swimming at the New Jersey shore is not allowed, then no sharks have been spotted at the shore"
+	g) p↔~q= "no sharks have been spotted near the shore if and only if swimming at the New Jersey shore is allowed"
+	h) ~p&(p|~q)= "swimming at the New Jersey shore is not allowed and, either no sharks have been allowed near the shore or swimming at the New Jersey shore is allowed"
+
+13.
+	p= it is below freezing
+	q= it is snowing
+	a) p&q
+	b) p&~q
+	c) ~p&~q
+	d) p|q
+	e) p->q
+	f) (p|q)&(p->~q)
+	g) p<->q
+
+15.
+	p= you drive over 65 miles per hour
+	q= you get a speeding ticket
+	a) ~p
+	b) p&~q
+	c) p->q
+	d) ~p->~q
+	e) p->q
+	f) q&~p
+	g) q->p :Warning: "Whenever" means "if"
+
+17.
+	p= grizzly bears have been seen in the area
+	q= hiking is safe on the trails
+	r= berries are ripe along the trail
+	a) r&~p
+	b) ~p&q&r
+	c) r->(q<->~p)
+	d) ~q&~p&r
+	e) TRICKY
+	f) (p&r)->~q
+
+19.
+	a) F
+	b) T
+	c) T
+	d) T
+
+21.
+	a) xor
+	b) or
+	c) or. if a student has had both courses as prerequisites, so much the better.
+	d) or
+
+23.
+	a) or
+	b) xor
+	c) xor
+	d) or
+
+25.
+	a) if the wind blows from the northeast, then it snows
+	b) if it stays warm for a week, then the apple trees will bloom
+	c) if the pistons win the championship, then they beat the lakers
+	d) if you get to the top of long's peak, then you have walked 8 miles
+	e) if you're world famous, then you can get tenure as a professor
+	f) ...
+	g) if your guarantee is good, then you bought your CD player less than 90 days ago
+	h) if the water is not too cold, then jan will go swimming
+	i) if people believe in science, we will have a future
+
+27.
+	a) you buy an icecream cone if and only if it's hot outside
+	b) you win the contest if and only if you have the only winning ticket
+	c) you get promoted if and only if you have connections
+	d) your mind decays if and only if you watch television
+	e) the train runs late if and only if I take it
+
+29. :HARD:
+	a)
+		conv= I will ski tomorrow only if it snows today
+		cont= if I don't ski tomorrow, then it will not have snowed today
+		 inv= if it doesn't snow today, then i will not ski tomorrow
+	b)
+		conv= if I come to the class, there is going to be a quiz
+		cont= if I don't come to the class, there is not going to be a quiz
+		 inv= if there's not going to be a quiz, then I will not come to the class
+	c) 
+		conv= if a positive integer has no divisors other than 1 and itself, then it is a prime
+		cont= if a positive integer has other divisors besides 1 and itself, the it is not a prime
+		 inv= if a positive integer is not a prime, then it has other divisors besides 1 and itself
+
+31. a) 2**1= 2 b) 2**4= 16 c) 2**6= 64 d) 2**4= 16
+33. too long
+35. too long
+37. too long
+39. too long
+41. too long
+42. :IMPORTANT:
+43. :IMPORTANT:
+47. too long
+49. ai??
+51. ai??
+53. :SUPER HARD:

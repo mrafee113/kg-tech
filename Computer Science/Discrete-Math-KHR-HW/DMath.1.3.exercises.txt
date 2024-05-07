@@ -1,0 +1,131 @@
+7.
+	a) jan isn't rich or happy
+	b) carlos won't bicycle and run tomorrow
+	c) mei doesn't walk and take the bus to class
+	d) ibrahim isn't smart or hard working
+
+9.
+	- p -> q ≡ ~p | q
+	a) p -> ~q ≡ ~p | ~q ≡ ~(p & q)
+	b) (p -> q) -> r ≡ ~(~p | q) | r ≡ (p & ~q) | r
+	c) (~q -> p) -> (p -> ~q) ≡ ~(q | ~p) | (~p | ~q)
+
+13.
+	- proving that the falsehood of a compound proposition is not satisfiable
+		will in return prove that the compound proposition is tautology.
+	a) if p=false => (p & q)=false
+	b) if p=true => (p | q)=true
+	c) if ~p=true => (p -> q)=true
+	d) if (p -> q)=false => p=true and q=false => (p & q)=false
+	e) if p=false => (p -> q)=true => ~(p -> q)=false
+	f) if ~q=false => q=true => (p -> q)=true => ~(p -> q)=false
+
+15. 
+	a) (p & q) -> p ≡ ~(p & q) | p ≡ ~p | ~q | p ≡ T
+	b) p -> (p | q) ≡ ~p | (p | q) ≡ T
+	c) ~p -> (p -> q) ≡ p | (~p | q) ≡ T
+	d) (p & q) -> (p -> q) ≡ (~p | ~q) | (~p | q) ≡ T
+	e) ~(p -> q) -> p ≡ ~p | q | p ≡ T
+	f) ~(p -> q) -> ~q ≡ ~p | q | ~q ≡ T
+
+19.
+	tautology: (~q & (p -> q)) -> ~q
+	if ~q=false => q=true => (~q & (p -> q))=false => T -> F never happens
+
+33.
+	tautology: (p -> q) & (q -> r) -> (p -> r)
+	if (p -> r)=false => r=false & p=true => (p -> q) & (p -> r) ≡ F
+
+35.
+	(p -> q) -> r !≡ (q -> r)
+	(q -> r) ≡ ~q | r
+	(p -> q) -> r ≡ (p & ~q) | r ≡ r | (p & ~q) ≡ (r | p) & (r | ~q)
+	if p=false & r=false & q=false => (r | p) & (r | ~q) ≡ F !≡ T ≡ r | ~q
+
+37.
+	(p -> q) -> (r -> s) !≡ (p -> r) -> (q -> s)
+	(p -> q) -> (r -> s) ≡ (p & ~q) | ~r | s
+	(p -> r) -> (q -> s) ≡ (p & ~r) | ~q | s
+	if q=false & r=true => (p & ~q) | ~r | s ≡ (p & ~q) | s !≡ T ≡ (p & ~r) | ~q | s
+
+The dual of a compound proposition that contains only thelogical 
+	operators ∨, ∧, and ¬ is the compound propositionobtained by
+	replacing each ∨ by ∧, each ∧ by ∨, each Theby F, and
+	each F by T. The dual of s is denoted by s∗.
+
+39.
+	a) p | ~q | ~r
+	b) (p | q | r) & s
+	c) (p & T) | (q & F)
+
+45. (p & q & ~r) | (p & ~q & r) | (~p & q & r)
+
+We now present a group of exercises that involve the
+	logical operators NAND and NOR. The proposition
+	p NAND q is true when either p or q, or both, are
+	false; and it is false when both p and q are
+	true. The proposition p NOR q is true when both
+	p and q are false, and it is false otherwise.
+	The propositions p NAND q and p NOR q are denoted by
+	p ∣ q and p ↓ q, respectively.
+	(The operators | and ↓ are called the Sheffer stroke
+	and the Peirce arrow after H. M. Sheffer and
+	C. S. Peirce, respectively.)
+
+50.
+	p q p NAND q
+	T T F
+	T F T
+	F T T 
+	F F T
+
+	p NAND q = ~(p & q) = ~p | ~q
+
+52.
+	p q p NOR q
+	T T F
+	T F F
+	F T F
+	F F T
+
+	p NOR q = ~(p | q) = ~p & ~q
+
+55.
+	p -> q ≡ ~p | q ≡ ~(p & ~q) ≡ ~(~p NOR q)
+	:maybe wrong:
+
+57.
+	p NAND q ≡ q NAND p
+	~p | ~q ≡ ~q | ~p
+
+59.
+	at least 2**4=16
+
+61.
+	p= the system is in its initial state
+	q= the directory database is opened
+	r= the monitor is put in a closed state
+	~p -> (q -> r) ≡ p | ~(~q | r) ≡ p | (q & ~r)
+	the system is in its initial state, or the directory
+		database is opened and the monitor is put in a
+		closed state.
+
+63. :interesting approach:
+65.
+	a) p=false and q=false
+	b) (~p | q) & (~p | ~q) & (p | q) & (p | ~q)
+		- to prove it's not satisfiable, i'll prove the 
+			satisfiability of its negation for every p and q.
+		- negation: (p & ~q) | (p & q) | (~p & ~q) | (~p & q)
+			p q negation
+			T T T (p & q)
+			T F T (p & ~q)
+			F T T (~p & q)
+			F F T (~p & ~q)
+	c) ((p -> q) & (q -> p)) & ((~p -> q) & (q -> ~p))
+	  ≡(~p | q) & (~q | p) & (p | q) & (~q | ~p)
+	  - like b)
+
+67. :I DON'T UNDERSTAND:
+69. :I DON'T UNDERSTAND:
+71. :I DON'T UNDERSTAND:
